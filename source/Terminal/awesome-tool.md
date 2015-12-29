@@ -2,75 +2,75 @@
 
 这里收集一些 terminal 环境下非常有用的工具，不定时更新。
 
-#### -   [Emacs](https://www.gnu.org/software/emacs/)  
+#### [Emacs](https://www.gnu.org/software/emacs/)  
 首位祭神！  
 神之编辑器
 
-#### -   [Htop](http://hisham.hm/htop/)   
+#### [Htop](http://hisham.hm/htop/)   
 基本的工具，显示系统资源情况
 
-#### -   [fortune](http://brewformulas.org/Fortune)   
+#### [fortune](http://brewformulas.org/Fortune)   
 传统实用工具。
 
-#### -   [aria2](https://aria2.github.io/)   
+#### [aria2](https://aria2.github.io/)   
 牛气哄哄的下载工具，支持多线程，多段下载。   
 
-#### -   [iptraf](http://iptraf.seul.org/)   
+#### [iptraf](http://iptraf.seul.org/)   
 网络监视工具   
 
-#### -   [ranger](http://ranger.nongnu.org/)   
-terminal 下的 finder，极客必备。
+#### [ranger](http://ranger.nongnu.org/)   
+terminal 下的 finder，极客必备。   
 ![ranger](https://raw.githubusercontent.com/cfangwei/cfangwei.github.io/source/source/Terminal/awesome-tool/ranger.png)
 
-#### -   [nmap](https://nmap.org/)   
+#### [nmap](https://nmap.org/)   
 强大的端口扫描工具，不多说了。
 
-#### -   [trash-cli](https://github.com/sindresorhus/trash-cli)   
+#### [trash-cli](https://github.com/sindresorhus/trash-cli)   
 在命令行把文件扔到垃圾桶的工具。
 
-#### -   [zgen](https://github.com/tarjoilija/zgen)   
+#### [zgen](https://github.com/tarjoilija/zgen)   
 比 OMZ 更快 ZSH 的配置。
 
-#### -   [zsh-autosuggestions](https://github.com/tarruda/zsh-autosuggestions)   
+#### [zsh-autosuggestions](https://github.com/tarruda/zsh-autosuggestions)   
 类似 fish shell 的交互提示工具，堪称 terminal 下的效率神器。
 ![auto-suggestion](https://raw.githubusercontent.com/cfangwei/cfangwei.github.io/source/source/Terminal/awesome-tool/auto-suggestion.gif)
 
-#### -   [zsh-history-substring-search](https://github.com/zsh-users/zsh-history-substring-search)   
+#### [zsh-history-substring-search](https://github.com/zsh-users/zsh-history-substring-search)   
 根据 terminal 的已经输入的字符按 M-P M-N 查询并选择拼配的历史输入，比单纯的⬆️⬇️要高效很多。
 
-#### -   [zsh-directory-history](https://github.com/tymm/zsh-directory-history)   
+#### [zsh-directory-history](https://github.com/tymm/zsh-directory-history)   
 根据目录来选择历史输入记录。
 
-#### -   [tldr](https://github.com/tldr-pages/tldr)  
+#### [tldr](https://github.com/tldr-pages/tldr)  
 一个社区维护的 man 替代品,用来查找常用命令的使用帮助,比传统的 man 更为直观和美观。
 ![tldr tar](https://raw.githubusercontent.com/cfangwei/cfangwei.github.io/source/source/Terminal/awesome-tool/tldr.png)
 
-#### -   [fzf](https://github.com/junegunn/fzf)   
+#### [fzf](https://github.com/junegunn/fzf)   
 高效定位文件或文件夹，配合 vim emacs 之流，整个 dist 文件皆在掌骨之间。
 ![fzf](https://raw.githubusercontent.com/cfangwei/cfangwei.github.io/source/source/Terminal/awesome-tool/fzf.gif)
 
-#### -   [percol](https://github.com/mooz/percol)   
+#### [percol](https://github.com/mooz/percol)   
 可以打造交互式命令行的工具，但是多数情况下需要自己写点代码，非常好用的 Terminal 工作流工具。  
 ![percol](https://raw.githubusercontent.com/cfangwei/cfangwei.github.io/source/source/Terminal/awesome-tool/percol.gif)
 
-#### -   [thefuck](https://github.com/nvbn/thefuck)   
+#### [thefuck](https://github.com/nvbn/thefuck)   
 the fuck！当你输出了命令，也许输入一下 fuck 就能轻松解决。😉   
 ![thefuck](https://raw.githubusercontent.com/cfangwei/cfangwei.github.io/source/source/Terminal/awesome-tool/thefuck.gif)
 
-#### -   [screenfetch](https://github.com/KittyKatt/screenFetch)   
+#### [screenfetch](https://github.com/KittyKatt/screenFetch)   
 输出系统 Logo 和信息，是一个不错的 terminal welcome 选择，缺点是太慢，可以把输出结果缓存起来。   
 ![screenfetch](https://raw.githubusercontent.com/cfangwei/cfangwei.github.io/source/source/Terminal/awesome-tool/screenfetch.png)
 
-#### -   [ack](http://beyondgrep.com/)   
+#### [ack](http://beyondgrep.com/)   
 比 grep 好用的文本搜索工具   
  
-#### -   [ag](https://github.com/ggreer/the_silver_searcher)   
+#### [ag](https://github.com/ggreer/the_silver_searcher)   
 比 ack 好用的文本搜索工具   
 
-#### -   [tpp](https://github.com/cbbrowne/tpp)   
+#### [tpp](https://github.com/cbbrowne/tpp)   
 terminal 下的 ppt。   
 ![tpp](https://raw.githubusercontent.com/cfangwei/cfangwei.github.io/source/source/Terminal/awesome-tool/tpp.png)
 
-#### -   [HackMyResume](https://github.com/hacksalot/HackMyResume)   
+#### [HackMyResume](https://github.com/hacksalot/HackMyResume)   
 程序员范的简历工具   
 ![hack my resume](https://raw.githubusercontent.com/cfangwei/cfangwei.github.io/source/source/Terminal/awesome-tool/hackmyresume.png)
