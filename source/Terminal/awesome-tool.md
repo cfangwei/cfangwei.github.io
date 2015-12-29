@@ -14,6 +14,7 @@
 
 -   [zsh-autosuggestions](https://github.com/tarruda/zsh-autosuggestions)   
 类似 fish shell 的交互提示工具，堪称 terminal 下的效率神器。
+![auto-suggestion](https://raw.githubusercontent.com/cfangwei/cfangwei.github.io/source/source/Terminal/awesome-tool/auto-suggestion.gif)
 
 -   [zsh-history-substring-search](https://github.com/zsh-users/zsh-history-substring-search)   
 根据 terminal 的已经输入的字符按 M-P M-N 查询并选择拼配的历史输入，比单纯的⬆️⬇️好高效很多
