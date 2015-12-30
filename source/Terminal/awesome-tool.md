@@ -70,7 +70,3 @@ the fuck！当你输出了命令，也许输入一下 fuck 就能轻松解决。
 #### [tpp](https://github.com/cbbrowne/tpp)   
 terminal 下的 ppt。   
 ![tpp](https://raw.githubusercontent.com/cfangwei/cfangwei.github.io/source/source/Terminal/awesome-tool/tpp.png)
-
-#### [HackMyResume](https://github.com/hacksalot/HackMyResume)   
-程序员范的简历工具   
-![hack my resume](https://raw.githubusercontent.com/cfangwei/cfangwei.github.io/source/source/Terminal/awesome-tool/hackmyresume.png)
