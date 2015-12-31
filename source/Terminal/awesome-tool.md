@@ -31,6 +31,9 @@ terminal 下的 finder，极客必备。
 #### [zgen](https://github.com/tarjoilija/zgen)   
 比 OMZ 更快 ZSH 的配置。
 
+#### [bash-it](https://github.com/Bash-it/bash-it)   
+跟 OMZ 差不多的 Bash 配置。
+
 #### [zsh-autosuggestions](https://github.com/tarruda/zsh-autosuggestions)   
 类似 fish shell 的交互提示工具，堪称 terminal 下的效率神器。
 ![auto-suggestion](https://raw.githubusercontent.com/cfangwei/cfangwei.github.io/source/source/Terminal/awesome-tool/auto-suggestion.gif)
