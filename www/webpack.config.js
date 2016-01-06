@@ -10,8 +10,8 @@ var config = {
     entry: ['./src/main.js'],
     output: {
         path: __dirname + '/build',
-        publicPath: '/assets/',
-        contentBase: 'assets/',
+        publicPath: '/build/',
+        contentBase: 'build/',
         filename: 'mainBundle.js'
     },
     module: {

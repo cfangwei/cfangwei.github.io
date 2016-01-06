@@ -1,0 +1,54 @@
+
+
+$dash-card-width: 350px;
+$dash-card-height: 500px;
+$dash-card-bg: #953422;
+
+$slide-icon-width: 30px;
+
+@import "./mixin/layout.scss";
+@import "./mixin/shadow.scss";
+@import "./mixin/shape.scss";
+@import "./mixin/position.scss";
+
+html, body {
+    @include full;
+    margin: 0;
+    padding: 0;
+    background-color: #999;
+    overflow: hidden;
+}
+
+.dash-card {
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    height: $dash-card-height;
+    width: $dash-card-width;
+    margin-left: - $dash-card-width / 2;
+    background: {
+        color: $dash-card-bg;
+    }
+}
+
+.slide-icons {
+    @include vertical-center;
+    
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    left: 12px;
+    
+    & > li {
+        width: $slide-icon-width;
+        height: $slide-icon-width;
+        padding: 6px;
+    }
+    
+    svg {
+        @include full;
+        @include circle;
+    }
+    
+}

@@ -1,0 +1,33 @@
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #999;
+  overflow: hidden; }
+
+.dash-card {
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  height: 500px;
+  width: 350px;
+  margin-left: -175px;
+  background-color: #953422; }
+
+.slide-icons {
+  top: 50%;
+  transform: translate(0, -50%);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  left: 12px; }
+  .slide-icons > li {
+    width: 30px;
+    height: 30px;
+    padding: 6px; }
+  .slide-icons svg {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%; }
