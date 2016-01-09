@@ -1,5 +1,3 @@
-
-
 $dash-card-width: 350px;
 $dash-card-height: 500px;
 $dash-card-bg: #953422;
@@ -10,16 +8,17 @@ $slide-icon-width: 30px;
 @import "./mixin/shadow.scss";
 @import "./mixin/shape.scss";
 @import "./mixin/position.scss";
+@import "./common.scss";
+
 
 html, body {
     @include full;
     margin: 0;
     padding: 0;
-    background-color: #999;
     overflow: hidden;
 }
 
-.dash-card {
+.dash--card {
     position: absolute;
     top: 100px;
     left: 50%;
