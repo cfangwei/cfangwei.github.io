@@ -4,7 +4,8 @@
   "description": "",
   "main": "webpack.config.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack-dev-server --progress --colors"
   },
   "author": "",
   "license": "ISC",
@@ -16,7 +17,6 @@
     "html-loader": "^0.3.0",
     "imports-loader": "^0.6.5",
     "jquery": "^1.11.3",
-    "modernizr-webpack-plugin": "^1.0.5",
     "sass": "^0.5.0",
     "vue": "^1.0.13",
     "webpack": "^1.12.2",

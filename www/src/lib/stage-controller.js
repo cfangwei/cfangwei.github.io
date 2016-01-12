@@ -14,10 +14,11 @@ var StageController = function(){
         this.width = $(window).width();
         this.height = $(window).height();
 
+        var self = this;
         // observer;
         // excute all regisetered resizeFns when window resize
-        Object.keys(this._resizeFns).map(function(resizeFn){
-            resizeFn();
+        Object.keys(this._resizeFns).map(function(resizeFnName){
+            self._resizeFns[resizeFnName]();
         });
     }, this));
 };

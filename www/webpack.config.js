@@ -6,9 +6,6 @@ var jQuery = require('jquery');
 
 var LiveReloadPlugin = require('webpack-livereload-plugin');
 
-var ModernizrWebpackPlugin = require('modernizr-webpack-plugin');
-
-
 var config = {
     entry: ['./src/main.js'],
     output: {
@@ -38,13 +35,7 @@ var config = {
         ]
     },
     plugins: [
-        new LiveReloadPlugin(),
-        new ModernizrWebpackPlugin()
-        // new webpack.ProvidePlugin({
-        //     $: 'jquery',
-        //     jQuery: 'jquery',
-        //     "window.jQuery": 'jquery'
-        // })
+        new LiveReloadPlugin()
     ]
 };
 
