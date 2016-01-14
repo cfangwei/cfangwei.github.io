@@ -27,6 +27,4 @@ StageController.prototype.addResize = function(name, fn){
     this._resizeFns[name] = fn;
 };
 
-
-
 module.exports = new StageController();
