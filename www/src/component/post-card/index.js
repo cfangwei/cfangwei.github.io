@@ -6,6 +6,12 @@ require('./main.scss');
 
 module.exports = {
     template: require('./template.html'),
+    data: function(){
+        return {
+            height: '500px',
+            width: '800px'
+        };
+    },
     ready: function(){
         
     },

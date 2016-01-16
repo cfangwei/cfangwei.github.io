@@ -1,0 +1,42 @@
+@import "../base.scss";
+
+$stamp-placehold: 100px;
+
+.post-card {
+    @include block-margin-center;
+    border: 2px solid #eee;
+    border-radius: 2px;
+    position: relative;
+    top: 12%;
+    
+    & > div {
+        margin-top: 0.5%;
+        position: relative;
+        display: inline-block;
+        float: left;
+        
+        height: 98%;
+        
+        &:first-child {
+            width: 45%;
+            border: {
+                right: 2px solid #999
+            }
+        }
+
+        &:last-child {
+            width: 50%;
+        }
+    }
+
+    &--stamp-placehold {
+        border-radius: 2px;
+        border: 1px solid #999;
+        position: absolute;
+        right: 0;
+        top: 16px;
+        height: $stamp-placehold;
+        width: $stamp-placehold;
+    }
+    
+}

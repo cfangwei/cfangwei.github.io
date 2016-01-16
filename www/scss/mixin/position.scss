@@ -1,6 +1,21 @@
 
 
-@mixin vertical-center() {
+@mixin transform-vertical-center() {
     top: 50%;
     transform: translate(0, -50%);
+}
+
+
+
+@mixin margin-horizen-center($width) {
+    left: 50%;
+    margin: {
+        left: - $width / 2;
+    }
+}
+
+
+@mixin block-margin-center() {
+    display: block;
+    margin: auto;
 }

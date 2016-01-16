@@ -3,7 +3,7 @@
 $slide-icon-width: 30px;
 
 .slide-icons {
-    @include vertical-center;
+    @include transform-vertical-center;
     
     list-style: none;
     padding: 0;

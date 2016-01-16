@@ -5,9 +5,19 @@
 @import "./common.scss";
 
 
+@import "./type.scss";
+
 html, body {
     @include full;
     margin: 0;
     padding: 0;
-    overflow: hidden;
+}
+
+::-webkit-scrollbar {
+    display: none; 
+}
+
+.screen {
+    width: 100%;
+    position: relative;
 }

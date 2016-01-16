@@ -18,7 +18,7 @@ var StageController = function(){
         // observer;
         // excute all regisetered resizeFns when window resize
         Object.keys(this._resizeFns).map(function(resizeFnName){
-            self._resizeFns[resizeFnName]();
+            self._resizeFns[resizeFnName](self.width, self.height);
         });
     }, this));
 };

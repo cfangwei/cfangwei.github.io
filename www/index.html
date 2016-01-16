@@ -10,24 +10,24 @@
     
     <link rel="stylesheet" href="css/main.css">
   </head>
-  <body>
+  <body id="app">
 
-    <div id="app">
 
-      <glowlight-bg v-ref:glowlight-bg></glowlight-bg>
+    
+    <glowlight-bg v-ref:glowlight-bg></glowlight-bg>
 
-      <slide-icons v-ref:slide-icons></slide-icons>
+    <slide-icons v-ref:slide-icons></slide-icons>
 
+    <div class="dash-screen screen">
       <dash-card v-ref:dash-card></dash-card>
-      
     </div>
-    
-    
+
+    <div class="post-card-screen screen">
+      <post-card v-ref:post-card></post-card>
+    </div>
 
     
-    
-
     <script src="build/mainBundle.js"></script>
-</body>
+  </body>
 </html>
 

@@ -171,6 +171,9 @@ module.exports = {
         },
         pause: function(){
             running = false;
+        },
+        hide: function(){
+            $(this.$el).hide(0);
         }
     }
 };
