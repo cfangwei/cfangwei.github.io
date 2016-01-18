@@ -7,12 +7,15 @@ var jQuery = require('jquery');
 var LiveReloadPlugin = require('webpack-livereload-plugin');
 
 var config = {
-    entry: ['./src/main.js'],
+    entry: {
+        main: './src/main.js',
+        planttrees: './works/plant-trees/src/plant-trees.js'
+    },
     output: {
         path: __dirname + '/build',
         publicPath: '/build/',
         contentBase: 'build/',
-        filename: 'mainBundle.js'
+        filename: '[name].bundle.js'
     },
     module: {
         loaders: [
