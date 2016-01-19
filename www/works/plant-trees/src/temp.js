@@ -5,7 +5,7 @@ var PlantTrees = PlantTrees || (function() {
         C = 140,
         p = 9,
         a = 6,
-        e,
+        plantress,
         M,
         q,
         F = 1,
@@ -24,14 +24,14 @@ var PlantTrees = PlantTrees || (function() {
         g = stageController.stageWidth;
         l = stageController.stageHeight;
         F = 1;
-        e = document.getElementById("planttrees");
+        plantress = document.getElementById("planttrees");
         q = $("#planttrees-bt");
         A = document.getElementById("planttrees-guide");
         D = A.getElementsByClassName("guide-tooltip")[0];
         v = document.getElementById("planttrees-con");
         I = document.getElementById("planttrees-bg");
         o = null ;
-        stageController.addResize("PlantTrees", k)
+        stageController.addResize("PlantTrees", k);
     }
     function w() {
         g = stageController.stageWidth;
@@ -111,7 +111,7 @@ var PlantTrees = PlantTrees || (function() {
         o = null ;
         c();
         m = null ;
-        e = null ;
+        plantress = null ;
         q = null ;
         A = null ;
         D = null ;
@@ -137,9 +137,9 @@ var PlantTrees = PlantTrees || (function() {
     function k() {
         g = stageController.stageWidth;
         l = stageController.stageHeight;
-        e.width = g;
-        e.height = l;
-        M = e.getContext("2d");
+        plantress.width = g;
+        plantress.height = l;
+        M = plantress.getContext("2d");
         M.lineCap = "round";
         M.globalCompositeOperation = "lighter";
         m = null 
