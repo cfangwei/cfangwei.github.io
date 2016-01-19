@@ -13,7 +13,7 @@ var PlantTrees = PlantTrees || (function() {
         l,
         m,
         o,
-        A,
+        plantreesGuide,
         D,
         v,
         I,
@@ -26,8 +26,8 @@ var PlantTrees = PlantTrees || (function() {
         F = 1;
         plantress = document.getElementById("planttrees");
         q = $("#planttrees-bt");
-        A = document.getElementById("planttrees-guide");
-        D = A.getElementsByClassName("guide-tooltip")[0];
+        plantreesGuide = document.getElementById("planttrees-guide");
+        D = plantreesGuide.getElementsByClassName("guide-tooltip")[0];
         v = document.getElementById("planttrees-con");
         I = document.getElementById("planttrees-bg");
         o = null ;
@@ -36,15 +36,15 @@ var PlantTrees = PlantTrees || (function() {
     function w() {
         g = stageController.stageWidth;
         l = stageController.stageHeight;
-        A.style.display = "block";
-        TweenLite.set(A, {
+        plantreesGuide.style.display = "block";
+        TweenLite.set(plantreesGuide, {
             css: {
                 opacity: 0,
                 x: ((g >> 1) - 90),
                 y: (l >> 1)
             }
         });
-        o = TweenLite.to(A, 0.2, {
+        o = TweenLite.to(plantreesGuide, 0.2, {
             css: {
                 opacity: 1
             },
@@ -52,14 +52,14 @@ var PlantTrees = PlantTrees || (function() {
         })
     }
     function x() {
-        o = TweenLite.to(A, 0.5, {
+        o = TweenLite.to(plantreesGuide, 0.5, {
             onComplete: t
         })
     }
     function t() {
         m = G(g / 2, l);
         J();
-        o = TweenLite.to(A, 3, {
+        o = TweenLite.to(plantreesGuide, 3, {
             onComplete: s
         })
     }
@@ -73,7 +73,7 @@ var PlantTrees = PlantTrees || (function() {
             N = 190;
             O = 70
         }
-        o = TweenLite.to(A, 1, {
+        o = TweenLite.to(plantreesGuide, 1, {
             css: {
                 x: (g - N),
                 y: O
@@ -82,13 +82,13 @@ var PlantTrees = PlantTrees || (function() {
         })
     }
     function r() {
-        o = TweenLite.to(A, 0.5, {
+        o = TweenLite.to(plantreesGuide, 0.5, {
             onComplete: y
         })
     }
     function y() {
         o = null ;
-        TweenLite.to(A, 0.2, {
+        TweenLite.to(plantreesGuide, 0.2, {
             css: {
                 opacity: 0
             },
@@ -96,14 +96,14 @@ var PlantTrees = PlantTrees || (function() {
         })
     }
     function z() {
-        CMUtiles.removeDom(A);
+        CMUtiles.removeDom(plantreesGuide);
         f()
     }
     function u() {
         stageController.removeResize("PlantTrees");
         n = true;
-        if (A != null ) {
-            TweenLite.killTweensOf(A)
+        if (plantreesGuide != null ) {
+            TweenLite.killTweensOf(plantreesGuide)
         }
         if (o != null ) {
             TweenLite.killTweensOf(o)
@@ -113,7 +113,7 @@ var PlantTrees = PlantTrees || (function() {
         m = null ;
         plantress = null ;
         q = null ;
-        A = null ;
+        plantreesGuide = null ;
         D = null ;
         v = null ;
         I = null 
