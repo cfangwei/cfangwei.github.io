@@ -7,7 +7,6 @@ var stageController = require('../../../src/lib/stage-controller.js'),
 
 var TweenLite = require('../../../src/vendor/tweenlite.js');
 
-
 var canvas,
     $bg,
     $bt,  // sun or moon controller
