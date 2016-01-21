@@ -1,4 +1,5 @@
-'use strict';
+'use strict'
+require('./main.scss');
 
 var $ = require('jquery'),
     Vue = require('vue');
@@ -8,18 +9,48 @@ var stageController = require('../../../src/lib/stage-controller.js'),
 
 var TweenLite = require('../../../src/vendor/tweenlite.js');
 
-var canvas,
+import TreeClass from './tree.js';
+import {randomFloat, randomInteger} from '../../../src/lib/util.js';
+
+let canvas,
+    context,
     $bg,
     $bt,  // sun or moon controller
-    animate;
+    animate,
+    tree,
+    isPause = false,
+    defaultGeneration = 1;
 
 var resizeFn = function(width, height) {
+  console.log(canvas);
     canvas.width = width;
     canvas.height = height;
-    var context = canvas.getContext('2d');
+
+    context = canvas.getContext('2d');
     context.lineCap = 'round';
     context.globalCompositeOperation = 'lighter';
-    //m = null 
+    tree = null;
+};
+
+var drawTree = function() {
+    if (isPause) {
+        return; 
+    }
+    requestAnimationFrame(drawTree);
+};
+
+var drawTreeFrame = function() {
+    if (!tree) {
+        return;
+    } 
+    tree.draw(context);
+    if (tree.complete()) {
+        tree = null; 
+    }
+};
+
+var generatTree = (x, y) => {
+  tree = new TreeClass(x, y, 100, -90);
 };
 
 var planttrees = new Vue({
@@ -36,31 +67,28 @@ var planttrees = new Vue({
         '</div>' +
         '</div>',
     ready: function(){
-        console.log(this);
         this.setup($(this.$el));
+        this.start();
     },
     methods: {
 
       setup: function($container){
 
         //n = false,
-        var winWidth = stageController.stageWidth,
-          winHeight = stageController.stageHeight,
-            //F = 1,
-            canvas = $container.find(".planttrees--canvas").get()[0],
-              $bt = $container.find(".planttrees--bt"),
-                // A = document.getElementById("planttrees-guide"),
-                // D = A.getElementsByClassName("guide-tooltip")[0],
-                // v = document.getElementById("planttrees-con"),
-                $bg = $container.find('.planttrees--bg');
-                //o = null;
-                stageController.addResize("PlantTrees", resizeFn);
-                resizeFn(winWidth, winHeight);
+        var winWidth = stageController.width,
+          winHeight = stageController.height;
+
+        canvas = $container.find('.planttrees--canvas').get()[0],
+        $bt = $container.find(".planttrees--bt"),
+        $bg = $container.find('.planttrees--bg');
+        stageController.addResize("PlantTrees", resizeFn);
+        resizeFn(winWidth, winHeight);
       },
       start: function(){
         let winWidth = stageController.stageWidth,
           winHeight = stageController.stageHeight;
 
+          generatTree(winWidth / 2, winHeight);
           //animate = TweenLite.to();
       },
       dispose: function(){
@@ -75,6 +103,5 @@ var planttrees = new Vue({
       resize: function(){
 
       }
-
     }
 });

@@ -2,4 +2,8 @@
 @import "./mixin/shadow.scss";
 @import "./mixin/shape.scss";
 @import "./mixin/position.scss";
-@import "./common.scss";
+@import "../common.scss";
+
+html, body, #app {
+    @include full;
+}

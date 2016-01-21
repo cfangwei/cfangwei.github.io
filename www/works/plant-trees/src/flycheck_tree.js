@@ -20,11 +20,11 @@ class Point {
         }
         return new Point(x, y);
     }
-    static add(point, target) {
-        return new Point(point.x + target.x, point.y + target.y);
+    static add(Point, target) {
+        return new Point(Point.x + target.x, Point.y + target.y);
     }
-    static subtract(point, target) {
-        return new Point(point.x - target.x, point.y - target.y);
+    static subtract(Point, target) {
+        return new Point(Point.x - target.x, Point.y - target.y);
     }
     static interpolate(start, end, n) {
         let bx = end.x - start.x,
@@ -87,7 +87,7 @@ class Brance {
         this._v = this._end.subtract(this._start); // vector
         this._v.normalize(this._speed);
         this._current = this._start.add(this._v.x, this._v.y);
-        this._latest = this._start.clone();
+        this._latest = this.start.clone();
         this._currentLength = this._speed;
     }
     generation() {
