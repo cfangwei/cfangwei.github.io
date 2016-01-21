@@ -1,3 +1,4 @@
+'use strict';
 
 var $ = require('jquery'),
     Vue = require('vue');
@@ -35,40 +36,45 @@ var planttrees = new Vue({
         '</div>' +
         '</div>',
     ready: function(){
+        console.log(this);
         this.setup($(this.$el));
     },
-    setup: function($container){
-        
+    methods: {
+
+      setup: function($container){
+
         //n = false,
         var winWidth = stageController.stageWidth,
-        winHeight = stageController.stageHeight,
-        //F = 1,
-        canvas = $container.find(".planttrees--canvas").get()[0],
-        $bt = $container.find(".planttrees--bt"),
-            // A = document.getElementById("planttrees-guide"),
-            // D = A.getElementsByClassName("guide-tooltip")[0],
-            // v = document.getElementById("planttrees-con"),
-            $bg = $container.find('.planttrees--bg');
-        //o = null;
-        stageController.addResize("PlantTrees", resizeFn);
-        resizeFn();
-    },
-    start: function(){
+          winHeight = stageController.stageHeight,
+            //F = 1,
+            canvas = $container.find(".planttrees--canvas").get()[0],
+              $bt = $container.find(".planttrees--bt"),
+                // A = document.getElementById("planttrees-guide"),
+                // D = A.getElementsByClassName("guide-tooltip")[0],
+                // v = document.getElementById("planttrees-con"),
+                $bg = $container.find('.planttrees--bg');
+                //o = null;
+                stageController.addResize("PlantTrees", resizeFn);
+                resizeFn(winWidth, winHeight);
+      },
+      start: function(){
         let winWidth = stageController.stageWidth,
-            winHeight = stageController.stageHeight;
+          winHeight = stageController.stageHeight;
 
-        //animate = TweenLite.to();
-    },
-    dispose: function(){
-        
-    },
-    pause: function(){
-        
-    },
-    resume: function(){
-        
-    },
-    resize: function(){
-        
+          //animate = TweenLite.to();
+      },
+      dispose: function(){
+
+      },
+      pause: function(){
+
+      },
+      resume: function(){
+
+      },
+      resize: function(){
+
+      }
+
     }
 });

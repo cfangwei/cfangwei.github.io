@@ -160,8 +160,6 @@ class Brance {
         this._latest = this.start.clone();
         this._currentLength = this._speed;
     }
-    
-
     generation() {
         return this._generation;
     }
