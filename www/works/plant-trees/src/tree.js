@@ -9,80 +9,10 @@ let Pi = Math.PI,
 let linePaths = {};
 
 
-class TreeClass {
-    
-    constructor(startX, startY, length, angle, color, isDay, depth) {
-        this._color = color;
-        this._brances = null;
-        this._complete = false;
-        this._isDay = isDay;
-        this._brances = [];
-        this._changeColor = 90;
-        this._brances.push(new Brance(startX, startY, length, angle,
-                                      randomFloat(3, 6), depth, 1));
-    }
-
-    complete() {
-        return this._complete;
-    }
-    
-    draw(context) {
-        let brances = this._brances,
-            branceLen = brances.length;
-
-        if ( !branceLen ) {
-            this._complete = true;
-            return;
-        }
-        
-        for (let i = 0; i < branceLen; i++) {
-            let brance = brances[i];
-            brance.update();
-
-            if ( brance.complete() ) {
-                brances.splice(brance, 1);
-                i--;
-                let generation = brance.generation() < 3 ? randomInteger(3, 4) :
-                        randomInteger(2, 4),
-                    next = brance.createNext(generation);
-                if ( next ) {
-                    brances = this._brances = brances.concat(next);
-                }
-                branceLen = brances.length;
-            }
-        }
-
-        if (this._isDay === 1) {
-            context.strokeStyle = 'hsl(0%, 100%, 0%)';
-        } else {
-            context.strokeStyle = `hsl("${this._color}", 100%, ${this._changeColor}%)`;
-            if (this._changeColor > 50) {
-                this._changeColor = this._changeColor - 0.4;
-            }
-        }
-
-        for (let lineKey in linePaths) {
-
-            let line = linePaths[lineKey],
-                linePositions = line.lines;
-            context.beginPath();
-            context.lineWidth = line.lineWidth;
-            for (let i = 0, max = linePositions.length; i < max; i++) {
-                let linePosition = linePositions[i];
-                context.moveTo(linePosition[0][0], linePosition[0][1]);
-                context.lineTo(linePosition[1][0], linePosition[1][1]);
-            }
-            context.stroke();
-            delete linePaths[lineKey];
-        }
-    }
-}
-
-
 class Point {
-    constructor(x, y) {
-        this.x = x || 0;
-        this.y = y || 0;
+    constructor(x = 0, y = 0) {
+        this.x = x;
+        this.y = y;
     }
     static create(x, y) {
         if ( isObject(x) ) {
@@ -111,14 +41,14 @@ class Point {
     length(){
         return Math.sqrt(this.x * this.x + this.y * this.y);
     }
-    set(x, y) {
-        this.x = x || 0;
-        this.y = y || 0;
+    set(x = 0, y = 0) {
+        this.x = x;
+        this.y = y;
         return this;
     }
-    offset(x, y) {
-        this.x += x || 0;
-        this.y += y || 0;
+    offset(x = 0, y = 0) {
+        this.x += x;
+        this.y += y;
         return this;
     }
     normalize(speed) {
@@ -144,10 +74,10 @@ class Brance {
         this._complete = false;
         
         this._start = new Point(startX, startY);
-        this._length = length || 1;
-        this._angle = angle || -90;
-        this._speed = speed || 3;
-        this._depth = depth || 1;
+        this._length = length;
+        this._angle = angle;
+        this._speed = speed;
+        this._depth = depth;
         this._generation = generation;
         this._speed *= 60 / d;
 
@@ -239,5 +169,75 @@ class Brance {
         this._currentLength += this._speed;
         
     }
-    
 }
+
+
+export default class TreeClass {
+    
+    constructor(startX, startY, length, angle, color, isDay, depth) {
+        this._color = color;
+        this._complete = false;
+        
+        this._isDay = isDay;
+        this._brances = [];
+        this._changeColor = 90;
+        this._brances.push(new Brance(startX, startY, length, angle,
+                                      randomFloat(3, 6), depth, 1));
+    }
+
+    complete() {
+        return this._complete;
+    }
+    
+    draw(context) {
+        let brances = this._brances,
+            branceLen = brances.length;
+
+        if ( !branceLen ) {
+            this._complete = true;
+            return;
+        }
+        
+        for (let i = 0; i < branceLen; i++) {
+            let brance = brances[i];
+            brance.update();
+
+            if ( brance.complete() ) {
+                brances.splice(brance, 1);
+                i--;
+                let generation = brance.generation() < 3 ? randomInteger(3, 4) :
+                        randomInteger(2, 4),
+                    next = brance.createNext(generation);
+                if ( next ) {
+                    brances = this._brances = brances.concat(next);
+                }
+                branceLen = brances.length;
+            }
+        }
+
+        if (this._isDay === 1) {
+            context.strokeStyle = 'hsl(0%, 100%, 0%)';
+        } else {
+            context.strokeStyle = `hsl("${this._color}", 100%, ${this._changeColor}%)`;
+            if (this._changeColor > 50) {
+                this._changeColor = this._changeColor - 0.4;
+            }
+        }
+        
+        for (let lineKey in linePaths) {
+
+            let line = linePaths[lineKey],
+                linePositions = line.lines;
+            context.beginPath();
+            context.lineWidth = line.lineWidth;
+            for (let i = 0, max = linePositions.length; i < max; i++) {
+                let linePosition = linePositions[i];
+                context.moveTo(linePosition[0][0], linePosition[0][1]);
+                context.lineTo(linePosition[1][0], linePosition[1][1]);
+            }
+            context.stroke();
+            delete linePaths[lineKey];
+        }
+    }
+}
+

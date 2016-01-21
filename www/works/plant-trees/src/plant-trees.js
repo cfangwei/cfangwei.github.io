@@ -7,10 +7,14 @@ var stageController = require('../../../src/lib/stage-controller.js'),
 
 var TweenLite = require('../../../src/vendor/tweenlite.js');
 
-var canvas,
+import TreeClass from './tree.js';
+import {randomFloat, randomInteger} from '../../../src/lib/util.js';
+
+let canvas,
     $bg,
     $bt,  // sun or moon controller
-    animate;
+    animate,
+    defaultGeneration = 1;
 
 var resizeFn = function(width, height) {
     canvas.width = width;
@@ -20,6 +24,10 @@ var resizeFn = function(width, height) {
     context.globalCompositeOperation = 'lighter';
     //m = null 
 };
+
+var generatTree = (x, y) => {
+  tree = new TreeClass(x, y, 100, -90);
+}
 
 var planttrees = new Vue({
     el: '#app',
@@ -56,7 +64,10 @@ var planttrees = new Vue({
     start: function(){
         let winWidth = stageController.stageWidth,
             winHeight = stageController.stageHeight;
-
+       
+        if (!canvas) {
+            throw 'Must init first.';
+        }
         //animate = TweenLite.to();
     },
     dispose: function(){
