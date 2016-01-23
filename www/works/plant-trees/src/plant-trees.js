@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 require('./main.scss');
 
 var $ = require('jquery'),
@@ -12,12 +12,18 @@ var TweenLite = require('../../../src/vendor/tweenlite.js');
 import TreeClass from './tree.js';
 import {randomFloat, randomInteger} from '../../../src/lib/util.js';
 
+const trunkMaxLength = 180,
+      trunkMinLength = 140,
+      trunkMaxBrance = 9,
+      trunkMinBrance = 6;
+
 let canvas,
     context,
     $bg,
     $bt,  // sun or moon controller
     animate,
     tree,
+    isDay = 1,
     isPause = false,
     defaultGeneration = 1;
 
@@ -34,23 +40,34 @@ var resizeFn = function(width, height) {
 
 var drawTree = function() {
     if (isPause) {
+        console.log('sds');
         return; 
     }
     requestAnimationFrame(drawTree);
+    drawTreeFrame();
 };
 
 var drawTreeFrame = function() {
     if (!tree) {
         return;
     } 
+    console.log('sdsd');
     tree.draw(context);
     if (tree.complete()) {
+      console.log(
+        'sdssdsxxd'
+      );
         tree = null; 
     }
 };
 
 var generatTree = (x, y) => {
-  tree = new TreeClass(x, y, 100, -90);
+  let trunkLength = randomFloat(trunkMinLength, trunkMaxLength),
+      T = trunkLength - trunkMinLength,
+      R = (trunkMaxLength - trunkMinLength) / (trunkMaxBrance - trunkMinBrance),
+      depth = trunkMinBrance + ((0.5 + (T / R)) | 0),
+      color = (Math.random() * 360) | 0;
+  tree = new TreeClass(x, y, trunkLength, -90, color, depth, isDay);
 };
 
 var planttrees = new Vue({
@@ -68,7 +85,7 @@ var planttrees = new Vue({
         '</div>',
     ready: function(){
         this.setup($(this.$el));
-        this.start();
+        // this.start();
     },
     methods: {
 
@@ -89,6 +106,7 @@ var planttrees = new Vue({
           winHeight = stageController.stageHeight;
 
           generatTree(winWidth / 2, winHeight);
+          drawTree();
           //animate = TweenLite.to();
       },
       dispose: function(){

@@ -70,7 +70,7 @@ class Point {
 
 class Brance {
     constructor(startX, startY,
-                length = 1, angle = -90, speed = 3, depth = 1, generation) {
+                length = 1, angle = -90, speed = 3, depth = 1, generation = 1) {
         this._complete = false;
         
         this._start = new Point(startX, startY);
@@ -123,7 +123,7 @@ class Brance {
             let interpolate = i === 0 ? 0 : randomFloat(B * i, B * (i + 1)),
                 interpolatePoint = this.interpolate(interpolate),
                 angle = this._angle + y[i],
-                nextLenRatio = 0.3 * Math.abs(Map.cos((angle + 90) * angleUnit)),
+                nextLenRatio = 0.3 * Math.abs(Math.cos((angle + 90) * angleUnit)),
                 length = this._length * randomFloat(0.25 + nextLenRatio,
                                                     0.65 + nextLenRatio);
             
@@ -172,11 +172,12 @@ class Brance {
 
 export default class TreeClass {
     
-    constructor(startX, startY, length, angle, color, isDay, depth) {
+    constructor(startX, startY, length, angle, color, depth, isDay) {
         this._color = color;
         this._complete = false;
         
         this._isDay = isDay;
+        console.log(this._isDay, 'isDay');
         this._brances = [];
         this._changeColor = 90;
         this._brances.push(new Brance(startX, startY, length, angle,
@@ -191,6 +192,7 @@ export default class TreeClass {
         let brances = this._brances,
             branceLen = brances.length;
 
+        console.log("value");
         if ( !branceLen ) {
             this._complete = true;
             return;
@@ -211,9 +213,11 @@ export default class TreeClass {
                 }
                 branceLen = brances.length;
             }
+            console.log('loop');
         }
 
         if (this._isDay === 1) {
+            console.log('dddayyyyyyyyyyyyy');
             context.strokeStyle = 'hsl(0%, 100%, 0%)';
         } else {
             context.strokeStyle = `hsl("${this._color}", 100%, ${this._changeColor}%)`;
@@ -223,13 +227,15 @@ export default class TreeClass {
         }
         
         for (let lineKey in linePaths) {
-
+            console.log('llllllllll');
             let line = linePaths[lineKey],
                 linePositions = line.lines;
             context.beginPath();
             context.lineWidth = line.lineWidth;
             for (let i = 0, max = linePositions.length; i < max; i++) {
                 let linePosition = linePositions[i];
+                console.log(linePosition);
+                console.log('llineeeeeeeeee');
                 context.moveTo(linePosition[0][0], linePosition[0][1]);
                 context.lineTo(linePosition[1][0], linePosition[1][1]);
             }
