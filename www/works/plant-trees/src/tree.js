@@ -33,6 +33,7 @@ class Point {
                          start.y + by * n);
     }
     add(target) {
+        
         return Point.add(this, target);
     }
     subtract(target) {        
@@ -74,6 +75,7 @@ class Brance {
 
         
         this._complete = false;
+        this._angleOffsetRange = 90;
         
         this._start = new Point(startX, startY);
         this._length = length;
@@ -86,13 +88,13 @@ class Brance {
         
         let angleOffset = this._angle * angleUnit;
         
+        
         this._end = new Point(this._start.x + this._length * Math.cos(angleOffset),
                               this._start.y + this._length * Math.sin(angleOffset));
-
-        this._v = this._end.subtract(this._start); // vector
         
+        this._v = this._end.subtract(this._start); // vector
         this._v.normalize(this._speed);
-        this._current = this._start.add(this._v.x, this._v.y);
+        this._current = this._start.add(this._v);
         this._latest = this._start.clone();
         this._currentLength = this._speed;
     }
@@ -112,10 +114,10 @@ class Brance {
             return null;
         }
         let y =[],
-            angleOffsetRang = this._angleOffsetRange,
-            k = angleOffsetRang / generation;
+            angleOffsetRange = this._angleOffsetRange,
+            k = angleOffsetRange / generation;
         for (let i = 0; i < generation; i++) {
-            let r = k * i - angleOffsetRang / 2,
+            let r = k * i - angleOffsetRange / 2,
                 z = r + k;
             y[i] = (randomFloat(r, z)) | 0;
         }
@@ -137,8 +139,8 @@ class Brance {
                               randomFloat(3, 5), depth, nextGeneration);
 
         }
+        console.log('nextBrances', nextBrances);
         return nextBrances;
-        
     }
     update() {
         let complete = this._complete;
@@ -147,13 +149,18 @@ class Brance {
         }
         let current = this._current,
             latest = this._latest;
-        if ( this.length <= this._currentLength ) {
+
+
+        
+        if ( this._length <= this._currentLength ) {
+            console.log('bobobobobobobo');
             current = this._end;
             complete = this._complete = true;
         }
         //let
+        console.log(this._depth, 'this._depth');
         let lineWidth = this._depth * this._depth * 0.2,
-            l = 'CM' * lineWidth,
+            l = 'CM' + lineWidth,
             n = linePaths[l];
 
         if ( !n ) {
@@ -164,14 +171,12 @@ class Brance {
         }
         n.lines.push([[latest.x, latest.y],
                       [current.x, current.y]]);
-
-        
-        
+        //console.log(current.x, current.y);
         if (complete) {
             return;
         }
         latest.set(current.x, current.y);
-        current.offset(this._v);
+        current.offset(this._v.x, this._v.y);
         this._currentLength += this._speed;
         
     }
@@ -198,7 +203,6 @@ export default class TreeClass {
     draw(context) {
         let brances = this._brances,
             branceLen = brances.length;
-
 
         if ( !branceLen ) {
             this._complete = true;

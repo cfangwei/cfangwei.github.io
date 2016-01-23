@@ -62,8 +62,8 @@ var generatTree = (x, y) => {
     let trunkLength = randomFloat(trunkMinLength, trunkMaxLength),
         T = trunkLength - trunkMinLength,
         R = (trunkMaxLength - trunkMinLength) / (trunkMaxBrance - trunkMinBrance),
-        depth = trunkMinBrance + ((0.5 + (T / R)) | 0),
-        color = (Math.random() * 360) | 0;
+        depth = trunkMinBrance + ((0.5 + (T / R)) | 0), 
+        color = (Math.random() * 360);
     console.log("color = ", color);
     console.log("depth = ", depth);
     console.log("R = ", R);
