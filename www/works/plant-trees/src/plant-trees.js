@@ -28,7 +28,7 @@ let canvas,
     defaultGeneration = 1;
 
 var resizeFn = function(width, height) {
-  console.log(canvas);
+    console.log(canvas);
     canvas.width = width;
     canvas.height = height;
 
@@ -40,7 +40,6 @@ var resizeFn = function(width, height) {
 
 var drawTree = function() {
     if (isPause) {
-        console.log('sds');
         return; 
     }
     requestAnimationFrame(drawTree);
@@ -51,23 +50,26 @@ var drawTreeFrame = function() {
     if (!tree) {
         return;
     } 
+
     console.log('sdsd');
     tree.draw(context);
     if (tree.complete()) {
-      console.log(
-        'sdssdsxxd'
-      );
         tree = null; 
     }
 };
 
 var generatTree = (x, y) => {
-  let trunkLength = randomFloat(trunkMinLength, trunkMaxLength),
-      T = trunkLength - trunkMinLength,
-      R = (trunkMaxLength - trunkMinLength) / (trunkMaxBrance - trunkMinBrance),
-      depth = trunkMinBrance + ((0.5 + (T / R)) | 0),
-      color = (Math.random() * 360) | 0;
-  tree = new TreeClass(x, y, trunkLength, -90, color, depth, isDay);
+    let trunkLength = randomFloat(trunkMinLength, trunkMaxLength),
+        T = trunkLength - trunkMinLength,
+        R = (trunkMaxLength - trunkMinLength) / (trunkMaxBrance - trunkMinBrance),
+        depth = trunkMinBrance + ((0.5 + (T / R)) | 0),
+        color = (Math.random() * 360) | 0;
+    console.log("color = ", color);
+    console.log("depth = ", depth);
+    console.log("R = ", R);
+    console.log("T = ", T);
+    console.log("trunkLength = ", trunkLength);
+    tree = new TreeClass(x, y, trunkLength, -90, color, depth, isDay);
 };
 
 var planttrees = new Vue({
@@ -79,47 +81,49 @@ var planttrees = new Vue({
         '<canvas class="planttrees--canvas"></canvas>' +
         '<div class="planttrees--bt"></div>' +
         '<div id="planttrees-guide" class="contents-guide">' +
-           '<div class="guide-tooltip">press</div>' +
-           '<div class="guide-mouse"></div>' +
+        '<div class="guide-tooltip">press</div>' +
+        '<div class="guide-mouse"></div>' +
         '</div>' +
         '</div>',
     ready: function(){
         this.setup($(this.$el));
-        // this.start();
+        this.start();
     },
     methods: {
 
-      setup: function($container){
+        setup: function($container){
 
-        //n = false,
-        var winWidth = stageController.width,
-          winHeight = stageController.height;
+            //n = false,
+            var winWidth = stageController.width,
+                winHeight = stageController.height;
 
-        canvas = $container.find('.planttrees--canvas').get()[0],
-        $bt = $container.find(".planttrees--bt"),
-        $bg = $container.find('.planttrees--bg');
-        stageController.addResize("PlantTrees", resizeFn);
-        resizeFn(winWidth, winHeight);
-      },
-      start: function(){
-        let winWidth = stageController.stageWidth,
-          winHeight = stageController.stageHeight;
+            canvas = $container.find('.planttrees--canvas').get()[0],
+            $bt = $container.find(".planttrees--bt"),
+            $bg = $container.find('.planttrees--bg');
+            stageController.addResize("PlantTrees", resizeFn);
+            resizeFn(winWidth, winHeight);
+        },
+        start: function(){
+            let winWidth = stageController.width,
+                winHeight = stageController.height;
+            console.log("winHeight = ", winHeight);
+            console.log("winWidth = ", winWidth);
 
-          generatTree(winWidth / 2, winHeight);
-          drawTree();
-          //animate = TweenLite.to();
-      },
-      dispose: function(){
+            generatTree(winWidth / 2, winHeight / 2);
+            drawTree();
+            //animate = TweenLite.to();
+        },
+        dispose: function(){
 
-      },
-      pause: function(){
+        },
+        pause: function(){
 
-      },
-      resume: function(){
+        },
+        resume: function(){
 
-      },
-      resize: function(){
+        },
+        resize: function(){
 
-      }
+        }
     }
 });

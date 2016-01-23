@@ -2,9 +2,9 @@
 
 import {isObject, randomFloat, randomInteger} from '../../../src/lib/util';
 
-let Pi = Math.PI,
-    angleUnit = Pi / 180,
-    d = 60;
+const Pi = Math.PI,
+      angleUnit = Pi / 180,
+      d = 60;
 
 let linePaths = {};
 
@@ -28,14 +28,14 @@ class Point {
     }
     static interpolate(start, end, n) {
         let bx = end.x - start.x,
-            by = end.y - end.y;
+            by = end.y - start.y;
         return new Point(start.x + bx * n,
                          start.y + by * n);
     }
     add(target) {
         return Point.add(this, target);
     }
-    subtract(target) {
+    subtract(target) {        
         return Point.subtract(this, target);
     }
     length(){
@@ -71,6 +71,8 @@ class Point {
 class Brance {
     constructor(startX, startY,
                 length = 1, angle = -90, speed = 3, depth = 1, generation = 1) {
+
+        
         this._complete = false;
         
         this._start = new Point(startX, startY);
@@ -81,10 +83,14 @@ class Brance {
         this._generation = generation;
         this._speed *= 60 / d;
 
+        
         let angleOffset = this._angle * angleUnit;
+        
         this._end = new Point(this._start.x + this._length * Math.cos(angleOffset),
-                                 this._start.y + this._length * Math.cos(angleOffset));
+                              this._start.y + this._length * Math.sin(angleOffset));
+
         this._v = this._end.subtract(this._start); // vector
+        
         this._v.normalize(this._speed);
         this._current = this._start.add(this._v.x, this._v.y);
         this._latest = this._start.clone();
@@ -94,7 +100,7 @@ class Brance {
         return this._generation;
     }
     complete() {
-        return this.complete;
+        return this._complete;
     }
     // interpolate sub branch
     interpolate(n) {
@@ -127,11 +133,11 @@ class Brance {
                 length = this._length * randomFloat(0.25 + nextLenRatio,
                                                     0.65 + nextLenRatio);
             
-            nextBrances[i] = new Brance(interpolatePoint.x, interpolatePoint.y, length,
+            nextBrances[i] = new Brance(interpolatePoint.x, interpolatePoint.y, length, angle,
                               randomFloat(3, 5), depth, nextGeneration);
-            return nextBrances;
-        }
 
+        }
+        return nextBrances;
         
     }
     update() {
@@ -158,6 +164,8 @@ class Brance {
         }
         n.lines.push([[latest.x, latest.y],
                       [current.x, current.y]]);
+
+        
         
         if (complete) {
             return;
@@ -177,7 +185,6 @@ export default class TreeClass {
         this._complete = false;
         
         this._isDay = isDay;
-        console.log(this._isDay, 'isDay');
         this._brances = [];
         this._changeColor = 90;
         this._brances.push(new Brance(startX, startY, length, angle,
@@ -192,7 +199,7 @@ export default class TreeClass {
         let brances = this._brances,
             branceLen = brances.length;
 
-        console.log("value");
+
         if ( !branceLen ) {
             this._complete = true;
             return;
@@ -213,11 +220,10 @@ export default class TreeClass {
                 }
                 branceLen = brances.length;
             }
-            console.log('loop');
+
         }
 
         if (this._isDay === 1) {
-            console.log('dddayyyyyyyyyyyyy');
             context.strokeStyle = 'hsl(0%, 100%, 0%)';
         } else {
             context.strokeStyle = `hsl("${this._color}", 100%, ${this._changeColor}%)`;
@@ -227,15 +233,12 @@ export default class TreeClass {
         }
         
         for (let lineKey in linePaths) {
-            console.log('llllllllll');
             let line = linePaths[lineKey],
                 linePositions = line.lines;
             context.beginPath();
             context.lineWidth = line.lineWidth;
             for (let i = 0, max = linePositions.length; i < max; i++) {
                 let linePosition = linePositions[i];
-                console.log(linePosition);
-                console.log('llineeeeeeeeee');
                 context.moveTo(linePosition[0][0], linePosition[0][1]);
                 context.lineTo(linePosition[1][0], linePosition[1][1]);
             }
