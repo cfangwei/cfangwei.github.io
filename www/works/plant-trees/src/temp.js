@@ -165,7 +165,7 @@ var PlantTrees = PlantTrees || (function() {
           , T = Q - C
           , R = (L - C) / (p - a)
           , S = a + ((0.5 + (T / R)) | 0)
-          , O = (Math.random() * 360) | 0;
+        , O = (Math.random() * 360) | 0;//
         return new TreeClass(P,N,Q,-90,O,S,F)
     }
     function f() {
