@@ -1,4 +1,3 @@
-
 var $ = require('jquery');
 
 var stageController = require('../../../src/lib/stage-controller');
@@ -6,6 +5,7 @@ var stageController = require('../../../src/lib/stage-controller');
 var TweenLite = require('../../../src/vendor/tweenlite.js');
 
 import {isTouch} from '../../../src/lib/detector';
+import {randomFloat, randomInteger} from '../../../src/lib/util.js';
 
 require('./main.scss');
 
@@ -38,13 +38,13 @@ var WaveInCircle = WaveInCircle || (function() {
         circleHeight= 466,
         template =
         '<div class="contents-data">'+
-          '<div id="wavecircle">'+
-            '<canvas id="wavecircle-world" class="chand-updown"></canvas>'+
-            '<div id="wavecircle-btcon">'+
-              '<div id="wavecircle-bt-blue" class="wavecircle-bt">'+
-                 '<p></p>'+
-              '</div>'+
-              '<div id="wavecircle-bt-rainbow" class="wavecircle-bt">'+
+        '<div id="wavecircle">'+
+        '<canvas id="wavecircle-world" class="chand-updown"></canvas>'+
+        '<div id="wavecircle-btcon">'+
+        '<div id="wavecircle-bt-blue" class="wavecircle-bt">'+
+        '<p></p>'+
+        '</div>'+
+        '<div id="wavecircle-bt-rainbow" class="wavecircle-bt">'+
         '<p></p>'+
         '<ul><li></li><li></li><li></li><li></li><li></li></ul>'+
         '</div></div></div>'+
@@ -113,48 +113,48 @@ var WaveInCircle = WaveInCircle || (function() {
     function start() {
         q = 0;
         g = -1;
-        requestAnimationFrame(ac);
-        w = TweenLite.delayedCall(3.2, aa);
-        if (isTouch()) {
-            wavecircleBtBlue
-                .on("click", blueClickFn);
+        requestAnimationFrame(requestAnimate);
+        // w = TweenLite.delayedCall(3.2, aa);
+        // if (isTouch()) {
+        //     wavecircleBtBlue
+        //         .on("click", blueClickFn);
             
-            wavecircleBtRainbow
-                .on('click', rainbowClickFn);
+        //     wavecircleBtRainbow
+        //         .on('click', rainbowClickFn);
             
-        } else {
-            wavecircleBtBlue
-                .on('click', blueClickFn)
-                .on('mouseenter', V)
-                .on('mouseleave', m);
+        // } else {
+        //     wavecircleBtBlue
+        //         .on('click', blueClickFn)
+        //         .on('mouseenter', blueMouseEnter)
+        //         .on('mouseleave', blueMouseLeave);
             
-            wavecircleBtRainbow
-                .on('click', rainbowClickFn)
-                .on('mouseenter', o)
-                .on('mouseleave', m);
-        }
+        //     wavecircleBtRainbow
+        //         .on('click', rainbowClickFn)
+        //         .on('mouseenter', rainbowMouseEnter)
+        //         .on('mouseleave', blueMouseLeave);
+        // }
     }
     function dispose() {
         stageController.removeResize("WaveInCircle");
         CMUtiles.removeDom(CMDetect.circleMask);
         if (wavecircleGuide != null ) {
-            TweenLite.killTweensOf(wavecircleGuide)
+            TweenLite.killTweensOf(wavecircleGuide);
         }
         wavecircleGuide = null ;
         if (w != null ) {
-            TweenLite.killTweensOf(w)
+            TweenLite.killTweensOf(w);
         }
         w = null ;
-wavecircleBtBlue.off();
-wavecircleBtRainbow.off();
-wavecircleBtBlue = null ;
-wavecircleBtRainbow = null ;
+        wavecircleBtBlue.off();
+        wavecircleBtRainbow.off();
+        wavecircleBtBlue = null ;
+        wavecircleBtRainbow = null ;
         ab = true;
         b();
         ah = false;
         wavecircleWorld = null ;
         context = null ;
-        wavecircle = null 
+        wavecircle = null;
     }
     function pause() {
         ab = true;
@@ -162,13 +162,13 @@ wavecircleBtRainbow = null ;
         ah = false;
         T = O = 0;
         if (w != null ) {
-            w.pause()
+            w.pause();
         }
     }
     function resume() {
         ab = false;
         g = -1;
-        requestAnimationFrame(ac);
+        requestAnimationFrame(requestAnimate);
         if (w == null ) {
             k();
         } else {
@@ -176,14 +176,14 @@ wavecircleBtRainbow = null ;
         }
     }
     function k() {
-        StageController.addDown("waveinacircle", n);
-        StageController.addMove("waveinacircle", s);
-        StageController.addUp("waveinacircle", ag);
+        stageController.addDown("waveinacircle", n);
+        stageController.addMove("waveinacircle", s);
+        stageController.addUp("waveinacircle", ag);
     }
     function b() {
-        StageController.removeDown("waveinacircle", n);
-        StageController.removeMove("waveinacircle", s);
-        StageController.removeUp("waveinacircle", ag);
+        stageController.removeDown("waveinacircle", n);
+        stageController.removeMove("waveinacircle", s);
+        stageController.removeUp("waveinacircle", ag);
     }
     
     function resizeFn() {
@@ -193,9 +193,9 @@ wavecircleBtRainbow = null ;
         if (al > 710) {
             am = e
         } else {
-            am = (e - 25)
+            am = (e - 25);
         }
-        wavecircle.style[CMDetect.cssHead] = "translate(" + f + "px, " + am + "px)"
+        wavecircle.style[CMDetect.cssHead] = "translate(" + f + "px, " + am + "px)";
     }
     function aa() {
         wavecircleGuide.style.display = "block";
@@ -223,7 +223,7 @@ wavecircleBtRainbow = null ;
             },
             onUpdate: R,
             onComplete: z
-        })
+        });
     }
     function z() {
         w = TweenLite.to(wavecircleGuide, 0.6, {
@@ -233,12 +233,13 @@ wavecircleBtRainbow = null ;
             },
             onUpdate: R,
             onComplete: G
-        })
+        });
     }
     function R() {
         var ak = wavecircleGuide.getBoundingClientRect();
-        J(ak.left, ak.top)
+        J(ak.left, ak.top);
     }
+
     function G() {
         T = 0;
         O = 0;
@@ -276,14 +277,15 @@ wavecircleBtRainbow = null ;
             g: 100,
             b: 31
         });
+    }
     
     function rainbowClickFn() {
         if (N === 1) {
             return;
         }
         N = 1;
-wavecircleBtBlue.removeClass("blue-over").addClass("blue-out");
-wavecircleBtRainbow.removeClass("rainbow-out").addClass("rainbow-over");
+        wavecircleBtBlue.removeClass('blue-over').addClass('blue-out');
+        wavecircleBtRainbow.removeClass('rainbow-out').addClass('rainbow-over');
         TweenLite.to(W, 0.8, {
             r: 0,
             g: 100,
@@ -298,11 +300,11 @@ wavecircleBtRainbow.removeClass("rainbow-out").addClass("rainbow-over");
             r: 180,
             g: 100,
             b: 50
-        })
+        });
     }
-    function V() {
-        if (N == 0) {
-            return
+    function blueMouseEnter() {
+        if (N === 0) {
+            return;
         }
         TweenLite.killTweensOf(wavecircleBtBlue);
         TweenLite.killTweensOf(wavecircleBtRainbow);
@@ -316,10 +318,10 @@ wavecircleBtRainbow.removeClass("rainbow-out").addClass("rainbow-over");
                 opacity: 0.4
             }
         });
-wavecircleBtBlue.removeClass("blue-out").addClass("blue-over");
-wavecircleBtRainbow.removeClass("rainbow-over").addClass("rainbow-out")
+        wavecircleBtBlue.removeClass("blue-out").addClass("blue-over");
+        wavecircleBtRainbow.removeClass("rainbow-over").addClass("rainbow-out");
     }
-    function o() {
+    function rainbowMouseEnter() {
         if (N == 1) {
             return
         }
@@ -335,10 +337,10 @@ wavecircleBtRainbow.removeClass("rainbow-over").addClass("rainbow-out")
                 opacity: 1
             }
         });
-wavecircleBtBlue.removeClass("blue-over").addClass("blue-out");
-wavecircleBtRainbow.removeClass("rainbow-out").addClass("rainbow-over")
+        wavecircleBtBlue.removeClass("blue-over").addClass("blue-out");
+        wavecircleBtRainbow.removeClass("rainbow-out").addClass("rainbow-over");
     }
-    function m() {
+    function blueMouseLeave() {
         TweenLite.killTweensOf(wavecircleBtBlue);
         TweenLite.killTweensOf(wavecircleBtRainbow);
         TweenLite.to(wavecircleBtBlue, 0.2, {
@@ -352,11 +354,11 @@ wavecircleBtRainbow.removeClass("rainbow-out").addClass("rainbow-over")
             }
         });
         if (N == 1) {
-wavecircleBtBlue.removeClass("blue-over").addClass("blue-out");
-wavecircleBtRainbow.removeClass("rainbow-out").addClass("rainbow-over")
+            wavecircleBtBlue.removeClass("blue-over").addClass("blue-out");
+            wavecircleBtRainbow.removeClass("rainbow-out").addClass("rainbow-over")
         } else {
-wavecircleBtBlue.removeClass("blue-out").addClass("blue-over");
-wavecircleBtRainbow.removeClass("rainbow-over").addClass("rainbow-out")
+            wavecircleBtBlue.removeClass("blue-out").addClass("blue-over");
+            wavecircleBtRainbow.removeClass("rainbow-over").addClass("rainbow-out")
         }
     }
     function n(al, ak) {
@@ -380,100 +382,109 @@ wavecircleBtRainbow.removeClass("rainbow-over").addClass("rainbow-out")
     }
     function J(al, ak) {
         var am = ak - e
-          , an = al - f;
+        , an = al - f;
         if (an < 0 || an > circleWidth || am < 0 || am > circleHeight) {
-            return
+            return;
         }
         T = an;
         O = am;
         q = 0
     }
-    function ac(am) {
+    function requestAnimate(frameN) {
+    
         if (ab) {
-            return
+            return;
         }
-        requestAnimationFrame(ac);
+        requestAnimationFrame(requestAnimate);
         if (!g) {
-            g = am
+            g = frameN;
         }
-        var ak = am
-          , al = ak - g;
+        let ak = frameN,
+            al = ak - g;
+        
         if (al > 25) {
             g = ak;
             q = q + 1;
+            console.log(q);
             if (q > 600) {
                 q = 0;
-                K()
+                //K();
             }
-            d()
+            calc2draw();
         }
     }
     function K() {
-        var al = e + CMUtiles.randomInteger(0, 100)
-          , am = f + CMUtiles.randomInteger(0, 466)
-          , an = e + CMUtiles.randomInteger(300, 466)
-          , ak = f + CMUtiles.randomInteger(0, 466);
+        var al = e + randomInteger(0, 100)
+        , am = f + randomInteger(0, 466)
+        
+        , top = e + randomInteger(300, 466)
+        , left = f + randomInteger(0, 466);
+        
         L.left = am;
         L.top = al;
+        
         TweenLite.to(L, 0.6, {
-            left: ak,
-            top: an,
+            left: left,
+            top: top,
             onUpdate: v,
             onComplete: Y
-        })
+        });
     }
     function v() {
-        J(L.left, L.top)
+        J(L.left, L.top);
     }
     function Y() {
         T = 0;
         O = 0;
         q = 0
     }
-    function d() {
-        context.fillStyle = "#fff";
+    function calc2draw() {
+        context.fillStyle = '#fff';
         context.fillRect(0, 0, circleWidth, circleHeight);
-        var am, al, ak, an;
-        for (am = 0; am < ai; am++) {
-            X[am].vy += (circleHeight / 2 - X[am].y) * r;
-            D[am].vy += (circleHeight / 2 - D[am].y + 5) * i;
-            A[am].vy += (circleHeight / 2 - A[am].y - 5) * h;
-            al = T - X[am].x;
+        var  al, ak, an;
+        for (let i = 0; i < ai; i++) {
+            X[i].vy += (circleHeight / 2 - X[i].y) * r;
+            D[i].vy += (circleHeight / 2 - D[i].y + 5) * i;
+            A[i].vy += (circleHeight / 2 - A[i].y - 5) * h;
+            
+            al = T - X[i].x;
             ak = O - circleHeight / 2;
             an = Math.sqrt(al * al + (ak / 2) * (ak / 2));
+            
             if (an < u) {
-                X[am].vy += (O - X[am].y) * r;
-                D[am].vy += (O - D[am].y + 10) * i;
-                A[am].vy += (O - A[am].y + 10) * h
+                X[i].vy += (O - X[i].y) * r;
+                D[i].vy += (O - D[i].y + 10) * i;
+                A[i].vy += (O - A[i].y + 10) * h;
             }
-            X[am].vy *= y;
-            X[am].y += X[am].vy;
-            D[am].vy *= y;
-            D[am].y += D[am].vy;
-            A[am].vy *= y;
-            A[am].y += A[am].vy;
-            if (X[am].x != 0) {
-                aj(A, W);
-                aj(X, U);
-                aj(D, P)
+            X[i].vy *= y;
+            X[i].y += X[i].vy;
+            D[i].vy *= y;
+            D[i].y += D[i].vy;
+            A[i].vy *= y;
+            A[i].y += A[i].vy;
+            if (X[i].x !== 0) {
+                drawWavecircle(A, W); //aj
+                drawWavecircle(X, U);
+                drawWavecircle(D, P);
             }
         }
     }
-    function aj(al, am) {
+    
+    function drawWavecircle(al, rgb) {
         context.beginPath();
-        context.fillStyle = "hsla(" + am.r + ", " + am.g + "%, " + am.b + "%, 0.4)";
+        context.fillStyle = 'hsla(' + rgb.r + ', ' + rgb.g + '%, ' + rgb.b + '%, 0.4)';
         context.moveTo(al[0].x, al[0].y);
         var an, ak, ao;
         for (an = 0; an < p; an++) {
             ak = (al[an].x + al[an + 1].x) * 0.5;
             ao = (al[an].y + al[an + 1].y) * 0.5;
-            context.quadraticCurveTo(al[an].x, al[an].y, ak, ao)
+            context.quadraticCurveTo(al[an].x, al[an].y, ak, ao);
         }
         context.quadraticCurveTo(al[al.length - 2].x, al[al.length - 2].y, al[al.length - 1].x, al[al.length - 1].y);
         context.lineTo(circleWidth, circleHeight);
         context.lineTo(0, circleHeight);
         context.lineTo(0, al[0].y);
-        context.fill()
+        context.fill();
     }
     return {
         init: init,
@@ -482,10 +493,10 @@ wavecircleBtRainbow.removeClass("rainbow-over").addClass("rainbow-out")
         pause: pause,
         resume: resume,
         resize: resizeFn
-    }
-    })();
+    };
+})();
 
 
-WaveInCircle.init($('app'));
+WaveInCircle.init($('#app')[0]);
 
 WaveInCircle.start();

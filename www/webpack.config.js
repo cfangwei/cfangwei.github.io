@@ -10,7 +10,8 @@ var config = {
     entry: {
         main: './src/main.js',
         planttrees: './works/plant-trees/src/plant-trees.js',
-        wavecircleworld: './works/wavecircle-world/src/wavecircle-world.js'
+        wavecircleworld: './works/wavecircle-world/src/wavecircle-world.js',
+        flipclock: './works/flip-clock/src/flip-clock.js'
     },
     output: {
         path: __dirname + '/build',
