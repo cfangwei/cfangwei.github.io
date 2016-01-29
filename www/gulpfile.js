@@ -9,7 +9,7 @@ livereload({
 });
 
 gulp.task('sass', function () {
-    gulp.src('./scss/**/*.scss')
+    gulp.src('./scss/**/**/*.scss')
         .pipe(sass().on('error', sass.logError))
         .pipe(gulp.dest('./css'))
         .pipe(livereload({

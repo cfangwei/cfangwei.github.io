@@ -1,15 +1,28 @@
+'use strict';
+
+var $ = require('jquery');
+
 var FlipClock = FlipClock || (function() {
-    var j = false, r = 0, l = 0, q = 0, h, c, g, n, i = 960, o = 200, m = '<div id="flipclock" class="contents-data"><div class="flipclock-con"><ul class="flip flip-hour"><li><span><div class="flip-up"><div class="flip-shadow"></div><div class="flip-text">00</div></div><div class="flip-down"><div class="flip-shadow"></div><div class="flip-text">00</div><div class="flip-apm">AM</div></div></span></li><li><span><div class="flip-up"><div class="flip-shadow"></div><div class="flip-text">00</div></div><div class="flip-down"><div class="flip-shadow"></div><div class="flip-text">00</div><div class="flip-apm">AM</div></div></span></li></ul><ul class="flip flip-minute"><li><span><div class="flip-up"><div class="flip-shadow"></div><div class="flip-text">00</div></div><div class="flip-down"><div class="flip-shadow"></div><div class="flip-text">00</div></div></span></li><li><span><div class="flip-up"><div class="flip-shadow"></div><div class="flip-text">00</div></div><div class="flip-down"><div class="flip-shadow"></div><div class="flip-text">00</div></div></span></li></ul></div><div class="flipclock-con2"><ul class="flip flip-second"><li><span><div class="flip-up"><div class="flip-shadow"></div><div class="flip-text">00</div></div><div class="flip-down"><div class="flip-shadow"></div><div class="flip-text">00</div></div></span></li><li><span><div class="flip-up"><div class="flip-shadow"></div><div class="flip-text">00</div></div><div class="flip-down"><div class="flip-shadow"></div><div class="flip-text">00</div></div></span></li></ul></div></div>';
-    function p(v) {
+    var j = false, r = 0,
+        l = 0,
+        q = 0,
+        h,
+        c,
+        g,
+        n,
+        i = 960,
+        o = 200,
+        m = '<div id="flipclock" class="contents-data"><div class="flipclock-con"><ul class="flip flip-hour"><li><span><div class="flip-up"><div class="flip-shadow"></div><div class="flip-text">00</div></div><div class="flip-down"><div class="flip-shadow"></div><div class="flip-text">00</div><div class="flip-apm">AM</div></div></span></li><li><span><div class="flip-up"><div class="flip-shadow"></div><div class="flip-text">00</div></div><div class="flip-down"><div class="flip-shadow"></div><div class="flip-text">00</div><div class="flip-apm">AM</div></div></span></li></ul><ul class="flip flip-minute"><li><span><div class="flip-up"><div class="flip-shadow"></div><div class="flip-text">00</div></div><div class="flip-down"><div class="flip-shadow"></div><div class="flip-text">00</div></div></span></li><li><span><div class="flip-up"><div class="flip-shadow"></div><div class="flip-text">00</div></div><div class="flip-down"><div class="flip-shadow"></div><div class="flip-text">00</div></div></span></li></ul></div><div class="flipclock-con2"><ul class="flip flip-second"><li><span><div class="flip-up"><div class="flip-shadow"></div><div class="flip-text">00</div></div><div class="flip-down"><div class="flip-shadow"></div><div class="flip-text">00</div></div></span></li><li><span><div class="flip-up"><div class="flip-shadow"></div><div class="flip-text">00</div></div><div class="flip-down"><div class="flip-shadow"></div><div class="flip-text">00</div></div></span></li></ul></div></div>';
+    function init(v) {
         v.innerHTML = m;
         j = false;
-        n = $("#flipclock");
+        n ="" $("#flipclock");
         if (CMDetect.isMobile) {
             o = 280
         }
         StageController.addResize("FlipClock", t)
     }
-    function d() {
+    function start() {
         r = 0;
         l = 0;
         q = 0;
@@ -32,17 +45,17 @@ var FlipClock = FlipClock || (function() {
         }
         n[0].style[CMDetect.cssHead] = "scale(" + w + ")"
     }
-    function u() {
+    function dispose() {
         StageController.removeResize("FlipClock");
         j = true;
         TweenLite.killDelayedCallsTo(a);
         n = null 
     }
-    function e() {
+    function pause() {
         j = true;
         TweenLite.killDelayedCallsTo(a)
     }
-    function b() {
+    function resume() {
         j = false;
         a()
     }
@@ -142,19 +155,23 @@ var FlipClock = FlipClock || (function() {
             v = "PM"
         } else {
             if (w == 12) {
-                v = "PM"
+                v = "PM";
             }
         }
         var z = CMUtiles.addZeros(w, 1);
         x = $("ul.flip-hour li").eq(q + 1);
         x.find(".flip-text").html(z);
-        x.find(".flip-apm").html(v)
+        x.find(".flip-apm").html(v);
     }
     return {
-        init: p,
-        start: d,
-        dispose: u,
-        pause: e,
-        resume: b
-    }
+        init: init,
+        start: start,
+        dispose: dispose,
+        pause: pause,
+        resume: resume
+    };
 })();
+
+
+FlipClock.init($('#app')[0]);
+FlipClock.start();
