@@ -51,7 +51,6 @@ var drawTreeFrame = function() {
         return;
     } 
 
-    console.log('sdsd');
     tree.draw(context);
     if (tree.complete()) {
         tree = null; 
@@ -64,11 +63,7 @@ var generatTree = (x, y) => {
         R = (trunkMaxLength - trunkMinLength) / (trunkMaxBrance - trunkMinBrance),
         depth = trunkMinBrance + ((0.5 + (T / R)) | 0), 
         color = (Math.random() * 360);
-    console.log("color = ", color);
-    console.log("depth = ", depth);
-    console.log("R = ", R);
-    console.log("T = ", T);
-    console.log("trunkLength = ", trunkLength);
+
     tree = new TreeClass(x, y, trunkLength, -90, color, depth, isDay);
 };
 
@@ -88,11 +83,11 @@ var planttrees = new Vue({
     ready: function(){
         this.setup($(this.$el));
         this.start();
+        console.log('ready');
     },
     methods: {
 
         setup: function($container){
-
             //n = false,
             var winWidth = stageController.width,
                 winHeight = stageController.height;
@@ -106,11 +101,13 @@ var planttrees = new Vue({
         start: function(){
             let winWidth = stageController.width,
                 winHeight = stageController.height;
-            console.log("winHeight = ", winHeight);
-            console.log("winWidth = ", winWidth);
 
-            generatTree(winWidth / 2, winHeight / 2);
+            generatTree(winWidth / 2, winHeight);
             drawTree();
+            setTimeout(function(){
+
+            }, 1000);
+
             //animate = TweenLite.to();
         },
         dispose: function(){
@@ -127,3 +124,14 @@ var planttrees = new Vue({
         }
     }
 });
+
+
+$(document).ready(function(){
+    console.log('$ ready');
+})
+
+document.addEventListener("DOMContentLoaded", function(event) {
+    console.log("DOM fully loaded and parsed");
+});
+
+

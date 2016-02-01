@@ -109,17 +109,20 @@ class Brance {
         return Point.interpolate(this._end, this._start, n);
     }
     createNext(generation) {
+
         let depth = Math.max(this._depth - 1, 0);
+
         if ( !depth ) {
             return null;
         }
         let y =[],
             angleOffsetRange = this._angleOffsetRange,
-            k = angleOffsetRange / generation;
+            anglePart = angleOffsetRange / generation;
+        // 保证下一代树枝的角度是大致放射的
         for (let i = 0; i < generation; i++) {
-            let r = k * i - angleOffsetRange / 2,
-                z = r + k;
-            y[i] = (randomFloat(r, z)) | 0;
+            let min = anglePart * i - angleOffsetRange / 2,
+                max = min + anglePart;
+            y[i] = (randomFloat(min, max)) | 0;
         }
         y.sort(function(a, b){
             return (a > 0 ? a : -a) - (b > 0 ? b : -b);
@@ -139,7 +142,6 @@ class Brance {
                               randomFloat(3, 5), depth, nextGeneration);
 
         }
-        console.log('nextBrances', nextBrances);
         return nextBrances;
     }
     update() {
@@ -153,12 +155,10 @@ class Brance {
 
         
         if ( this._length <= this._currentLength ) {
-            console.log('bobobobobobobo');
             current = this._end;
             complete = this._complete = true;
         }
-        //let
-        console.log(this._depth, 'this._depth');
+
         let lineWidth = this._depth * this._depth * 0.2,
             l = 'CM' + lineWidth,
             n = linePaths[l];
@@ -171,7 +171,7 @@ class Brance {
         }
         n.lines.push([[latest.x, latest.y],
                       [current.x, current.y]]);
-        //console.log(current.x, current.y);
+
         if (complete) {
             return;
         }
@@ -210,11 +210,12 @@ export default class TreeClass {
         }
         
         for (let i = 0; i < branceLen; i++) {
+
             let brance = brances[i];
             brance.update();
 
             if ( brance.complete() ) {
-                brances.splice(brance, 1);
+                brances.splice(i, 1);
                 i--;
                 let generation = brance.generation() < 3 ? randomInteger(3, 4) :
                         randomInteger(2, 4),
