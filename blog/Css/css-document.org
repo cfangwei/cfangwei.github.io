@@ -1,0 +1,5 @@
+
+
+** css-modules
+Documentation about css-modules
+git@github.com:css-modules/css-modules.git
