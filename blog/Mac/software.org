@@ -1,0 +1,19 @@
+
+** LICEcap
+GIF截图工具
+
+** LimeChat
+irc 工具
+
+** ImageAlpha
+图片压缩
+
+** ImageOptim
+图片压缩
+
+** Synergy
+跨平台鼠标键盘共用
+
+** Mapture
+截图并放到屏幕上
+http://anatoo.jp/mapture/#donyu
