@@ -20,6 +20,7 @@
     "modernizr": "^3.3.1",
     "sass": "^0.5.0",
     "sass-loader": "^3.1.2",
+    "underscore": "^1.8.3",
     "vue": "^1.0.13",
     "webpack": "^1.12.2",
     "webpack-dev-server": "^1.12.0",
