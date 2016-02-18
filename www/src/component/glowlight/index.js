@@ -79,15 +79,15 @@ var glowlightRaf = function(){
 
 var glowlightAction = function(){
     content.globalCompositeOperation = 'source-over';
-        content.fillStyle = 'rgb(17, 17, 17)'; // set backgroud color 
-        content.fillRect(0, 0,
-                         stageController.width,
-                         stageController.height);
-        content.globalCompositeOperation = 'lighter';
+    content.fillStyle = 'rgb(17, 17, 17)'; // set backgroud color 
+    content.fillRect(0, 0,
+                     stageController.width,
+                     stageController.height);
+    content.globalCompositeOperation = 'lighter';
         // 使用不同的 globalCompositeOperation 值绘制矩形。
         // lighter = 显示源图像 + 目标图像。
         
-        var particle,
+    var particle,
             y = -1,
             borderDistance = 300, // 弹返边界距离 window 的距离
             grd; // canvas RadialGradient

@@ -16,7 +16,13 @@ var WaveInCircle = WaveInCircle || (function() {
         ai = 8,
         p = ai - 2,
         y = 0.96,
-        r = 0.04, i = 0.06, h = 0.03, u = 100, T = 0, O = 0, wavecircleWorld, context, ab = false, ah = false,
+        r = 0.04,
+        i = 0.06,
+        h = 0.03,
+        u = 100,
+        T = 0,
+        O = 0,
+        wavecircleWorld, context, ab = false, ah = false,
         f,
         e,
         g,
@@ -74,7 +80,7 @@ var WaveInCircle = WaveInCircle || (function() {
             al.x = circleWidth / (ai - 1) * i;
             al.y = circleHeight;
             al.vy = Math.random() * 40 - 20;
-            A[i] = al
+            A[i] = al;
         }
         W = {
             r: 189,

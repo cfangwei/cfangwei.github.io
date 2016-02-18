@@ -12,7 +12,8 @@ var config = {
         planttrees: './works/plant-trees/src/plant-trees.js',
         wavecircleworld: './works/wavecircle-world/src/wavecircle-world.js',
         flipclock: './works/flip-clock/src/flip-clock.js',
-        treeriver: './works/tree-river/src/tree-river.js'
+        treeriver: './works/tree-river/src/tree-river.js',
+        elasticcollision: './works/elastic-collision/src/elastic-collision.js'
     },
     output: {
         path: __dirname + '/build',
