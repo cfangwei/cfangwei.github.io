@@ -77,3 +77,6 @@ terminal 下的 ppt。
 #### [maybe](https://github.com/p-e-w/maybe)
 See what a program does before deciding whether you really want it to happen.
 
+#### [wttr.in](https://github.com/chubin/wttr.in)    
+curl wttr.in 在终端显示天气
+    
