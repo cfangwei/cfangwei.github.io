@@ -1,10 +1,10 @@
 'use strict';
 
 
-const ballNumber = 100;
+const ballNumber = 10;
 const ballRadius = 10, g = 9.8, mocali = 0.5, collarg = 0.8;
 
-const areaRadius = 500;
+const areaRadius = 300;
 
 
 let getRandom = (a, b) => {
@@ -30,7 +30,7 @@ class Ball {
         this.pxpm = pxpm;
     }
 
-    move(t, height, width) {
+    move(t, x, y) {
         this.oldx = this.x;
         this.oldy = this.y;
 
@@ -41,15 +41,25 @@ class Ball {
         this.x += t * this.vx * this.pxpm;
         this.y += t * this.vy * this.pxpm;
 
-        if (this.y > height - this.radius || this.y < this.radius) {
-            this.y = this.y < this.radius ? this.radius : (height - this.radius);
+        // if (this.y > height - this.radius || this.y < this.radius) {
+        //     this.y = this.y < this.radius ? this.radius : (height - this.radius);
+        //     this.vy = -this.vy * collarg;
+        // }
+        // if (this.x > width - this.radius || this.x < this.radius) {
+        //     this.x = this.x < this.radius ? this.radius : (width - this.radius);
+        //     this.derectionX = !this.derectionX;
+        //     this.vx = -this.vx * collarg;
+        // }
+        let dx = Math.abs(this.x - x),
+            dy = Math.abs(this.y - y),
+            dis = Math.sqrt(dx * dx + dy * dy);
+        
+        if( dis >= areaRadius ){
             this.vy = -this.vy * collarg;
-        }
-        if (this.x > width - this.radius || this.x < this.radius) {
-            this.x = this.x < this.radius ? this.radius : (width - this.radius);
-            this.derectionX = !this.derectionX;
             this.vx = -this.vx * collarg;
         }
+
+        
     }
     
 }
@@ -119,7 +129,7 @@ let start = (ctx, canvas, balls) => {
 	collision(balls);
 
         balls.map((ball) => {
-            ball.move(t, canvas.height, canvas.width);
+            ball.move(t, canvas.width / 2, canvas.height / 2);
             drawBall(ball);
         });
     };
@@ -144,9 +154,13 @@ let main = () => {
     let pxpm = canvas.width / 20, balls = [];
 
     for (let i = 0; i < ballNumber; i++) {
+        let x = Math.random() * 2 * areaRadius - areaRadius,
+            ylim = Math.sqrt(areaRadius * areaRadius - x * x),
+            y = Math.random() * 2 * ylim - ylim;
+        
         balls.push(new Ball(
-            getRandom(canvas.width / 2 - areaRadius + ballRadius),
-            getRandom(canvas.width / 2 + areaRadius - ballRadius),
+            x + canvas.width / 2,
+            y + canvas.height / 2,
             ballRadius,
             `rgba(${getRandomInt(255)}, ${getRandomInt(255)}, ${getRandomInt(255)}, 1)`,
             pxpm
