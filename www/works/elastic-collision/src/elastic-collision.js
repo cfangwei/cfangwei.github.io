@@ -30,7 +30,7 @@ class Ball {
         this.pxpm = pxpm;
     }
 
-    move(t, height, width) {
+    move(t, x, y) {
         this.oldx = this.x;
         this.oldy = this.y;
 
@@ -41,15 +41,23 @@ class Ball {
         this.x += t * this.vx * this.pxpm;
         this.y += t * this.vy * this.pxpm;
 
-        if (this.y > height - this.radius || this.y < this.radius) {
-            this.y = this.y < this.radius ? this.radius : (height - this.radius);
+        // if (this.y > height - this.radius || this.y < this.radius) {
+        //     this.y = this.y < this.radius ? this.radius : (height - this.radius);
+        //     this.vy = -this.vy * collarg;
+        // }
+        // if (this.x > width - this.radius || this.x < this.radius) {
+        //     this.x = this.x < this.radius ? this.radius : (width - this.radius);
+        //     this.derectionX = !this.derectionX;
+        //     this.vx = -this.vx * collarg;
+        // }
+        let dx = Math.abs(this.x - x),
+            dy = Math.abs(this.y - y);
+        if( Math.sqrt(dx * dx + dy * dy) > areaRadius ){
             this.vy = -this.vy * collarg;
-        }
-        if (this.x > width - this.radius || this.x < this.radius) {
-            this.x = this.x < this.radius ? this.radius : (width - this.radius);
-            this.derectionX = !this.derectionX;
             this.vx = -this.vx * collarg;
         }
+
+        
     }
     
 }
@@ -119,7 +127,7 @@ let start = (ctx, canvas, balls) => {
 	collision(balls);
 
         balls.map((ball) => {
-            ball.move(t, canvas.height, canvas.width);
+            ball.move(t, canvas.height / 2, canvas.width / 2);
             drawBall(ball);
         });
     };
