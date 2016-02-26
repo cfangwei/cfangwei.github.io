@@ -1,10 +1,10 @@
 'use strict';
 
 
-const ballNumber = 100;
+const ballNumber = 10;
 const ballRadius = 10, g = 9.8, mocali = 0.5, collarg = 0.8;
 
-const areaRadius = 500;
+const areaRadius = 300;
 
 
 let getRandom = (a, b) => {
@@ -127,7 +127,7 @@ let start = (ctx, canvas, balls) => {
 	collision(balls);
 
         balls.map((ball) => {
-            ball.move(t, canvas.height / 2, canvas.width / 2);
+            ball.move(t, canvas.width / 2, canvas.height / 2);
             drawBall(ball);
         });
     };
@@ -152,9 +152,13 @@ let main = () => {
     let pxpm = canvas.width / 20, balls = [];
 
     for (let i = 0; i < ballNumber; i++) {
+        let x = Math.random() * 2 * areaRadius - areaRadius,
+            ylim = Math.sqrt(areaRadius * areaRadius - x * x),
+            y = Math.random() * 2 * ylim - ylim;
+        
         balls.push(new Ball(
-            getRandom(canvas.width / 2 - areaRadius + ballRadius),
-            getRandom(canvas.width / 2 + areaRadius - ballRadius),
+            x + canvas.width / 2,
+            y + canvas.height / 2,
             ballRadius,
             `rgba(${getRandomInt(255)}, ${getRandomInt(255)}, ${getRandomInt(255)}, 1)`,
             pxpm

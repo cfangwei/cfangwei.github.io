@@ -1,0 +1,6 @@
+#+TITLE: DIY 树莓派一体机
+#+AUTHOR: 陳放為
+
+* DIY 树莓派一体机
+
+[[./make-irpi/P60213-214857.jpg]]
