@@ -1,4 +1,13 @@
 
+html, body, div {
+    margin: 0;
+    padding: 0;
+}
+
+.world {
+    background: linear-gradient(to top left,#4cddff,#3b9aca 10%,#2d6ca5 20%,#2a5291 27%,#283d81 35%,#222654 50%,#1e1635 63%,#0c0010 93%,#000);
+    height: 700px;
+}
 
 .sky .star {
     -webkit-animation: star1 5s alternate ease-in-out infinite;
@@ -10,4 +19,16 @@
     position: absolute;
     box-sizing: border-box;
     border-radius: 50%;
+}
+
+
+.flare {
+    width: 40px;
+    height: 40px;
+    margin: -20px 0 0 -20px;
+    border: 2px solid #fff;
+    -webkit-animation: flare 1s linear;
+    animation: flare 1s linear;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards
 }

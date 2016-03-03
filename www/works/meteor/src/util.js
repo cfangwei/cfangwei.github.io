@@ -35,6 +35,7 @@ let canvasCircle = (e, t, n) => {
 };
 
 let canvasClearFill = (e) => {
+
     e.fillStyle = "black";
     e.globalCompositeOperation = "destination-out";
     e.fill();
