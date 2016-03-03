@@ -11,7 +11,7 @@ import {Meteor} from './meteor.js';
 import {SmallStar} from './star.js';
 import {canvasDrawRotated, numInterpolate, clamp, px, rgb} from './util.js';
 import {skysOptions, ringsOption, sunOption, meteorColor, meteorInterval} from './data.js';
-import {cssPrefix, meteorOption, width, height} from './data.js';
+import {cssPrefix, meteorOption} from './data.js';
 
 
 
@@ -45,18 +45,23 @@ class Control {
 
         this.isPlaying = false;
         this.lastTick = 0;
+        this.delta = null;
         // this.delta;
         // this.nextMeteor;
+        this.meteorCurvePoints = 300;
+        this.meteorLength = 16 / this.meteorCurvePoints; //TODO
         this.meteors = [];
         this.meteorRepo = [];
         this.meteorLimit = 4;
         this.nextAvailableMeteor = 0;
+        this.nextMeteor = -1;
 
-        console.log('sds');
+
         //TODO
         this.canvas = document.createElement("canvas"),
-        this.canvas.width = width,
-        this.canvas.height = height,
+
+        this.canvas.width = meteorOption.width,
+        this.canvas.height = meteorOption.height,
         this.ctx = this.canvas.getContext("2d"),
         this.ctx.lineCap = "round",
         this.meteorContainer.appendChild(this.canvas);
@@ -105,9 +110,17 @@ class Control {
                           });
     }
 
-    A(t) {
-        this.ctx.strokeStyle = rgb([Math.round(numInterpolate(this.meteorColor[0][0], this.meteorColor[1][0], t.progress.current)), Math.round(numInterpolate(this.meteorColor[0][1], this.meteorColor[1][1], t.progress.current)), Math.round(numInterpolate(this.meteorColor[0][2], this.meteorColor[1][2], t.progress.current))]);
-        var n = t.curvePoints[t.progress.currentIndexClamped];
+    A(t) { 
+        this.ctx.strokeStyle = rgb([Math.round(numInterpolate(meteorColor[0][0],
+                                                              meteorColor[1][0],
+                                                              t.controlOption.progress.current)),
+                                    Math.round(numInterpolate(meteorColor[0][1],
+                                                              meteorColor[1][1],
+                                                              t.controlOption.progress.current)),
+                                    Math.round(numInterpolate(meteorColor[0][2],
+                                                              meteorColor[1][2],
+                                                              t.controlOption.progress.current))]);
+        var n = t.controlOption.curvePoints[t.controlOption.progress.currentIndexClamped];
         for (var r = 0; r < this.meteorShades; r++) {
             var i = r / (this.meteorShades - 1)
             , s = 1 - r / this.meteorShades
@@ -129,13 +142,11 @@ class Control {
     }
 
     tick(t) {
-        //let tt = this.lastTick;
-        
-        //t || (t = this.lastTick);
-        console.log(this);
-        console.log(this.lastTick);
-        this.delta = Math.min(100, 50);
+        t || (t = this.lastTick);
+
+        this.delta = Math.min(this.lastTick, 50);
         if (t > this.nextMeteor && this.meteors.length < this.meteorLimit) {
+            console.log('s');
             var meteor = this.meteorRepo[this.nextAvailableMeteor];
             this.nextAvailableMeteor = (this.nextAvailableMeteor + 1) % this.meteorRepo.length;
             meteor.controlOption.progress.current = 0;
@@ -148,27 +159,35 @@ class Control {
             let r = numInterpolate(meteorInterval[0], meteorInterval[1], Math.random());
             this.nextMeteor = t + r;
         }
-        this.ctx.clearRect(0, 0, this.width, this.height);
+        this.ctx.clearRect(0, 0, 1200, 700); //TODO
         for (var i = 0; i < this.meteors.length; i++) {
+            console.log('x');
             var n = this.meteors[i];
             if (n === false)
-                continue;n.progress.currentIndex = Math.round(n.progress.current * this.meteorCurvePoints),
-            n.progress.currentIndexClamped = clamp(n.progress.currentIndex, 0, n.curvePoints.length - 1),
-            n.shineStrength = (1 - n.curvePoints[n.progress.currentIndexClamped].fromSun.len
-                               / this.sun.shineRange) * 0.25,
-            n.progress.current < 0.2 && (n.shineStrength *= Math.max(n.progress.current, 0) * 5),
-            n.shineStrength > 0 && this.L(n),
-            this.A(n),
-            n.progress.current > n.progress.startTimes.starB && n.speed > 0.9 ? n.speed *= .99 : n.progress.current > n.progress.startTimes.orbit && n.speed < 2 && (n.speed *= 1.005),
-            n.progress.current += this.delta / this.meteorDuration * n.speed,
-            n.progress.current > 1 && !n.hasFlare && (makeFlare(n.starB.p, this.meteorColor[1]),
-                                                      n.hasFlare = !0),
-            n.progress.current > 1 + this.meteorLength && (this.meteors[i] = false);
+                continue;
+            n.controlOption.progress.currentIndex = Math.round(n.controlOption.progress.current * this.meteorCurvePoints);
+
+            n.controlOption.progress.currentIndexClamped = clamp(n.controlOption.progress.currentIndex,
+                                                                 0,
+                                                                 n.controlOption.curvePoints.length - 1);
+
+            console.log(n.controlOption.curvePoints[n.controlOption.progress.currentIndexClamped].fromSun.controlOption);
+            
+            n.controlOption.shineStrength = (1 - n.controlOption.curvePoints[n.controlOption.progress.currentIndexClamped].fromSun.len /
+                                             sunOption.shineRange) * 0.25,
+            n.controlOption.progress.current < 0.2 && (n.controlOption.shineStrength *= Math.max(n.controlOption.progress.current, 0) * 5);
+            n.controlOption.shineStrength > 0 && this.L(n);
+            this.A(n);
+            n.controlOption.progress.current > n.controlOption.progress.startTimes.starB && n.controlOption.speed > 0.9 ? n.controlOption.speed *= .99 : n.controlOption.progress.current > n.controlOption.progress.startTimes.orbit && n.controlOption.speed < 2 && (n.controlOption.speed *= 1.005);
+            n.controlOption.progress.current += this.delta / this.meteorDuration * n.controlOption.speed;
+            n.controlOption.progress.current > 1 && !n.controlOption.hasFlare && (makeFlare(n.controlOption.starB.p, meteorColor[1]),
+                                                                                  n.controlOption.hasFlare = !0);
+            n.controlOption.progress.current > 1 + this.meteorLength && (this.meteors[i] = false);
         }
         for (var s = 0; s < this.meteors.length; s++)
             this.meteors[s] === false && this.meteors.splice(s, 1);
         this.lastTick = t,
-        this.isPlaying && requestAnimationFrame(this.tick);
+        this.isPlaying && requestAnimationFrame(this.tick.bind(this));
     }
 
     start() {
