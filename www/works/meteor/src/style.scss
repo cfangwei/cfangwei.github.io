@@ -1,0 +1,13 @@
+
+
+.sky .star {
+    -webkit-animation: star1 5s alternate ease-in-out infinite;
+    animation: star1 5s alternate ease-in-out infinite  
+}
+
+
+.sky *, .sky-parallax * {
+    position: absolute;
+    box-sizing: border-box;
+    border-radius: 50%;
+}

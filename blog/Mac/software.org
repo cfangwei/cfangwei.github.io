@@ -17,3 +17,7 @@ irc 工具
 ** Mapture
 截图并放到屏幕上
 http://anatoo.jp/mapture/#donyu
+
+** HHKBAssistant_for_mac
+HHKB 工具
+https://github.com/hanks/HHKBAssistant_for_mac

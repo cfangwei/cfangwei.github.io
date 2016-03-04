@@ -13,7 +13,8 @@ var config = {
         wavecircleworld: './works/wavecircle-world/src/wavecircle-world.js',
         flipclock: './works/flip-clock/src/flip-clock.js',
         treeriver: './works/tree-river/src/tree-river.js',
-        elasticcollision: './works/elastic-collision/src/elastic-collision.js'
+        elasticcollision: './works/elastic-collision/src/elastic-collision.js',
+        meteor: './works/meteor/src/main.js'
     },
     output: {
         path: __dirname + '/build',

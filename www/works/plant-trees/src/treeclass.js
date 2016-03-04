@@ -70,8 +70,7 @@
         this._generation = m;
         this._speed *= 60 / d;
         var i = this._angle * b;
-        this._end = new e(this._start.x + this._length * Math.cos(i),
-                          this._start.y + this._length * Math.sin(i));
+        this._end = new e(this._start.x + this._length * Math.cos(i),this._start.y + this._length * Math.sin(i));
         this._v = this._end.subtract(this._start);
         this._v.normalize(this._speed);
         this._current = this._start.add(this._v);
