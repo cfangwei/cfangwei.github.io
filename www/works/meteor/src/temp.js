@@ -379,7 +379,7 @@ var Meteors = function() {
     e.meteorInterval = [1e3, 3e3],
     e.meteorLimit = 4,
     e.meteorDuration = 8e3,
-        e.meteorCurvePoints = 300,
+    e.meteorCurvePoints = 300,
         e.meteorShades = 8,
         e.meteorSegments = 16,
         e.meteorWidth = [2, 5],
@@ -534,6 +534,7 @@ var Meteors = function() {
     e.ctx = e.canvas.getContext("2d"),
     e.ctx.lineCap = "round",
     e.container.appendChild(e.canvas);
+    
     var t = window.devicePixelRatio
     , n = e.sun.r * 2 + 20
     , r = document.createElement("canvas");
@@ -631,10 +632,12 @@ var Meteors = function() {
     }
     canvasCircle(e.shineTemplCtx, [e.shineCanvasSize / 2, e.shineCanvasSize / 2], e.sun.r - e.sun.strokeWidth * 1.5),
     canvasClearFill(e.shineTemplCtx),
+    
     e.meteorRepo = [],
     e.nextAvailableMeteor = 0;
     for (var T = 0; T < 10; T++)
         e.meteorRepo.push(N());
+    
     e.tick = function(t) {
         t || (t = e.lastTick),
         e.delta = Math.min(t - e.lastTick, 50);
@@ -650,6 +653,7 @@ var Meteors = function() {
             e.nextMeteor = t + r
         }
         e.ctx.clearRect(0, 0, e.width, e.height);
+        
         for (var i = 0; i < e.meteors.length; i++) {
             var n = e.meteors[i];
             if (n === !1)

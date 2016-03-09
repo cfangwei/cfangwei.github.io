@@ -1,0 +1,8 @@
+#+TITLE: DIY 树莓派一体机
+#+AUTHOR: 陳放為
+
+最近因为需要，要用到 boyer-moore 算法,
+
+| H | E | R | E |   | I | S |   | A |   | S | I | M | P | L | E |   | E | X | A | M | P | L | E |
+| E | X | A | M | P | L | E |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
+

@@ -1,5 +1,2 @@
 #+TITLE: DIY 树莓派一体机
 #+AUTHOR: 陳放為
-
-** ecma262
-https://github.com/tc39/ecma262

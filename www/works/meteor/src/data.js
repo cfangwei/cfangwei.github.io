@@ -148,5 +148,9 @@ const meteorOption = {
 
 const cssPrefix = '';
 
-export {skysOptions, ringsOption, sunOption, meteorColor, 
-        meteorOption, cssPrefix};
+const meteorCurvePoints = 300;
+
+const meteorInterval = [1e3, 3e3];
+
+export {skysOptions, ringsOption, sunOption, meteorColor, meteorInterval,
+        meteorOption, cssPrefix, meteorCurvePoints};
