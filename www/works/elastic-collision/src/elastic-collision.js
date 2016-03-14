@@ -51,10 +51,8 @@ class Ball {
         //     this.vx = -this.vx * collarg;
         // }
         let dx = Math.abs(this.x - x),
-            dy = Math.abs(this.y - y),
-            dis = Math.sqrt(dx * dx + dy * dy);
-        
-        if( dis >= areaRadius ){
+            dy = Math.abs(this.y - y);
+        if( Math.sqrt(dx * dx + dy * dy) > areaRadius ){
             this.vy = -this.vy * collarg;
             this.vx = -this.vx * collarg;
         }

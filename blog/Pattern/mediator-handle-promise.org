@@ -1,0 +1,3 @@
+#+TITLE:  中介者模式处理 promise
+#+AUTHOR: 陳放為
+
