@@ -1,3 +1,5 @@
 #+TITLE:  中介者模式处理 promise
 #+AUTHOR: 陳放為
 
+Javascript 很美好，可惜一旦操作到网络和文件系统，调用的方式往往是异步的
+

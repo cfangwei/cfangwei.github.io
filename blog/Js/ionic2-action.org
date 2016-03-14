@@ -1,0 +1,4 @@
+#+TITLE: Ionic2 + Angular2 实战
+#+AUTHOR: 陳放為
+
+Angular2 出来已经一段时间了，现在做的一个公司项目是用 Ionic1，呵呵，其实还是蛮坑的，所以 Angular2 一到 beta 阶段，我就想跃跃欲试，所以做了一个小项目练练手。
