@@ -84,61 +84,62 @@ var glowlightAction = function(){
                      stageController.width,
                      stageController.height);
     content.globalCompositeOperation = 'lighter';
-        // 使用不同的 globalCompositeOperation 值绘制矩形。
-        // lighter = 显示源图像 + 目标图像。
-        
+    // 使用不同的 globalCompositeOperation 值绘制矩形。
+    // lighter = 显示源图像 + 目标图像。
+    
     var particle,
-            y = -1,
-            borderDistance = 300, // 弹返边界距离 window 的距离
-            grd; // canvas RadialGradient
-        for (var i = 0; i < maxParticlesNum; i++) {
-            particle = particles[i];
-            particle.x = particle.x + particle.vx;
-            particle.y = particle.y + particle.vy;
-            
-            particle.radius = particle.radius + Math.sin(q); // sin q 回归 -1 ~ 1;
-            
-            q = q + frameStep;
+        y = -1,
+        borderDistance = 300, // 弹返边界距离 window 的距离
+        grd; // canvas RadialGradient
+    
+    for (var i = 0; i < maxParticlesNum; i++) {
+        particle = particles[i];
+        particle.x = particle.x + particle.vx;
+        particle.y = particle.y + particle.vy;
+        
+        particle.radius = particle.radius + Math.sin(q); // sin q 回归 -1 ~ 1;
+        
+        q = q + frameStep;
 
-            if (particle.x > windowWidth - particle.radius + borderDistance) {
-                particle.vx *= y;
-                particle.x = windowWidth - particle.radius + borderDistance;
-            }
-            if (particle.x < 0 + particle.radius - borderDistance) {
-                particle.vx *= y;
-                particle.x = particle.radius - borderDistance;
-            }
-            if (particle.y > windowHeight - particle.radius + borderDistance) {
-                particle.vy *= y;
-                particle.y = windowHeight - particle.radius + borderDistance;
-            }
-            if (particle.y < 0 + particle.radius - borderDistance) {
-                particle.vy *= y;
-                particle.y = particle.radius - borderDistance;
-            }
-            
-            grd = content.createRadialGradient(particle.x, //坐标
-                                               particle.y,
-                                               particle.radius,// 半径
-                                               particle.x, // 渐变坐标
-                                               particle.y,
-                                               particle.radius * 2 // 渐变半径
-                                              );
-            
-            grd.addColorStop(0, particle.hsla);
-            grd.addColorStop(1, "rgba(0,0,0,0)");
-            content.beginPath(); // begin draw
-            content.fillStyle = grd; //color and something else
-            // draw circle
-            content.arc(particle.x, // 坐标
-                        particle.y,
-                        particle.radius * 3, // 半径
-                        0, // 开始角度
-                        Math.PI * 2, // 终止角度
-                        false // 顺时针
-                       );
-            content.fill(); // 实心
+        if (particle.x > windowWidth - particle.radius + borderDistance) {
+            particle.vx *= y;
+            particle.x = windowWidth - particle.radius + borderDistance;
         }
+        if (particle.x < 0 + particle.radius - borderDistance) {
+            particle.vx *= y;
+            particle.x = particle.radius - borderDistance;
+        }
+        if (particle.y > windowHeight - particle.radius + borderDistance) {
+            particle.vy *= y;
+            particle.y = windowHeight - particle.radius + borderDistance;
+        }
+        if (particle.y < 0 + particle.radius - borderDistance) {
+            particle.vy *= y;
+            particle.y = particle.radius - borderDistance;
+        }
+        
+        grd = content.createRadialGradient(particle.x, //坐标
+                                           particle.y,
+                                           particle.radius,// 半径
+                                           particle.x, // 渐变坐标
+                                           particle.y,
+                                           particle.radius * 2 // 渐变半径
+                                          );
+        
+        grd.addColorStop(0, particle.hsla);
+        grd.addColorStop(1, "rgba(0,0,0,0)");
+        content.beginPath(); // begin draw
+        content.fillStyle = grd; //color and something else
+        // draw circle
+        content.arc(particle.x, // 坐标
+                    particle.y,
+                    particle.radius * 3, // 半径
+                    0, // 开始角度
+                    Math.PI * 2, // 终止角度
+                    false // 顺时针
+                   );
+        content.fill(); // 实心
+    }
 };
 
 
