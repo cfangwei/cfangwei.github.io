@@ -58,6 +58,6 @@ var app = new Vue({
     }
 });
 
-app.startGlowLight();
+//app.startGlowLight();
 //app.pauseGlowLight();
-//app.hideGlowLight();
+app.hideGlowLight();
