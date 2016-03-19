@@ -14,7 +14,9 @@ var config = {
         flipclock: './works/flip-clock/src/flip-clock.js',
         treeriver: './works/tree-river/src/tree-river.js',
         elasticcollision: './works/elastic-collision/src/elastic-collision.js',
-        meteor: './works/meteor/src/main.js'
+        meteor: './works/meteor/src/main.js',
+        textParticle: './works/text-particle/src/index.js',
+        textParticleThrough: './works/text-particle/src/through.js'
     },
     output: {
         path: __dirname + '/build',
