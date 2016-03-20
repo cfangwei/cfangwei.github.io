@@ -1,53 +1,51 @@
 'use strict';
 
-console.log('through');
+let _ = require('lodash');
 
 class Particle{
-    constructor(x, y, canvas) {
-        this.endX = x;
-        this.endY = y;
-        //this.canvas = canvas;
-        //this.ctx = this.canvas.getContext('2d');
-        this.x = Math.random() * canvas.width;
-	this.y = Math.random() * canvas.height;
+    constructor(x, y, canvasHeight, canvasWidth) {
+        this.targetX = x;
+        this.targetY = y;
 
-	this.vx = Math.random() * 10 - 5;
-	this.vy = Math.random() * 10 - 5;
-    }
-    move(mouseX, mouseY) {
-        let disX = this.endX - this.x;
-	let disY = this.endY - this.y;
-	let dis = Math.sqrt(Math.pow(disX, 2) + Math.pow(disY, 2));
-	let force = dis * 0.01;
-	let angle = Math.atan2(disY, disX); // atan2(x, y) 返回点(x, y)到x 轴的弧度
+        this.worldHeight = canvasHeight;
+        this.worldWidht = canvasWidth;
         
-        let mouseF = 0, mouseA = 0;
-        if (mouseX > 0 && mouseY > 0) {
-            let dis = Math.pow((this.x - mouseX), 2) + Math.pow((this.y - mouseY), 2);
-            mouseF = Math.min(5000 / dis, 5000);
-            mouseA = Math.atan2(this.y - mouseY, this.x - mouseX);
+        this.gotoStart();
+
+        this.vx = 5 + Math.random() * 4;
+        this.vy = Math.random() * 4 - 2;
+    }
+
+    gotoStart() {
+        this.x = this.targetX - this.worldWidht / 2 + Math.random() * 30;
+        this.y = this.worldHeight / 2 + Math.random() * 8 - 4;
+    }
+    move() {
+        if( this.x < this.targetX ){
+            this.x +=this.vx;
+            this.y += this.vy;
+
+            if( this.y > this.worldHeight / 2 + 40  ){
+                this.y = this.worldHeight / 2 + 40;
+                this.vy = - this.vy;
+            }
+
+            if ( this.y < this.worldHeight / 2 - 40) {
+                this.y = this.worldHeight / 2 - 40;
+                this.vy = - this.vy;
+            }
 
         } else {
-            mouseF = 0;
-            mouseA = 0;
+            this.x = this.targetX;
+            this.y = this.targetY;
         }
-
-	this.vx += force * Math.cos(angle) + mouseF * Math.cos(mouseA);
-	this.vy += force * Math.sin(angle) + mouseA * Math.sin(mouseA);
-
-	this.vx *= 0.92;
-	this.vy *= 0.92;
-
-	//
-        this.x += this.vx;
-        this.y += this.vy;
     }
     render(ctx) {
         ctx.fillStyle = '#111';
         ctx.fillRect(this.x, this.y, 2, 2);
     }
-    update(ctx, mouseX, mouseY) {
-        this.move(mouseX, mouseY);
+    update(ctx) {
+        this.move();
         this.render(ctx);
     }
 }
@@ -55,15 +53,17 @@ class Particle{
 
 let getCanvasData = (canvas) => {
     let ctx = canvas.getContext('2d'),
-        imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-
+        imageData = ctx.getImageData(0, 0, canvas.width, canvas.height),
+        canvasHeight = canvas.height,
+        canvasWidht = canvas.width;
+    
     let particles = [];
     for (let x = 0, ii = 0; x < imageData.width; x++) {
         for (let y = 0; y < imageData.height; y++) {
             let i = 4 * (y * imageData.width + x);
             if (imageData.data[i + 3] > 128) {
 		ii++;
-                (ii % 4 === 0) && particles.push(new Particle(x, y, canvas));
+                (ii % 4 === 0) && particles.push(new Particle(x, y, canvasHeight, canvasWidht));
             }
         }
     }
@@ -82,3 +82,31 @@ ctx.textAlign = 'left';
 ctx.textBaseline = 'middle';
 ctx.font = '200px sans-serif';
 ctx.fillText('Tyan', canvas.width / 2, canvas.height / 2.5);
+
+
+
+let particles = getCanvasData(canvas);
+
+let tick = () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.map((particle) => {
+        particle.update(ctx);
+    });
+};
+
+var run = false;
+let start = () => {
+    if (run) {
+        tick();
+        requestAnimationFrame(start);
+        console.log('run');
+    }
+};
+
+run = true;
+start();
+
+
+setTimeout(() => {
+    run = false;
+}, 10 * 1000);

@@ -16,7 +16,8 @@ var config = {
         elasticcollision: './works/elastic-collision/src/elastic-collision.js',
         meteor: './works/meteor/src/main.js',
         textParticle: './works/text-particle/src/index.js',
-        textParticleThrough: './works/text-particle/src/through.js'
+        textParticleThrough: './works/text-particle/src/through.js',
+        batParticle: './works/particle/src/bat.js'
     },
     output: {
         path: __dirname + '/build',
