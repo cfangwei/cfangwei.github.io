@@ -3,6 +3,7 @@
 export class Bat{
     constructor(size) {
         this.size = size;
+
         
     }
 

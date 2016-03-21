@@ -1,2 +1,41 @@
 #+TITLE: Map Done 实现
 #+AUTHOR: 陳放為
+
+Javascript 尤其是 NodeJs 是回调地狱已经是广为人知了，一层层的回调看得让人头晕，但是 NodeJs 最重要的特性异步执行特性并不能放弃，因此出现了很多 async 之类的库，当然还有人喜欢用 promise 处理，链式调用。
+
+
+
+
+#+NAME: 完整代码
+#+BEGIN_SRC javascript
+'use strict';
+
+export class MapDone {
+    constructor(cb) {
+        this.set = new Set();
+        this.cb = cb;
+        this.n = 0;
+    }
+
+    callBack(cb) {
+        this.cb = cb;
+    }
+
+    reg() {
+        let s = Symbol();
+        this.set.add(s);
+        return () => {
+            this.set.delete(s);
+            if( this.set.size === 0 ){
+                this.cb();
+            }
+        };
+    }
+
+    done() {
+        if( this.set.size === 0 ){
+            this.cb();
+        }
+    }
+}
+#+END_SRC
