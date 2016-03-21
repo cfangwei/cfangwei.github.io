@@ -17,7 +17,8 @@ var config = {
         meteor: './works/meteor/src/main.js',
         textParticle: './works/text-particle/src/index.js',
         textParticleThrough: './works/text-particle/src/through.js',
-        batParticle: './works/particle/src/bat.js'
+        birdIndex: './works/bird/src/index.js',
+        codeWall: './works/code-wall/src/index.js'
     },
     output: {
         path: __dirname + '/build',
