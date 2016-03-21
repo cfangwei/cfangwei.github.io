@@ -21,3 +21,7 @@ http://anatoo.jp/mapture/#donyu
 ** HHKBAssistant_for_mac
 HHKB 工具
 https://github.com/hanks/HHKBAssistant_for_mac
+** GIF Brewery3
+录 gif 图工具
+** visualJSON 
+json 可视化

@@ -1,4 +1,5 @@
 'use strict';
+//https://stripe.com/connect
 
 import './animate.scss';
 import './style.scss';
