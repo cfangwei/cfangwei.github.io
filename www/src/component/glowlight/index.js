@@ -19,7 +19,7 @@ GlowLightParticle.prototype = {
         this.vx = Math.random() * 7;
         this.vy = Math.random() * 7;
         this.colorBase = util.randomInteger(0, 15);
-        this.hsla = "hsla(" + ((360 / 15) * this.colorBase) + ", 100%, 50%, 1)";
+        this.hsla = 'hsla(' + ((360 / 15) * this.colorBase) + ', 100%, 50%, 1)';
     },
     r: 1,
     vx: 1,
@@ -127,7 +127,7 @@ var glowlightAction = function(){
                                           );
         
         grd.addColorStop(0, particle.hsla);
-        grd.addColorStop(1, "rgba(0,0,0,0)");
+        grd.addColorStop(1, 'rgba(0,0,0,0)');
         content.beginPath(); // begin draw
         content.fillStyle = grd; //color and something else
         // draw circle

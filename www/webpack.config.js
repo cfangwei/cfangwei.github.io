@@ -18,7 +18,8 @@ var config = {
         textParticle: './works/text-particle/src/index.js',
         textParticleThrough: './works/text-particle/src/through.js',
         birdIndex: './works/bird/src/index.js',
-        codeWall: './works/code-wall/src/index.js'
+        codeWall: './works/code-wall/src/index.js',
+        textWeb:  './works/text-web/src/index.js'
     },
     output: {
         path: __dirname + '/build',
