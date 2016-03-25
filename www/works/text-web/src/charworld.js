@@ -22,11 +22,15 @@ export class CharWorld{
                                      this.canvas.width, this.canvas.height,
                                      randomInteger(18, 22)));
         });
+
+        
         
     }
 
     render() {
-        
+        this.chars.map((char) => {
+            char.update(this.ctx);
+        });
     }
 
     tick() {
