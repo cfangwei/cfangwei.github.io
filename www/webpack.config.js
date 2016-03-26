@@ -12,7 +12,7 @@ var config = {
         planttrees: './works/plant-trees/src/plant-trees.js',
         wavecircleworld: './works/wavecircle-world/src/wavecircle-world.js',
         flipclock: './works/flip-clock/src/flip-clock.js',
-        treeriver: './works/tree-river/src/tree-river.js',
+        treeriver: './works/tree-river/src/index.js',
         elasticcollision: './works/elastic-collision/src/elastic-collision.js',
         meteor: './works/meteor/src/main.js',
         textParticle: './works/text-particle/src/index.js',
@@ -20,7 +20,8 @@ var config = {
         birdIndex: './works/bird/src/index.js',
         codeWall: './works/code-wall/src/index.js',
         textWeb:  './works/text-web/src/index.js',
-        egg3d:  './works/egg3d/src/index.js'
+        egg3d:  './works/egg3d/src/index.js',
+        flybird:  './works/flybird/src/index.js'
     },
     output: {
         path: __dirname + '/build',
@@ -45,6 +46,9 @@ var config = {
             },
             {
                 test: /\.html$/, loader: "html"
+            },
+            {
+                test: /\.txt$/, loader: "raw"
             }
         ]
     },

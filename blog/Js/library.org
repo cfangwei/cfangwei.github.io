@@ -9,3 +9,7 @@ https://github.com/imakewebthings/waypoints
 
 * cyclejs
 https://github.com/cyclejs/core
+
+* stats.js
+https://github.com/mrdoob/stats.js
+JavaScript Performance Monitor

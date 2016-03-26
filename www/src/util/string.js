@@ -1,8 +1,17 @@
 'use strict';
 
 let stringRandom = (len) => {
-    return Math.random().toString(36).substring(len || 8);
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    for( var i=0; i < len; i++ )
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+    return text;
 };
 
 
-export {stringRandom};
+let charRandom = () => {
+    return stringRandom(1);
+};
+
+export {stringRandom, charRandom};

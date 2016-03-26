@@ -175,7 +175,7 @@ define([
         this.curate = new Curate();
 
         /* ===== Width & Height ===== */
-
+        
         if (params.fullsize) {
 
             var rect = dom.getRect(document.getElementById('content'));
@@ -254,7 +254,9 @@ define([
 
         this.bulb = symbols.querySelector('#bulb').firstElementChild;
         this.base = symbols.querySelector('#base').firstElementChild.cloneNode(false);
+        
         this.fruitSymbol = symbols.querySelector('#' + (urlArgs.fruit || 'leaf-thin-2')).firstElementChild;
+        
         this.defs.appendChild(g);
         //          this.defs.appendChild();
         this.svgElement.appendChild(this.defs);
@@ -262,7 +264,7 @@ define([
         this.cameraDebug = false;
 
         /* ===== Fruit ===== */
-
+        
         this.hoverPlayer = new HoverPlayer(this);
 
         this.playhead = svg.createElement('rect', { width: 12, height: 5, x: -6, y: -2.5, rx: 2, ry: 2 });
@@ -688,7 +690,7 @@ define([
 
                 var i = 0;
                 _.each(this.nodesMap, function(node) {
-
+                    
                     Layout.layout(node, this, node);
 
                     node.treeIndex = i;
@@ -709,8 +711,7 @@ define([
 
                 this.treeWidth = Math.max(Math.abs(this.maxX), Math.abs(this.minX)) * 2 + this.params.padding * 2;
                 this.treeHeight = this.maxY - this.minY;
-
-
+                
             },
 
             showFruit: function() {
@@ -720,7 +721,7 @@ define([
             },
 
             hideFruit: function() {
-
+                
                 _.each(this.fruit, function(node) {
                     if (node.added)
                         node.fruit.hide();

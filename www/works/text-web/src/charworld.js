@@ -2,7 +2,7 @@
 
 let _ = require('lodash');
 
-import {stringRandom} from '../../../src/util/string.js';
+import {stringRandom, charRandom} from '../../../src/util/string.js';
 import {isObject, randomFloat, randomInteger} from '../../../src/lib/util';
 
 import {Char} from './char.js';
@@ -14,22 +14,37 @@ export class CharWorld{
         this.ctx = canvas.getContext('2d');
         this.charN = charN;
 
-
+        this.mouseX = null;
+        this.mouseY = null;
         
         this.chars = [];
         _.times(charN, () => {
-            this.chars.push(new Char(stringRandom(1),
+            this.chars.push(new Char(charRandom(),
                                      this.canvas.width, this.canvas.height,
-                                     randomInteger(18, 22)));
+                                     16));
         });
 
         
-        
+
+        this.bindEvent();
+    }
+
+
+    bindEvent() {
+        this.canvas.addEventListener('mousemove', (event) => {
+            this.mouseX = event.clientX;
+            this.mouseY = event.clientY;
+        });
+
+        this.canvas.addEventListener('mouseout', (event) => {
+            this.mouseX = null;
+            this.mouseY = null;
+        });
     }
 
     render() {
         this.chars.map((char) => {
-            char.update(this.ctx);
+            char.update(this.ctx, this.mouseX, this.mouseY);
         });
     }
 
