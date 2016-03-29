@@ -1,5 +1,7 @@
 'use strict';
 
+import {Box} from './box.js';
+
 let createLights = (scene) => {
     let globalLight = new THREE.HemisphereLight(0xffffff, 0xffffff, 0.5);
     
@@ -28,6 +30,12 @@ let createFloor = (scene) => {
     floor.position.y = 0;
     floor.receiveShadow = true;
     scene.add(floor);
+};
+
+let createBox = (scene) => {
+
+    let box = new Box();
+    scene.add(box);
 };
 
 let main = () => {

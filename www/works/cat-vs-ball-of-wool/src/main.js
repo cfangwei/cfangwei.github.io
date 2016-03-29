@@ -1,4 +1,3 @@
-
 //THREEJS RELATED VARIABLES 
 
 var scene,
