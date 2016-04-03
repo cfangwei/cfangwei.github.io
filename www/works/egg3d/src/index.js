@@ -26,16 +26,17 @@ let createFloor = (scene) => {
     let floor = new THREE.Mesh(new THREE.PlaneBufferGeometry(1000,1000),
                                new THREE.MeshBasicMaterial({color: 0xf3c37e}));
     
-    floor.rotation.x = - Math.PI / 1.5;
+    floor.rotation.x = - Math.PI / 2;
     floor.position.y = 0;
     floor.receiveShadow = true;
     scene.add(floor);
 };
 
 let createBox = (scene) => {
-
     let box = new Box();
-    scene.add(box);
+    box.threeGroup.rotation.x = - Math.PI / 2;
+    box.threeGroup.position.y = 1;
+    scene.add(box.threeGroup);
 };
 
 let main = () => {
@@ -72,6 +73,7 @@ let main = () => {
 
     createLights(scene);
     createFloor(scene);
+    createBox(scene);
 
     let render = () => {
         renderer.render(scene, camera);
