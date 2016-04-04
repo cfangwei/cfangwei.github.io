@@ -17,9 +17,9 @@ let createLights = (scene) => {
     backLight.shadowDarkness = 0.1;
     backLight.shadowMapWidth = shadowLight.shadowMapHeight = 2048;
     
-    scene.add(globalLight);
-    scene.add(shadowLight);
-    scene.add(backLight);
+    //scene.add(globalLight);
+    //scene.add(shadowLight);
+    //scene.add(backLight);
 };
 
 let createFloor = (scene) => {
@@ -71,9 +71,17 @@ let main = () => {
     let container = document.getElementById('world');
     container.appendChild(renderer.domElement);
 
-    createLights(scene);
+    //createLights(scene);
     createFloor(scene);
     createBox(scene);
+
+    let controls = new THREE.OrbitControls(camera, renderer.domElement);
+    controls.minPolarAngle = -Math.PI / 2; 
+    controls.maxPolarAngle = Math.PI / 2;
+    controls.noZoom = true;
+    controls.noPan = true;
+
+  
 
     let render = () => {
         renderer.render(scene, camera);
