@@ -15,7 +15,7 @@ export class Box{
             face3 = new THREE.Mesh(faceBufferGeometry, meshBasicMaterial),
             face4 = new THREE.Mesh(faceBufferGeometry, meshBasicMaterial),
             face5 = new THREE.Mesh(faceBufferGeometry, meshBasicMaterial);
-
+        
         face2.rotation.x = Math.PI / 2;
         face3.rotation.y = Math.PI / 2;
         face4.rotation.y = Math.PI / 2;
