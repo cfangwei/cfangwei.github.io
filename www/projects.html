@@ -122,21 +122,31 @@
       </div>
     </project-card>
 
-     <project-card github-id="AbyChan/TextRecommended"
-                  chinese-name="机器学习项目"
-                  name="TextRecommended"
+     <project-card github-id="AbyChan/SocialMap"
+                  chinese-name="毕业项目：地理社交系统"
+                  name="SocialMap"
                   time="大学"
                   state="停止开发">
       <div>
-	     <p>大学时候跟老师研究机器学习，一开始用 hadoop 瞎搞搞，后来自己研究算法了。<br>
-	     TF-IDF SVM文本分类实现<br>
-		 实现了三个分词接口 IK Jeseg Stanford 还是觉得Jeseg最好，自定义的空间也大<br>
-		 特征选取是用CHI2<br>
-		 语料库是搜狗<br>
-		 -.-做这个页面的时候看了一下代码，有点似曾相识的感觉，哎，都差不多忘了，可悲啊。</p>
+	     <p>呕心沥血的项目啊<br/>
+	        当年实习的时候做了一个 <a href="">1.0</a> 版，后台回到学校准备答辩发现过得太轻松了，时间也有多，于是再做一版 2.0，发现越来越坑，掉进坑里面去了 =.=<br/>
+	        额，当时用了很多新技术，准备在答辩的时候为老师耀武扬威的，不过当时答辩也只是走过场，说出来其他老师都不认识，一些东西听都没听过(nignx都没听过，当时我已经风中凌乱了),哎，不说了，伤心。<br/>
+	        <hr/>
+	        前端单页面响应式设计，BackBone MVC (当时在 backbone 和 angular 之间切来切去，纠结了很久。)
+			后端使用Django + Django ReST Framework 提供Api供前端调用	
+			完成的功能有：
+
+			1.用户注册，登陆，完善身份信息等
+			2.查看修改用户信息
+			3.用户在前端提交一个GPS（WGS-84），服务器记录起来，作为用户的行动记录
+			4.前端初始化界面，从服务器上取得用户位置附近7000米圆形区域内的MarkPost（类似微博一样的东西），显示在地图上，服务器用PostgreSQl GIS引擎支持地理查询
+			5.用户拖动地图，自动判断这里没有从服务器get过数据，没有就查询，显示到为地图上
+			6.点击信息气泡，显示Post的信息
+			7.点击用户，显示用户信息，可以点击关注，不看他
+			8.用户间Message互发
+	     </p>
       </div>
     </project-card>
-    
 
     <project-card github-id="AbyChan/TextGame"
                   name="TextGame"
@@ -149,9 +159,25 @@
     </project-card>
 
 
-    
-    
+    <project-card github-id="AbyChan/Prediction-System-Exploration"
+                  name="Prediction-System-Exploration"
+                  chinese-name="python 和 R 的一些数据挖掘研究"
+                  time="大学"
+                  state="暂停开发">
+      <div>
 
+      </div>
+    </project-card>
+    
+    <project-card github-id="AbyChan/Maple-Java-Httpd"
+                  name="Maple-Java-Httpd"
+                  chinese-name="一个微型 java 静态 http 服务器"
+                  time="大学"
+                  state="完成">
+      <div>
+      <p>大学的时候研究 http，查阅《http权威指南》用 java 写的一个微型 http 服务器,并不好用。</p>
+      </div>
+    </project-card>
     
     
     
