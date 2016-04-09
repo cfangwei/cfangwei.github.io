@@ -99,7 +99,6 @@ let start = () => {
     if (run) {
         tick();
         requestAnimationFrame(start);
-        console.log('run');
     }
 };
 

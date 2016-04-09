@@ -30,7 +30,8 @@ Cat = function(){
     this.threeGroup = new THREE.Group();
     
     var yellowMat = new THREE.MeshLambertMaterial ({
-        color: 0xfdd276, 
+        color: 0xfdd276,
+        
         shading:THREE.FlatShading
     });
 

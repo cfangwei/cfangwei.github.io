@@ -1,0 +1,115 @@
+.hidden {
+  display: none; }
+
+.vertical-text {
+  transform: rotate(270deg) translate(-400px, 10px);
+  transform-origin: left top 0; }
+
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0; }
+
+.hide {
+  display: none; }
+
+h1.title {
+  width: 800px;
+  margin: auto; }
+
+::-webkit-scrollbar {
+  display: none; }
+
+.screen {
+  width: 100%;
+  position: relative; }
+
+a {
+  text-decoration: none; }
+
+project-card {
+  display: none; }
+
+.project-card {
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  position: relative;
+  padding: 12px 10px;
+  width: 800px;
+  margin: 3rem auto;
+  border-radius: 3px;
+  min-height: 135px;
+  transition: transform 100ms ease-in; }
+  .project-card:hover {
+    transform: scale(1.01, 1.01); }
+  .project-card h2 {
+    color: #5EC8DD; }
+    .project-card h2 a {
+      color: #5EC8DD; }
+  .project-card h2, .project-card iframe {
+    display: inline-block;
+    margin: 0; }
+  .project-card .chinese-title {
+    font-size: 20px;
+    margin: 8px 0; }
+  .project-card p {
+    margin: 0; }
+  .project-card .title {
+    position: relative; }
+    .project-card .title .arrow {
+      color: #999;
+      display: inline-block;
+      font-size: 130%;
+      animation: pulse;
+      animation-duration: 100ms;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+      animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1); }
+    .project-card .title iframe {
+      position: absolute;
+      top: -3px;
+      left: 300px; }
+  .project-card .languages {
+    padding: 0;
+    list-style: none; }
+    .project-card .languages:before, .project-card .languages:after {
+      content: " ";
+      display: table; }
+    .project-card .languages:after {
+      clear: both; }
+    .project-card .languages li {
+      line-height: 20px;
+      height: 20px;
+      vertical-align: middle;
+      position: relative;
+      margin-bottom: 3px;
+      text-shadow: 0px 0px 3px #000;
+      font-size: 90%;
+      color: #fff;
+      font-weight: 100; }
+      .project-card .languages li .language-number {
+        margin-left: 10px; }
+      .project-card .languages li .color-bar {
+        position: absolute;
+        display: block;
+        left: 0;
+        top: 0;
+        z-index: -1;
+        height: 100%;
+        background-color: #999;
+        animation: color-bar;
+        animation-duration: 0.5s;
+        animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+        transform-origin: left; }
+
+@keyframes color-bar {
+  from {
+    transform: scale(0, 1); }
+  to {
+    transform: scale(1, 1); } }
+
+@keyframes pulse {
+  from {
+    transform: scale(1, 1); }
+  to {
+    transform: scale(1.2, 1.2); } }

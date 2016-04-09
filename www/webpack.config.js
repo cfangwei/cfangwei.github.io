@@ -9,6 +9,7 @@ var LiveReloadPlugin = require('webpack-livereload-plugin');
 var config = {
     entry: {
         main: './src/main.js',
+        projects: './src/projects.js',
         planttrees: './works/plant-trees/src/plant-trees.js',
         wavecircleworld: './works/wavecircle-world/src/wavecircle-world.js',
         flipclock: './works/flip-clock/src/flip-clock.js',
@@ -49,6 +50,9 @@ var config = {
             },
             {
                 test: /\.txt$/, loader: "raw"
+            },
+            {
+                test: /\.json$/, loader: "json"
             }
         ]
     },
