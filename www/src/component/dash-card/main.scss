@@ -1,4 +1,4 @@
-
+ 
 @import "../base.scss";
 
 $dash-card-width: 350px;
@@ -22,21 +22,24 @@ $dash-avatar-size: 120px;
     }
     padding: 10px;
     box-sizing: border-box;
-    border-radius: 1px;
+    border-radius: 8px;
     
     &--hole {
         @include circle;
         @include margin-horizen-center($dash-hole-size);
-        display: block;
         height: $dash-hole-size;
         width: $dash-hole-size;
         background-color: white;
         position: absolute;
         top: 15px;
-        
+    }
+
+    &--line {
+        position: absolute;;
     }
     
     &--avatar {
+        @include clearfix;
         @include circle;
         @include margin-horizen-center($dash-avatar-size);
         background-color: white;
@@ -45,7 +48,7 @@ $dash-avatar-size: 120px;
         height: $dash-avatar-size;
         text-align: center;
         position: relative;
-        top: 60px;
+        margin-top: 60px;
         line-height: $dash-avatar-size - 10px;
         border: 5px solid #ddd;
         box-sizing: border-box;
@@ -56,5 +59,34 @@ $dash-avatar-size: 120px;
         margin: 0;
     }
     
-    
+    &--list {
+        list-style: none;
+        margin: 4rem auto;
+        padding: 0;
+        width: 80%;
+        
+        li {
+            margin-top: 10px;
+            line-height: 20px;
+            height: 20px;
+            width: 100%;
+            & > span {
+                padding: 0 5px;
+                display: inline-block;
+            }
+            
+            & > span:first-child {
+                background-color: white;
+                border-radius: 5px;
+
+            }
+
+            & > span:last-child {
+                width: 59%;
+                float: right;
+                text-align: right;
+                color: white;
+            }
+        }
+    }
 }

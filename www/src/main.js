@@ -40,9 +40,9 @@ var app = new Vue({
         this.$refs.glowlightBg.init();
 
         //$window.scrollTop(); // ensure on top when page ready
-        $('html, body').animate({
-            scrollTop: $('.post-card-screen').offset().top
-        }, 1000);
+        // $('html, body').animate({
+        //     scrollTop: $('.post-card-screen').offset().top
+        // }, 1000);
 
     },
     methods: {
