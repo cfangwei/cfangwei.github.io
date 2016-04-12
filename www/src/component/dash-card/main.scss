@@ -1,5 +1,4 @@
- 
-@import "../base.scss";
+ @import "../base.scss";
 
 $dash-card-width: 350px;
 $dash-card-height: 500px;
@@ -27,6 +26,7 @@ $dash-avatar-size: 120px;
     &--hole {
         @include circle;
         @include margin-horizen-center($dash-hole-size);
+        position: relative;
         height: $dash-hole-size;
         width: $dash-hole-size;
         background-color: white;
@@ -35,7 +35,13 @@ $dash-avatar-size: 120px;
     }
 
     &--line {
-        position: absolute;;
+        position: absolute;
+        height: 100rem;
+        width: 2px;
+        background-color: #999;
+        left: 50%;
+        bottom: 100%;
+        margin-left: 1px;
     }
     
     &--avatar {
@@ -61,7 +67,7 @@ $dash-avatar-size: 120px;
     
     &--list {
         list-style: none;
-        margin: 4rem auto;
+        margin: 6rem auto;
         padding: 0;
         width: 80%;
         
