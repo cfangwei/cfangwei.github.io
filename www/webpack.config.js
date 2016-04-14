@@ -14,6 +14,7 @@ var config = {
         wavecircleworld: './works/wavecircle-world/src/wavecircle-world.js',
         flipclock: './works/flip-clock/src/flip-clock.js',
         treeriver: './works/tree-river/src/index.js',
+        circleline: './works/circleline/src/index.js',
         elasticcollision: './works/elastic-collision/src/elastic-collision.js',
         meteor: './works/meteor/src/main.js',
         textParticle: './works/text-particle/src/index.js',

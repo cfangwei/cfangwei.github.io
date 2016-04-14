@@ -1,0 +1,5 @@
+#+TITLE: Javascript 处理错误
+#+AUTHOR: 陳放為
+
+搞过 angular1.x 的人都知道，这个坑爹的框架有时候的报错会让人崩溃，apply is undefined 之类的，根本没办法定位，只能通过 debugger 或者 console， 要是
+

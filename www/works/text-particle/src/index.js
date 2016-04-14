@@ -35,7 +35,7 @@ class Particle{
 
 	this.vx *= 0.92;
 	this.vy *= 0.92;
-
+        
 	//
         this.x += this.vx;
         this.y += this.vy;

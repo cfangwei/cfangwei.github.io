@@ -1,4 +1,4 @@
-#+TITLE: DIY 树莓派一体机
+#+TITLE: Javascript Librarys
 #+AUTHOR: 陳放為
 
 * javascript 备忘库记录
