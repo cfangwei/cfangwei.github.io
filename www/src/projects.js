@@ -69,7 +69,8 @@ var Vue = require('vue');
 var app = new Vue({
     el: '#project',
     components: {
-        'project-card': Vue.extend(require('./component/project-card/'))
+        'project-card': Vue.extend(require('./component/project-card/')),
+        'hang-bookmark': Vue.extend(require('./component/hang-bookmark/'))
     },
     ready: function(){
         getGithubProject().map(function(i, projectDom){
