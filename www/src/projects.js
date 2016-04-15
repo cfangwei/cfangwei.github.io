@@ -4,7 +4,9 @@ let colorPalettes = require('./misc/languageColor.json');
 
 
 let $ = require('jquery'),
-    _ = require('lodash');
+    _ = require('lodash'),
+    R = require('ramda');
+
 
 let Impure = {
     getJSON: _.curry((callback, url) => {
@@ -40,7 +42,7 @@ let getGithubProject = () => {
 };
 
 let fetchLanguages = (setLanuageHtml, id) => {
-    _.compose(Impure.getJSON(setLanuageHtml), languagesUrl)(id);
+    R.compose(Impure.getJSON(setLanuageHtml), languagesUrl)(id);
 };
 
 
