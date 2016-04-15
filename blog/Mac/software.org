@@ -1,3 +1,5 @@
+#+TITLE: Mac 下好用的软件(ソフトウェア)
+#+AUTHOR: 陳放為
 
 ** LICEcap
 GIF截图工具
