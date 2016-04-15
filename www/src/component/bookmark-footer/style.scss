@@ -1,0 +1,72 @@
+$bg: #4D4D4D;
+
+$bookmark-bg: rgba(228, 228, 228, 0.9);
+$bookmark-corner-bg: rgba(227, 182, 47, 0.9);
+
+$bookmark-raidus: 10px;
+
+
+.bookmark-footer {
+    height: 2rem;
+    width: 100%;
+    
+    background: {
+        color: $bg;
+    }
+
+    
+    .bookmark__reverse {
+        padding: 6px 12px;
+        z-index: 10;
+        position: absolute;
+        left: 3rem;
+        bottom: 0;
+        height: 3rem;
+        width: 150px;
+        background: {
+            color: $bookmark-bg;
+        }
+        background: linear-gradient(135deg, transparent 1.45em, $bookmark-bg 0);
+        border: {
+            top: {
+                left-radius: $bookmark-raidus;
+                right-radius: $bookmark-raidus;
+            }
+        }
+
+        &:after {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 2em;
+            height: 2em;
+            border-bottom-right-radius: $bookmark-raidus;
+            box-shadow: 1px 2px 1px rgba(0,0,0,0.3), 2px 1px 1px rgba(0,0,0,0.2);
+            background: linear-gradient(135deg, transparent 50%, $bookmark-corner-bg 50%);
+        }
+
+        div {
+            position: relative;
+            width: 80%;
+            float: right;
+            p {
+                margin: 0;
+                font-size: 90%;
+            }
+        }
+    }
+    
+    &--links {
+        display: inline-block;
+    }
+
+    &--text {
+        color: white;
+        width: 70%;
+        position: relative;
+        left: 20%;
+    }
+
+    
+}

@@ -11,6 +11,12 @@ html, body {
   margin: 0;
   padding: 0; }
 
+body {
+  background-image: url("../img/p-background.png");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: 100% 100%; }
+
 .hide {
   display: none; }
 
@@ -33,6 +39,8 @@ project-card {
 
 .project-card {
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  z-index: -1;
+  background-color: white;
   position: relative;
   padding: 12px 10px;
   width: 800px;
@@ -89,7 +97,8 @@ project-card {
       text-shadow: 0px 0px 3px #000;
       font-size: 90%;
       color: #fff;
-      font-weight: 100; }
+      font-weight: 100;
+      z-index: 1; }
       .project-card .languages li .language-number {
         margin-left: 10px; }
       .project-card .languages li .color-bar {
@@ -108,7 +117,8 @@ project-card {
 .hang-bookmark {
   position: fixed;
   left: 3rem;
-  top: 0; }
+  top: 0;
+  height: 13rem; }
 
 .angular-corner {
   font-family: Impact, Charcoal, sans-serif;
@@ -116,9 +126,16 @@ project-card {
   font-weight: 900;
   position: fixed;
   display: block;
-  bottom: 0;
+  bottom: 2rem;
   right: 3rem;
   letter-spacing: 5px; }
+
+bookmark-footer {
+  display: none; }
+
+.bookmark-footer {
+  position: fixed;
+  bottom: 0; }
 
 @keyframes color-bar {
   from {

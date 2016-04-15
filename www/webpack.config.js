@@ -10,6 +10,7 @@ var config = {
     entry: {
         main: './src/main.js',
         projects: './src/projects.js',
+        card: './src/card.js',
         planttrees: './works/plant-trees/src/plant-trees.js',
         wavecircleworld: './works/wavecircle-world/src/wavecircle-world.js',
         flipclock: './works/flip-clock/src/flip-clock.js',

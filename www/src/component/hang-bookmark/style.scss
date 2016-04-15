@@ -8,8 +8,7 @@ $border: 10px;
     background: {
         color: $bg;
     }
-    background: linear-gradient(to right top,transparent 50%, rgba(0,0,0, 0.4) 0) no-repeat 0 100% / 2em 2em,
-                linear-gradient(45deg, transparent 1.41em, $bg 0);
+    background: linear-gradient(45deg, transparent 1.45em, $bg 0);
     overflow: hidden;
     z-index: 1;
     overflow: hidden;
@@ -20,6 +19,20 @@ $border: 10px;
             right-radius: $border;
         }
     }
+
+    &:after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 2em;
+        height: 2em;
+        border-top-right-radius: $border;
+        box-shadow: 0 1px 1px rgba(0,0,0,0.3), -1px 1px 1px rgba(0,0,0,0.2);
+        background: linear-gradient(45deg, transparent 50%, rgba(0,0,0,0.4) 50%);
+
+    }
+
     
     &--dash-main {
         margin: 0;
@@ -47,7 +60,8 @@ $border: 10px;
         
         li {
             text-align: right;
-
+            line-height: 25px;
+            overflow: hidden;
             a {
                 color: white;
 
@@ -56,7 +70,7 @@ $border: 10px;
                 }
 
                 &:hover {
-                    font-size: 1px;
+                    font-size: 90%;
                     color: black;
                 }
             }
