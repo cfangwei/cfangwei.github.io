@@ -46,15 +46,18 @@ project-card {
 
 .project-card {
     @include z-depth-1;
+    
     position: relative;
     padding: 12px 10px;
     width: 800px;
     margin: 3rem auto;
     border-radius: 3px;
     min-height: 135px;
-    transition: transform 100ms ease-in;
+    transition: transform 100ms ease-in, box-shadow 150ms ease-in;
+    
     &:hover {
         transform: scale(1.01, 1.01);
+        @include z-depth-4;
     }
 
     h2 {
@@ -81,6 +84,7 @@ project-card {
     
     .title {
         position: relative;
+        
         .arrow {
             color: #999;
             display: inline-block;
@@ -90,12 +94,11 @@ project-card {
             animation-iteration-count: infinite;
             animation-direction: alternate;
             animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-
         }
 
-        
-        
-        
+        h2 a {
+            text-decoration: underline;
+        }
 
         iframe {
             position: absolute;
@@ -141,6 +144,25 @@ project-card {
     }
 }
 
+.hang-bookmark {
+    position: fixed;
+    left: 3rem;
+    top: 0;
+}
+
+.angular-corner {
+    font: {
+        family: Impact, Charcoal, sans-serif;
+        size: 500%;
+        weight: 900;
+    }
+    position: fixed;
+    display: block;
+    bottom: 0;
+    right: 3rem;
+    letter-spacing: 5px;
+}
+
 @keyframes color-bar {
     from {
         transform: scale(0, 1);
@@ -158,3 +180,5 @@ project-card {
         transform: scale(1.2, 1.2);
     }
 }
+
+

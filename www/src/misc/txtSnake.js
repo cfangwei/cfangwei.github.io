@@ -1,7 +1,8 @@
 'use strict';
 
 let $ = require('jquery'),
-    _ = require('lodash');
+    _ = require('lodash'),
+    R = require('ramda');
 
 
 
@@ -35,7 +36,7 @@ let txtSnake = (dom, interal) => {
     let shakeTxt = shake(txt),
         setDomTxt = setTxt(dom);
     
-    let setShake = _.compose(setDomTxt, shakeTxt);
+    let setShake = R.compose(setDomTxt, shakeTxt);
     
     let i = 0;
     let timer = setInterval(() => {

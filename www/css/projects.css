@@ -39,9 +39,10 @@ project-card {
   margin: 3rem auto;
   border-radius: 3px;
   min-height: 135px;
-  transition: transform 100ms ease-in; }
+  transition: transform 100ms ease-in, box-shadow 150ms ease-in; }
   .project-card:hover {
-    transform: scale(1.01, 1.01); }
+    transform: scale(1.01, 1.01);
+    box-shadow: 0 16px 28px 0 rgba(0, 0, 0, 0.22), 0 25px 55px 0 rgba(0, 0, 0, 0.21); }
   .project-card h2 {
     color: #5EC8DD; }
     .project-card h2 a {
@@ -65,6 +66,8 @@ project-card {
       animation-iteration-count: infinite;
       animation-direction: alternate;
       animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1); }
+    .project-card .title h2 a {
+      text-decoration: underline; }
     .project-card .title iframe {
       position: absolute;
       top: -3px;
@@ -101,6 +104,21 @@ project-card {
         animation-duration: 0.5s;
         animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
         transform-origin: left; }
+
+.hang-bookmark {
+  position: fixed;
+  left: 3rem;
+  top: 0; }
+
+.angular-corner {
+  font-family: Impact, Charcoal, sans-serif;
+  font-size: 500%;
+  font-weight: 900;
+  position: fixed;
+  display: block;
+  bottom: 0;
+  right: 3rem;
+  letter-spacing: 5px; }
 
 @keyframes color-bar {
   from {

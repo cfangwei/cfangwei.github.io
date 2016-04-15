@@ -2,6 +2,8 @@
 
 var $ = require('jquery');
 
+require('./style.scss');
+
 module.exports = {
     template: require('./template.html'),
     //props: ['githubId', 'name', 'state', 'time', 'chineseName'],
