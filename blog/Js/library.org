@@ -13,3 +13,6 @@ https://github.com/cyclejs/core
 * stats.js
 https://github.com/mrdoob/stats.js
 JavaScript Performance Monitor
+* object-path
+A tiny JavaScript utility to access deep properties using a path (for Node and the Browser)
+访问对象的深属性，个人觉得还是很有用的

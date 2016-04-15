@@ -27,3 +27,7 @@ https://github.com/hanks/HHKBAssistant_for_mac
 录 gif 图工具
 ** visualJSON 
 json 可视化
+** Leaf
+Rss 阅读器
+** Artpaper
+谷歌艺术计划壁纸

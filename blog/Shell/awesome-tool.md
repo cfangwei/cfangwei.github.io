@@ -20,7 +20,7 @@
 
 #### [ranger](http://ranger.nongnu.org/)   
 terminal 下的 finder，极客必备。   
-![ranger](https://raw.githubusercontent.com/cfangwei/cfangwei.github.io/source/source/Terminal/awesome-tool/ranger.png)
+![ranger](./awesome-tool/ranger.png)
 
 #### [nmap](https://nmap.org/)   
 强大的端口扫描工具，不多说了。
@@ -36,7 +36,7 @@ terminal 下的 finder，极客必备。
 
 #### [zsh-autosuggestions](https://github.com/tarruda/zsh-autosuggestions)   
 类似 fish shell 的交互提示工具，堪称 terminal 下的效率神器。
-![auto-suggestion](https://raw.githubusercontent.com/cfangwei/cfangwei.github.io/source/source/Terminal/awesome-tool/auto-suggestion.gif)
+![auto-suggestion](./awesome-tool/auto-suggestion.gif)
 
 #### [zsh-history-substring-search](https://github.com/zsh-users/zsh-history-substring-search)   
 根据 terminal 的已经输入的字符按 M-P M-N 查询并选择拼配的历史输入，比单纯的⬆️⬇️要高效很多。
@@ -46,23 +46,23 @@ terminal 下的 finder，极客必备。
 
 #### [tldr](https://github.com/tldr-pages/tldr)  
 一个社区维护的 man 替代品,用来查找常用命令的使用帮助,比传统的 man 更为直观和美观。
-![tldr tar](https://raw.githubusercontent.com/cfangwei/cfangwei.github.io/source/source/Terminal/awesome-tool/tldr.png)
+![tldr tar](./awesome-tool/tldr.png)
 
 #### [fzf](https://github.com/junegunn/fzf)   
 高效定位文件或文件夹，配合 vim emacs 之流，整个 dist 文件皆在掌骨之间。
-![fzf](https://raw.githubusercontent.com/cfangwei/cfangwei.github.io/source/source/Terminal/awesome-tool/fzf.gif)
+![fzf](./awesome-tool/fzf.gif)
 
 #### [percol](https://github.com/mooz/percol)   
 可以打造交互式命令行的工具，但是多数情况下需要自己写点代码，非常好用的 Terminal 工作流工具。  
-![percol](https://raw.githubusercontent.com/cfangwei/cfangwei.github.io/source/source/Terminal/awesome-tool/percol.gif)
+![percol](./awesome-tool/percol.gif)
 
 #### [thefuck](https://github.com/nvbn/thefuck)   
 the fuck！当你输出了命令，也许输入一下 fuck 就能轻松解决。😉   
-![thefuck](https://raw.githubusercontent.com/cfangwei/cfangwei.github.io/source/source/Terminal/awesome-tool/thefuck.gif)
+![thefuck](./awesome-tool/thefuck.gif)
 
 #### [screenfetch](https://github.com/KittyKatt/screenFetch)   
 输出系统 Logo 和信息，是一个不错的 terminal welcome 选择，缺点是太慢，可以把输出结果缓存起来。   
-![screenfetch](https://raw.githubusercontent.com/cfangwei/cfangwei.github.io/source/source/Terminal/awesome-tool/screenfetch.png)
+![screenfetch](./awesome-tool/screenfetch.png)
 
 #### [ack](http://beyondgrep.com/)   
 比 grep 好用的文本搜索工具   
@@ -72,7 +72,7 @@ the fuck！当你输出了命令，也许输入一下 fuck 就能轻松解决。
 
 #### [tpp](https://github.com/cbbrowne/tpp)   
 terminal 下的 ppt。   
-![tpp](https://raw.githubusercontent.com/cfangwei/cfangwei.github.io/source/source/Terminal/awesome-tool/tpp.png)
+![tpp](./awesome-tool/tpp.png)
 
 #### [maybe](https://github.com/p-e-w/maybe)
 See what a program does before deciding whether you really want it to happen.

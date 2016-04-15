@@ -24,7 +24,7 @@ class Particle{
             let dis = Math.pow((this.x - mouseX), 2) + Math.pow((this.y - mouseY), 2);
             mouseF = Math.min(5000 / dis, 5000);
             mouseA = Math.atan2(this.y - mouseY, this.x - mouseX);
-
+            
         } else {
             mouseF = 0;
             mouseA = 0;
