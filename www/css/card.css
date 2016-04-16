@@ -27,12 +27,16 @@ body {
 .card:before {
   content: "";
   position: absolute;
-  top: 0;
+  top: -125px;
   bottom: 0;
   left: 0;
   right: -50px;
-  background: #0C0B13;
-  border-left: solid 250px #664C4F;
+  width: 250px;
+  background-color: rgba(225, 98, 63, 0);
+  background-image: url(../img/3w-coffee.jpg);
+  background-position-x: -162px;
+  background-position-y: 93px;
+  background-repeat: no-repeat;
   -moz-animation: fadeInDark 0.8s forwards;
   -webkit-animation: fadeInDark 0.8s forwards;
   animation: fadeInDark 0.8s forwards; }

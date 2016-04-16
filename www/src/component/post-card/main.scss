@@ -8,6 +8,9 @@ $stamp-placehold: 100px;
     border-radius: 2px;
     position: relative;
     top: 12%;
+    background: {
+        color: white;
+    }
     
     & > div {
         margin-top: 0.5%;
