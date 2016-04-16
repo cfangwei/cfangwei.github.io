@@ -11,160 +11,247 @@ body {
     letter-spacing: -1px;
 }
 
+$width: 350px;
+$height: 490px;
+$light-blue: #288FBD;
+$dark-blue: #005D8C;
+
+
 .card {
-    width: 350px;
-    height: 490px;
+    height: $height;
+    width: $width;
+    margin-left: $width/-2;
+    margin-top: $height/-2;
+    
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    
+    perspective: 1000;
+    
+    .flipper {
+        transition: 0.6s;
+	transform-style: preserve-3d;
+
+	position: relative;
+        transform-origin: center $width / 2;
+    }
+    
+    &:hover .flipper, &.hover .flipper {
+        transform: rotateY(180deg) rotateZ(90deg);
+    }
+
+    div.front, div.back {
+        backface-visibility: hidden;
+
+	position: absolute;
+	top: 0;
+	left: 0;
+        height: $height;
+        width: $width;
+        
+	box-shadow: 0 0 50px rgba(0,0,0,0.75);
+    }
+
+    div.back {
+        background-color: $dark-blue;
+        color: white;
+        width: $height;
+        height: $width;
+        box-sizing: border-box;
+        transform: rotateY(180deg) rotateZ(90deg);
+        
+        div.container-sm {
+            float: left;
+            width: 40%;
+            height: 100%;
+            position: relative;
+        }
+        
+        div.container-lg {
+            float: left;
+            width: 60%;
+            margin-top: 2rem;
+        }
+        
+        figure.logo-white {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 120px;
+            height: 120px;
+            display: block;
+            margin: -60px -60px;
+            
+            &:before, &:after {
+                display: block;
+                content: '';
+                position: absolute;
+                border-style: solid;
+                border-color: transparent;
+            }
+
+            &:before {
+                top: 0;
+                left: 0;
+                border-width: 60px;
+                border-top-color: white;
+                border-left-color: white;
+                z-index: 2;
+            }
+
+            &:after {
+                bottom: 0;
+                right: 0;
+                border-width: 56px;
+                border-right-color: white;
+            }
+        }
+        
+        a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+        
+        ul.social {
+            font-size: 1.25rem;
+            
+            li {
+                margin-top: 1rem;
+                
+                &:first-child {
+                    margin-top: 2rem;
+                }
+            }
+        }
+    }
+}
+
+
+
+.card .front {
     background: #CCC5B3;
-    margin: 100px auto;
-    -moz-border-radius: 12px;
-    -webkit-border-radius: 12px;
     border-radius: 12px;
-    -moz-box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.25);
-    -webkit-box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.25);
     box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.25);
-    position: relative;
+
     overflow: hidden;
     color: white;
-}
-.card:before {
-    content: "";
-    position: absolute;
-    top: -125px;
-    bottom: 0;
-    left: 0;
-    right: -50px;
-    width: 250px;
-    background: {
-        color: rgba(225, 98, 63, 0);
-        image: url(../img/3w-coffee.jpg);
-        position-x: -162px;
-        position-y: 93px;
-        repeat: no-repeat;
+    z-index: 0;
+
+    &:before {
+        content: "";
+        position: absolute;
+        top: -125px;
+        bottom: 0;
+        left: 0;
+        right: -50px;
+        width: 250px;
+        background: {
+            color: rgba(225, 98, 63, 0);
+            image: url(../img/3w-coffee.jpg);
+            position-x: -162px;
+            position-y: 93px;
+            repeat: no-repeat;
+        }
+        -moz-animation: fadeInDark 0.8s forwards;
+        -webkit-animation: fadeInDark 0.8s forwards;
+        animation: fadeInDark 0.8s forwards;
     }
-    -moz-animation: fadeInDark 0.8s forwards;
-    -webkit-animation: fadeInDark 0.8s forwards;
-    animation: fadeInDark 0.8s forwards;
-}
-.card:after {
-    content: "";
-    position: absolute;
-    top: -50px;
-    bottom: -50px;
-    left: 50px;
-    right: 50px;
-    background: rgba(225, 98, 63, 0.7);
-    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-    opacity: 0;
-    -moz-animation: fadeInRed 0.7s 0.5s forwards;
-    -webkit-animation: fadeInRed 0.7s 0.5s forwards;
-    animation: fadeInRed 0.7s 0.5s forwards;
-}
-.card .content {
-    z-index: 10;
-    position: absolute;
-    top: 45%;
-    left: 50%;
-    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-    opacity: 0;
-    transform: translate(-50%, -50%);
-    -moz-animation: fadeInText 1.2s 0.1s forwards;
-    -webkit-animation: fadeInText 1.2s 0.1s forwards;
-    animation: fadeInText 1.2s 0.1s forwards;
-}
-.card .content h1 {
-    font-size: 60px;
-    line-height: 40px;
-    margin: 0;
-}
-.card .content h2 {
-    margin: 0;
-    font-size: 36px;
-    line-height: 36px;
-}
-.card .content h2 sup {
-    font-size: 14px;
-}
-.card .mark {
-    position: absolute;
-    font-size: 60px;
-    font-weight: bold;
-    top: 16px;
-    left: 24px;
-    opacity: 0;
-    -moz-animation: fadeInMark 0.8s 0.5s forwards;
-    -webkit-animation: fadeInMark 0.8s 0.5s forwards;
-    animation: fadeInMark 0.8s 0.5s forwards;
-}
-.card .mark:after {
-    content: "\f141";
-    font-family: "Ionicons";
-    display: block;
-    font-style: normal;
-    font-weight: normal;
-    font-variant: normal;
-    text-transform: none;
-    text-rendering: auto;
-    font-size: 20px;
-    color: #E1623F;
-    margin-left: -5px;
-    margin-top: 4px;
-}
-.card .mark.upside-down {
-    -moz-transform: rotate(180deg);
-    -ms-transform: rotate(180deg);
-    -webkit-transform: rotate(180deg);
-    transform: rotate(180deg);
-    top: auto;
-    left: auto;
-    bottom: 16px;
-    right: 24px;
-    color: #E1623F;
-}
-.card .mark.upside-down:after {
-    color: #CCC5B3;
+
+
+    &:after {
+        content: "";
+        position: absolute;
+        top: -50px;
+        bottom: -50px;
+        left: 50px;
+        right: 50px;
+        background: rgba(225, 98, 63, 0.7);
+        filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+        opacity: 0;
+        animation: fadeInRed 0.7s 0.5s forwards;
+    }
+
+    .content {
+        z-index: 10;
+        position: absolute;
+        top: 45%;
+        left: 50%;
+        filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+        opacity: 0;
+        transform: translate(-50%, -50%);
+        animation: fadeInText 1.2s 0.1s forwards;
+
+        h1 {
+            font-size: 60px;
+            line-height: 40px;
+            margin: 0;
+        }
+
+        h2 {
+            margin: 0;
+            font-size: 36px;
+            line-height: 36px;
+        }
+    }
+
+    .mark {
+        position: absolute;
+        font-size: 60px;
+        font-weight: bold;
+        top: 16px;
+        left: 24px;
+        opacity: 0;
+        -moz-animation: fadeInMark 0.8s 0.5s forwards;
+        -webkit-animation: fadeInMark 0.8s 0.5s forwards;
+        animation: fadeInMark 0.8s 0.5s forwards;
+
+        &:after {
+            content: "\f141";
+            font-family: "Ionicons";
+            display: block;
+            font-style: normal;
+            font-weight: normal;
+            font-variant: normal;
+            text-transform: none;
+            text-rendering: auto;
+            font-size: 20px;
+            color: #E1623F;
+            margin-left: -5px;
+            margin-top: 4px;
+        }
+
+        .upside-down {
+            -moz-transform: rotate(180deg);
+            -ms-transform: rotate(180deg);
+            -webkit-transform: rotate(180deg);
+            transform: rotate(180deg);
+            top: auto;
+            left: auto;
+            bottom: 16px;
+            right: 24px;
+            color: #E1623F;
+        }
+    }
 }
 
 .dark {
     color: #0C0B13;
 }
 
-@-moz-keyframes fadeInCard {
-    from {
-        top: 40px;
-        -moz-transform: scale(1.2) rotate(10deg);
-        transform: scale(1.2) rotate(10deg);
-    }
-    to {
-        top: 0px;
-        -moz-transform: scale(1) rotate(0deg);
-        transform: scale(1) rotate(0deg);
-    }
-}
-@-webkit-keyframes fadeInCard {
-    from {
-        top: 40px;
-        -webkit-transform: scale(1.2) rotate(10deg);
-        transform: scale(1.2) rotate(10deg);
-    }
-    to {
-        top: 0px;
-        -webkit-transform: scale(1) rotate(0deg);
-        transform: scale(1) rotate(0deg);
-    }
-}
+
 @keyframes fadeInCard {
     from {
         top: 40px;
-        -moz-transform: scale(1.2) rotate(10deg);
-        -ms-transform: scale(1.2) rotate(10deg);
-        -webkit-transform: scale(1.2) rotate(10deg);
         transform: scale(1.2) rotate(10deg);
     }
     to {
         top: 0px;
-        -moz-transform: scale(1) rotate(0deg);
-        -ms-transform: scale(1) rotate(0deg);
-        -webkit-transform: scale(1) rotate(0deg);
         transform: scale(1) rotate(0deg);
     }
 }
@@ -250,9 +337,6 @@ body {
 @keyframes fadeInRed {
     from {
         opacity: 0;
-        -moz-transform: rotate(70deg) translate(7px, 800px);
-        -ms-transform: rotate(70deg) translate(7px, 800px);
-        -webkit-transform: rotate(70deg) translate(7px, 800px);
         transform: rotate(70deg) translate(7px, 800px);
     }
     30% {
@@ -260,9 +344,6 @@ body {
     }
     to {
         opacity: 1;
-        -moz-transform: rotate(58deg) translate(0px, 0px);
-        -ms-transform: rotate(58deg) translate(0px, 0px);
-        -webkit-transform: rotate(58deg) translate(0px, 0px);
         transform: rotate(58deg) translate(0px, 0px);
     }
 }

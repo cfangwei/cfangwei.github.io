@@ -12,13 +12,25 @@
   </head>
   <body>
     
-    <div class="card">
-      <div class="mark dark">J</div>
-      <div class="content ">
-        <h1>陳</h1>
-        <h2><span class="dark">放為</span></h2>
+    <div class="card" ontouchstart="this.classList.toggle('hover');">
+
+      <div class="flipper">
+        
+        <div class="front">
+          <div class="mark dark">J</div>
+          <div class="content ">
+            <h1>陳</h1>
+            <h2><span class="dark">放為</span></h2>
+          </div>
+          <div class="mark upside-down">J</div>
+        </div>
+
+        <div class="back">
+          sdsd
+        </div>
+        
       </div>
-      <div class="mark upside-down">J</div>
+      
     </div>
     
     <script src="build/card.bundle.js"></script>

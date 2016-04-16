@@ -19,7 +19,11 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
-    background-image: linear-gradient(180deg, $color-list);
+    background: {
+        image: linear-gradient(180deg, $color-list);
+        repeat: no-repeat;
+        size: 100% 100%;
+    }
 }
 
 smoke-effect {
@@ -41,7 +45,14 @@ bookmark-footer {
 
 .bookmark-footer {
     position: fixed;
-    bottom: 0;
+    bottom: 0;    
+}
 
-    
+.handwriting {
+    img {
+        display: block;
+        margin: auto;
+        max-width: 300px;
+        border-radius: 1px;
+    }
 }
