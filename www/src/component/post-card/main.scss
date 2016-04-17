@@ -35,7 +35,9 @@ $stamp-bg: black;
 
     .post-card-left {
         color: black;
+        padding: 12px;
         font: {
+            size: 85%;
             family: "Lucida Console", Monaco, monospace;
         }
     }

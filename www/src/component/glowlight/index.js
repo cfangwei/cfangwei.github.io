@@ -120,7 +120,7 @@ var glowlightAction = function(){
         
         grd = content.createRadialGradient(particle.x, //坐标
                                            particle.y,
-                                           particle.radius,// 半径
+                                           particle.rabdius,// 半径
                                            particle.x, // 渐变坐标
                                            particle.y,
                                            particle.radius * 2 // 渐变半径
