@@ -1,4 +1,4 @@
-#+TITLE: Awesome Chrome
+#+TITLE: 浏览器工具与特性
 #+AUTHOR: 陳放為
 
 * chrome 工具以及技巧整理

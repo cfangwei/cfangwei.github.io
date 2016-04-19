@@ -8,9 +8,26 @@
 @import "./type.scss";
 
 html, body {
-    @include full;
     margin: 0;
     padding: 0;
+}
+
+$color-list: #073763, #0b5394, #3d85c6, #6fa8dc, #9fc5e8, #c8bede, #b3a6d5, #8675b8, #674ea7, #351c75, #741b47, #a64d79, #c27ba0, #d5a6bd, #d8aca4, #dd7e6b, #cc4125, #a61c00, #85200c, #571407;
+
+body {
+    color: #fff;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    background: {
+        image: linear-gradient(180deg, $color-list);
+        repeat: no-repeat;
+        size: 100% 100%;
+    }
+}
+
+smoke-effect {
+    display: none;
 }
 
 ::-webkit-scrollbar {
@@ -20,4 +37,22 @@ html, body {
 .screen {
     width: 100%;
     position: relative;
+}
+
+bookmark-footer {
+    display: none;
+}
+
+.bookmark-footer {
+    position: fixed;
+    bottom: 0;    
+}
+
+.handwriting {
+    img {
+        display: block;
+        margin: auto;
+        max-width: 300px;
+        border-radius: 1px;
+    }
 }

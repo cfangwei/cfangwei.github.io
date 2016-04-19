@@ -1,0 +1,59 @@
+
+
+body {
+    background: {
+        color: black;
+    }
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+
+.main {
+    color: #ddd;
+
+    width: 980px;
+    margin: auto;
+
+    .links {
+        li {
+            margin-bottom: 5px;
+        }
+        a {
+            color: #ddd;
+        }
+    }
+}
+
+.flex {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+
+    & > div {
+        flex: 1 1 auto;
+        width: 30px; /* To make the transition work nicely.  (Transitions to/from
+                      "width:auto" are buggy in Gecko and Webkit, at least.
+                      See http://bugzil.la/731886 for more info.) */
+        transition: width 0.7s ease-out;
+        padding: 0 18px;
+
+        p {
+            line-height: 20px;
+            margin: 0 auto 8px;
+        }
+    }
+}
+
+bookmark-footer {
+    display: none;
+}
+
+.bookmark-footer {
+    position: fixed;
+    bottom: 0;
+}

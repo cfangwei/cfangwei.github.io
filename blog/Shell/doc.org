@@ -1,5 +1,4 @@
 #+TITLE: SHELL 文档整理
 #+AUTHOR: 陳放為
-
 * bash-handbook
 https://github.com/denysdovhan/bash-handbook

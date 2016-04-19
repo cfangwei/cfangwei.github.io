@@ -70,7 +70,8 @@ var app = new Vue({
     el: '#project',
     components: {
         'project-card': Vue.extend(require('./component/project-card/')),
-        'hang-bookmark': Vue.extend(require('./component/hang-bookmark/'))
+        'hang-bookmark': Vue.extend(require('./component/hang-bookmark/')),
+        'bookmark-footer': Vue.extend(require('./component/bookmark-footer/'))
     },
     ready: function(){
         getGithubProject().map(function(i, projectDom){

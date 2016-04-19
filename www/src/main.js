@@ -33,7 +33,9 @@ var app = new Vue({
         'glowlight-bg': Vue.extend(require('./component/glowlight')),
         'slide-icons': Vue.extend(require('./component/slide-icons')),
         'dash-card': Vue.extend(require('./component/dash-card')),
-        'post-card': Vue.extend(require('./component/post-card'))
+        'post-card': Vue.extend(require('./component/post-card')),
+        'smoke-effect': Vue.extend(require('./component/smoke-effect/')),
+        'bookmark-footer': Vue.extend(require('./component/bookmark-footer/'))
     },
     ready: function(){
         // init glowlight

@@ -16,6 +16,15 @@ html, body {
     padding: 0;
 }
 
+body {
+    background: {
+        image: url('../img/p-background.png');
+        attachment: fixed;
+        repeat: no-repeat;
+        size: 100% 100%;
+    }
+}
+
 .hide {
     display: none;
 }
@@ -46,7 +55,11 @@ project-card {
 
 .project-card {
     @include z-depth-1;
-    
+
+    z-index: -1;
+    background: {
+        color: white;
+    }
     position: relative;
     padding: 12px 10px;
     width: 800px;
@@ -122,7 +135,7 @@ project-card {
             font-size: 90%;
             color: #fff;
             font-weight: 100;
-
+            z-index: 1;
             .language-number {
                 margin-left: 10px;
             }
@@ -148,6 +161,7 @@ project-card {
     position: fixed;
     left: 3rem;
     top: 0;
+    height: 13rem;
 }
 
 .angular-corner {
@@ -158,9 +172,18 @@ project-card {
     }
     position: fixed;
     display: block;
-    bottom: 0;
+    bottom: 2rem;
     right: 3rem;
     letter-spacing: 5px;
+}
+
+bookmark-footer {
+    display: none;
+}
+
+.bookmark-footer {
+    position: fixed;
+    bottom: 0;
 }
 
 @keyframes color-bar {
