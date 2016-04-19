@@ -28,9 +28,9 @@ var config = {
         flybird:  './works/flybird/src/index.js'
     },
     output: {
-        path: __dirname + '/build',
-        publicPath: '/build/',
-        contentBase: 'build/',
+        path: __dirname + '/build/js',
+        publicPath: '/build/js/',
+        contentBase: 'build/js/',
         filename: '[name].bundle.js'
     },
     module: {
