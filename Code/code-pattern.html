@@ -1,0 +1,123 @@
+<!doctype html>
+<html class="no-js" lang="">
+  <head>
+    <meta charset="utf-8">
+    <title>Code Pattern</title>
+    <meta name="description" content="">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="cleartype" content="on">
+    
+    <link rel="stylesheet" href="/static/css/article.css">
+    
+  </head>
+
+
+  <body>
+    
+    <div class="dash-bar">
+      <img id="foyin-img" src="/static/img/foyin.png" style="display: none;"/>
+      <img id="wing-img" src="/static/img/wing.png" style="display: none;"/>
+      <img id="sprite-img" src="/static/img/sprite.png" style="display: none;"/>
+      <canvas id="dash-canvas"></canvas>
+      <div>
+        <img alt="" src="/static/img/dash-bg.jpg"/>
+      </div>
+    </div>
+
+    <div class="article org">      
+      <h1>Code Pattern</h1>
+<ul><li><a href="#header-1"><span class="section-number">1</span>代码规范己见</a></li>
+<li><a href="#header-2"><span class="section-number">2</span>变量</a><ul><li><a href="#header-2-1"><span class="section-number">2.1</span>变量的命名</a></li>
+<li><a href="#header-2-2"><span class="section-number">2.2</span>避免使用过于简单的命名</a></li>
+<li><a href="#header-2-3"><span class="section-number">2.3</span>我认为变量宜长不宜短</a></li>
+</ul>
+</li>
+<li><a href="#header-3"><span class="section-number">3</span>操作符</a><ul><li><a href="#header-3-1"><span class="section-number">3.1</span>四则运算</a></li>
+</ul>
+</li>
+</ul>
+
+<h2 id="header-1"><span class="section-number">1</span>代码规范己见</h2>
+<p>相信很多人都清楚得认识到，阅读代码是一件很烧脑的事情，无论是团队的代码，还是某种算法的代码，甚至是知名开源项目的代码，看起来，很容易让人懵逼。</p>
+<p>其实 lisp 这种函数式编程语言比类 c 的指令式语言好读，因为 lisp 的代码虽然新手看起来很难看懂，但是其实懂这门语言的人看起来会非常舒服，完全是符合思维的走向的，代码的书写就是思维的展现，相方，类 c 的代码或多或少会迎合计算机的思维，很多代码都故意或者不是故意使用很多奇淫巧技，语言的特性，逼是装足了，性能并没有提升，却造成非常严重代码阅读障碍，甚至是，自己写的代码，几个月回头一看，竟然想不起这是什么意思，我觉得这种写法应该受到摒弃。</p>
+<p>当然，这是水平问题，我承认，所以我觉得写出易读美观的代码需要一些准则。这个仓库记录着我一些对代码规范的见解，希望能引起讨论，提出 issue 大家互相学习。</p>
+<h2 id="header-2"><span class="section-number">2</span>变量</h2>
+<h3 id="header-2-1"><span class="section-number">2.1</span>变量的命名</h3>
+每个人程序员都有自己逻辑，完成一段程序的方法，每个人都有自己的方法和逻辑，变量是承载思维的主要载体，如果变量名取得过于简单，或者用一些别人看不懂的命名，会让阅读你代码的人非常痛苦和不解。<h3 id="header-2-2"><span class="section-number">2.2</span>避免使用过于简单的命名</h3>
+有些人喜欢使用一个字母的变量，在一些简单的逻辑上一点问题都没有，人一看就懂，但是在设计到算法和数据结构的程序上，过于简单的代码就直接让人懵逼了，让人看得不知所云，在阅读代码的时候要使劲想着这个 m 是 map，这个 a 是数组，这个 k 是某个 index，十分不便于阅读。当然，i，j 用于循环，n 代表长度等等这些世界通用的就不必了。<h3 id="header-2-3"><span class="section-number">2.3</span>我认为变量宜长不宜短</h3>
+变量宜长不宜短，特别是编译性语言，变量写长了可以让意思更明白，即使是拙计的英语，也比短变量要好，不会让你看到一个变量名，令你误解，然后看代码的思维走下去，哎啊发现，原来这个变量并不是我想的那个意思。下面举例一则：<h2 id="header-3"><span class="section-number">3</span>操作符</h2>
+<h3 id="header-3-1"><span class="section-number">3.1</span>四则运算</h3>
+写代码不是在写数学，-i + j 这种代码不要写成 j + i，不然会使你的代码看起来非常混乱难读
+    </div>
+
+    <!-- <div id="disqus_thread"></div> -->
+    
+    <div class="footer">
+      <div class="footer--icon">
+        <img alt="footer-icon" src="/static/img/footer-icon.png"/>
+      </div>
+      <div class="footer--txt">
+        <p>"ALL JOURNEYS HAVE SECRET DESTINATIONS OF WHICH THE TRAVELER IS UNAWARE"</p>
+        <p>- MARTIN BUBER</p>
+      </div>
+      <div class="footer--links">
+        <ul>
+          <li>
+            <a href="" target="_blank">
+              <svg version="1.1" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <path class="path1" d="M512 0c-282.77 0-512 229.23-512 512s229.23 512 512 512 512-229.23 512-512-229.23-512-512-512zM256 256h512c9.138 0 18.004 1.962 26.144 5.662l-282.144 329.168-282.144-329.17c8.14-3.696 17.006-5.66 26.144-5.66zM192 704v-384c0-1.34 0.056-2.672 0.14-4l187.664 218.942-185.598 185.598c-1.444-5.336-2.206-10.886-2.206-16.54zM768 768h-512c-5.654 0-11.202-0.762-16.54-2.208l182.118-182.118 90.422 105.498 90.424-105.494 182.116 182.12c-5.34 1.44-10.886 2.202-16.54 2.202zM832 704c0 5.654-0.762 11.2-2.206 16.54l-185.6-185.598 187.666-218.942c0.084 1.328 0.14 2.66 0.14 4v384z"></path>
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a href="" target="_blank">
+              <svg version="1.1" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <path d="M512 0c-282.75 0-512 229.25-512 512 0 226.25 146.688 418.125 350.156 485.812 25.594 4.688 34.938-11.125 34.938-24.625 0-12.188-0.469-52.562-0.719-95.312-142.375 30.937-172.469-60.375-172.469-60.375-23.312-59.125-56.844-74.875-56.844-74.875-46.531-31.75 3.53-31.125 3.53-31.125 51.406 3.562 78.47 52.75 78.47 52.75 45.688 78.25 119.875 55.625 149 42.5 4.654-33 17.904-55.625 32.5-68.375-113.656-12.937-233.218-56.875-233.218-253.063 0-55.938 19.969-101.562 52.656-137.406-5.219-13-22.844-65.094 5.062-135.562 0 0 42.938-13.75 140.812 52.5 40.812-11.406 84.594-17.031 128.125-17.219 43.5 0.188 87.312 5.875 128.188 17.281 97.688-66.312 140.688-52.5 140.688-52.5 28 70.531 10.375 122.562 5.125 135.5 32.812 35.844 52.625 81.469 52.625 137.406 0 196.688-119.75 240-233.812 252.688 18.438 15.875 34.75 47 34.75 94.75 0 68.438-0.688 123.625-0.688 140.5 0 13.625 9.312 29.562 35.25 24.562 203.313-67.812 349.875-259.687 349.875-485.812 0-282.75-229.25-512-512-512z"></path>
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a href="" target="_blank">
+              <svg version="1.1" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <path class="path1" d="M928 0h-832c-52.8 0-96 43.2-96 96v832c0 52.8 43.2 96 96 96h832c52.8 0 96-43.2 96-96v-832c0-52.8-43.2-96-96-96zM279 831.2c-48 0-87-38.6-87-86.6 0-47.6 39-86.8 87-86.8 48.2 0 87 39.2 87 86.8 0 48-39 86.6-87 86.6zM497.4 832c0-81.8-31.8-158.8-89.4-216.4-57.8-57.8-134.4-89.6-216-89.6v-125.2c237.6 0 431.2 193.4 431.2 431.2h-125.8zM719.6 832c0-291-236.6-528-527.4-528v-125.2c360 0 653 293.2 653 653.2h-125.6z"></path>
+              </svg>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="footer--licence">
+        © 2016 FANGWEI, Inc. All rights reserved.
+      </div>
+    </div>
+    
+    <!-- <script> -->
+    <!--   /** -->
+    <!--   * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS. -->
+    <!--   * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables -->
+    <!--   */ -->
+    <!--   /* -->
+    <!--   var disqus_config = function () { -->
+    <!--   this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable -->
+    <!--   this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable -->
+    <!--   }; -->
+    <!--   */ -->
+    <!--   (function() { // DON'T EDIT BELOW THIS LINE -->
+    <!--   var d = document, s = d.createElement('script'); -->
+
+    <!--   s.src = '//tyanio.disqus.com/embed.js'; -->
+
+    <!--   s.setAttribute('data-timestamp', +new Date()); -->
+    <!--   (d.head || d.body).appendChild(s); -->
+    <!--   })(); -->
+    <!-- </script> -->
+    <!-- <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript> -->
+
+    
+    <!-- <script id="dsq-count-scr" src="//tyanio.disqus.com/count.js" async></script> -->
+
+    <script src="/static/js/article.bundle.js"></script>
+  </body>
+</html>
+ 
