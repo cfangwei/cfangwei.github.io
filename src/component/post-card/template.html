@@ -1,0 +1,35 @@
+<div class="post-card" v-bind:style="{ height: height,
+                                       width: width}">
+
+  <div class="post-card-left">
+    <p><span class="red-text">root<span class="black-text">@</span>kali:</span>~# msfvenom -a x86 --platform windows -p windows/shell/bind_tcp -e x86/alpha_mixed -f python</p>
+    <p>Found 1 compatible encoders</p>
+    <p>Attempting to encode payload with 1 iterations of x86/alpha_mixed</p>
+    <p>x86/alpha_mixed succeeded with size 660 (iteration=0)</p>
+    <p>x86/alpha_mixed chosen with final size 660</p>
+    <p>Payload size: 660 bytes</p>
+  </div>
+
+  <div class="post-card-right">
+    
+    <div class="post-card--stamp-placehold">
+      <p>Starting Nmap 7.01 ( https://nmap.org ) at 2016-04-17 00:25 HKT</p>
+      <img alt="" src="/img/stamp.png"/>
+    </div>
+
+    <!-- TODO 签名 -->
+    
+    <p class="vertical-text black-text">
+      0432&nbsp;&nbsp;&nbsp;012344&nbsp;&nbsp;&nbsp;POST-CARD&nbsp;&nbsp;&nbsp;2-7
+    </p>
+
+    <form>
+      <textarea v-model="message" placeholder="Send me message?"></textarea>
+      <input v-model="name" type="text" placeholder="Your name?"/>
+      <img alt="send" src="/img/paper-plane.png" @click="sendMessage()"/>
+    </form>
+    
+  </div>
+  
+  
+</div>
