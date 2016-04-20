@@ -1,8 +1,106 @@
 #+TITLE: Boyer Moore 算法
 #+AUTHOR: 陳放為
 
-最近因为需要，要用到 boyer-moore 算法,
+#+BEGIN_HTML
+<style>
+th, td
+{
+border: 1px solid black;
+}
+td {
+width: 1em;
+}
+</style>
+#+END_HTML
 
-| H | E | R | E |   | I | S |   | A |   | S | I | M | P | L | E |   | E | X | A | M | P | L | E |
-| E | X | A | M | P | L | E |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
+最近因为项目需要，要用到 boyer-moore 算法, 看了阮一峰的老师的博客，感觉语言有点生硬，像是翻译的文章，有些地方说得不够清楚，特别是好后缀的部分，于是有了下面这样的一篇博客， 写得也不是很好，让大家见笑了。
+
+首先上全部的代码, es6 写的，没有外部依赖
+
+#+BEGIN_SRC javascript
+'use strict';
+
+let isPrefix = (pattern, i, len) => {
+    let start = 0;
+    for(let j = i; j < len; ++start, ++j) {
+        if( pattern[j] !== pattern[start] ){
+            return false;
+        }
+    }
+    return true;
+};
+
+let getSuffixLength = (pattern, i, len) => {
+    let j = 0,
+        start = i;
+    for(let end = len - 1; start >= 0 && pattern[start] === pattern[end]; --start, --end) {
+        j++;
+    }
+    return j;
+};
+
+let makeBadRule = (pattern) => {
+    let n = pattern.length,
+        rule = new Array(n - 1);
+    for (let i = 0; i < n - 1; ++i) {
+        rule[i] = {};
+        for (let j = 0; j < n - i - 1; ++j) {
+            rule[i][pattern[j]] = n - i - j - 1;
+        }
+    }
+    return rule;
+};
+
+let makeGoodSuffixTable = (pattern) => {
+    let len = pattern.length,
+        goodSuffixArray = new Array(len),
+        lastPrefixSuffixIndex = len;
+    
+    for(let j = len - 2; j >= 0; --j) {
+        if( isPrefix(pattern, j + 1, len) ){
+            lastPrefixSuffixIndex = len - (len - j - 1);
+
+        }
+        goodSuffixArray[len - j - 1] = lastPrefixSuffixIndex;
+    }
+    for (let j = 0; j < len - 1; ++j) {
+        let suffixLength = getSuffixLength(pattern, j, len);
+        for (let k = suffixLength; k > 0; --k) {
+            goodSuffixArray[k] = len - suffixLength + 1 - j;
+        }
+    }
+    return goodSuffixArray;
+};
+
+export class BoyerMooreCount {
+    constructor(pattern) {
+        this.badRule = makeBadRule(pattern),
+        this.goodSuffixTable = makeGoodSuffixTable(pattern);
+        this.pattern = pattern;
+    }
+
+    indexFor(string) {
+        let n = this.pattern.length;
+        for(let i = n - 1, max = string.length; i < max;) {
+            let k = n - 1;
+            for (; this.pattern[k] === string[i]; --i, --k) {
+                if( k === 0 ){
+                    return i;
+                }
+            }
+            let bad = this.badRule[n - k - 1][string[i]] || n;
+            let good = this.goodSuffixTable[n - k - 1] || 1;
+            i += Math.max(bad, good);
+        }
+        return -1;
+    }
+}
+#+END_SRC
+
+
+
+| H | E | R | E |   | I | S |  | A |  | S | I | M | P | L | E |   | E | X | A | M | P | L | E |
+| E | X | A | M | P | L | E |  |   |  |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
+
+
 
