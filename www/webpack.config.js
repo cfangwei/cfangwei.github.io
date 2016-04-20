@@ -28,8 +28,8 @@ var config = {
         flybird:  './works/flybird/src/index.js'
     },
     output: {
-        path: __dirname + '/build/js',
-        publicPath: '/build/js/',
+        path: __dirname + '/build/build',
+        publicPath: '/build/',
         contentBase: 'build/js/',
         filename: '[name].bundle.js'
     },

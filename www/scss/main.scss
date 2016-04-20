@@ -35,6 +35,7 @@ smoke-effect {
 }
 
 .screen {
+    height: 100vh;
     width: 100%;
     position: relative;
 }
@@ -45,14 +46,78 @@ bookmark-footer {
 
 .bookmark-footer {
     position: fixed;
-    bottom: 0;    
-}
-
-.handwriting {
-    img {
-        display: block;
-        margin: auto;
-        max-width: 300px;
-        border-radius: 1px;
+    bottom: 0;
+    font: {
+        size: 12px;
     }
 }
+
+
+$wood-hanging-bg: #462300;
+$wood-hanging-height: 1.3rem;
+.handwriting-screen {
+    padding: 2rem;
+    box-sizing: border-box;
+    
+    .wood-hanging {
+        margin: 1rem auto;
+        width: 35%;
+        position: relative;
+        box-sizing: border-box;
+        
+        &:before, &:after {
+            content: '';
+            height: $wood-hanging-height;
+            width: 104%;
+            position: absolute;
+            left: -2%;
+            background-color: $wood-hanging-bg;
+            box-shadow: 0px 0px 10px $wood-hanging-bg;
+            z-index: 1;
+            border-radius: 5px;
+        }
+
+        &:before {
+            top: -$wood-hanging-height;
+        }
+
+        &:after {
+            top: 100%;
+        }
+
+        p.desc {
+            position: absolute;
+            top: 50%;
+            right: -3rem;
+            transform: translate(0, -50%);
+        }
+        
+    }
+    
+    .decoration-page {
+        margin: 0;
+        width: 100%;
+        position: relative;
+        box-sizing: border-box;
+        box-shadow: 0px 0px 10px #777;
+        border: {
+            color: #edf4f2;
+            width: 3rem 2rem;
+            style: solid;
+            radius: 1px;
+        }
+        img {
+            display: block;
+            margin: 0;
+            width: 100%;
+            box-sizing: border-box;
+            border: {
+                color: #000;
+                width: 0.5rem 0.3rem;
+                style: solid;
+            }        
+        }
+    }
+}
+
+

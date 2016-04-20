@@ -31,6 +31,7 @@ smoke-effect {
   display: none; }
 
 .screen {
+  height: 100vh;
   width: 100%;
   position: relative; }
 
@@ -39,10 +40,51 @@ bookmark-footer {
 
 .bookmark-footer {
   position: fixed;
-  bottom: 0; }
+  bottom: 0;
+  font-size: 12px; }
 
-.handwriting img {
-  display: block;
-  margin: auto;
-  max-width: 300px;
-  border-radius: 1px; }
+.handwriting-screen {
+  padding: 2rem;
+  box-sizing: border-box; }
+  .handwriting-screen .wood-hanging {
+    margin: 1rem auto;
+    width: 35%;
+    position: relative;
+    box-sizing: border-box; }
+    .handwriting-screen .wood-hanging:before, .handwriting-screen .wood-hanging:after {
+      content: '';
+      height: 1.3rem;
+      width: 104%;
+      position: absolute;
+      left: -2%;
+      background-color: #462300;
+      box-shadow: 0px 0px 10px #462300;
+      z-index: 1;
+      border-radius: 5px; }
+    .handwriting-screen .wood-hanging:before {
+      top: -1.3rem; }
+    .handwriting-screen .wood-hanging:after {
+      top: 100%; }
+    .handwriting-screen .wood-hanging p.desc {
+      position: absolute;
+      top: 50%;
+      right: -3rem;
+      transform: translate(0, -50%); }
+  .handwriting-screen .decoration-page {
+    margin: 0;
+    width: 100%;
+    position: relative;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 10px #777;
+    border-color: #edf4f2;
+    border-width: 3rem 2rem;
+    border-style: solid;
+    border-radius: 1px; }
+    .handwriting-screen .decoration-page img {
+      display: block;
+      margin: 0;
+      width: 100%;
+      box-sizing: border-box;
+      border-color: #000;
+      border-width: 0.5rem 0.3rem;
+      border-style: solid; }

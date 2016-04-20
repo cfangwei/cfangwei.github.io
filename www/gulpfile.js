@@ -2,17 +2,18 @@
 var gulp = require('gulp');
 var sass = require('gulp-sass');
 var livereload = require('gulp-livereload');
-var deploy = require('gulp-deploy-git');
 
+var webpack = require('webpack-stream');
+var ghPages = require('gulp-gh-pages');
 
 var runSequence = require('run-sequence');
 
 
 
-livereload({
-    start: true,
-    port: 35727
-});
+// livereload({
+//     start: true,
+//     port: 35727
+// });
 
 /**
  *   
@@ -22,10 +23,10 @@ livereload({
 gulp.task('sass', function () {
     gulp.src('./scss/**/**/*.scss')
         .pipe(sass().on('error', sass.logError))
-        .pipe(gulp.dest('./css'))
-        .pipe(livereload({
-            port: 35727
-        }));
+        .pipe(gulp.dest('./css'));
+        // .pipe(livereload({
+        //     port: 35727
+        // }));
 });
 
 
@@ -35,10 +36,22 @@ gulp.task('sass', function () {
  * 
  */
 gulp.task('watch:sass', function () {
-    livereload.listen({
-        port: 35727
-    });
+    // livereload.listen({
+    //     port: 35727
+    // });
+    gulp.run('sass');
     gulp.watch('./scss/**/*.scss', ['sass']);
+});
+
+/**
+ *   
+ * Webpack
+ *
+ */
+gulp.task('webpack', function(){
+    return gulp.src('src/entry.js')
+        .pipe(webpack( require('./webpack.config.js') ))
+        .pipe(gulp.dest('dist/'));
 });
 
 
@@ -52,16 +65,17 @@ gulp.task('copy', [
     'copy:css',
     'copy:html',
     'copy:font',
-    'copy:src'
+    'copy:src',
+    'copy:cname'
 ]);
 
 gulp.task('copy:img', function(){
-    return gulp.src(['img/*'])
+    return gulp.src(['img/**/*'])
         .pipe(gulp.dest('build/img/'));
 });
 
 gulp.task('copy:css', function(){
-    return gulp.src(['css/'])
+    return gulp.src(['css/**/*'])
         .pipe(gulp.dest('build/css/'));
 });
 
@@ -71,13 +85,18 @@ gulp.task('copy:html', function(){
 });
 
 gulp.task('copy:font', function(){
-    return gulp.src(['font/'])
+    return gulp.src(['font/**/*'])
         .pipe(gulp.dest('build/font/'));
 });
 
 gulp.task('copy:src', function(){
-    return gulp.src(['src/'])
+    return gulp.src(['src/**/*'])
         .pipe(gulp.dest('build/src/'));
+});
+
+gulp.task('copy:cname', function(){
+    return gulp.src(['CNAME'])
+        .pipe(gulp.dest('build/'));
 });
 
 
@@ -87,16 +106,9 @@ gulp.task('copy:src', function(){
  * 
  */
 gulp.task('build', function(done){
-    runSequence(
-        'clean',
-        'sass:bootstrap',
-        'sass:foundation',
-        'sass:app',
-        'useref',
+    return runSequence(
+        'webpack',
         'copy',
-        'compress:img',
-        'inject',
-        //'manifest',
         done);
 });
 
@@ -107,9 +119,9 @@ gulp.task('build', function(done){
  * 
  */
 gulp.task('deploy', function() {
-    return gulp.src('build/**/*')
-        .pipe(deploy({
-            repository: 'git@github.com:cfangwei/cfangwei.github.io.git',
-            branches:   ['master']
+    return gulp.src('./build/**/*')
+        .pipe(ghPages({
+            remoteUrl: 'git@github.com:cfangwei/cfangwei.github.io.git',
+            branch: 'master'
         }));
 });
