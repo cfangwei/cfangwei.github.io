@@ -38,7 +38,7 @@ var config = {
             {
                 test: /\.jsx?$/,
                 exclude: /(node_modules|bower_components)/,
-                loader: 'babel' // 'babel-loader' is also a legal name to reference
+                loader: 'babel-loader' // 'babel-loader' is also a legal name to reference
             },
             {
                 test: /\.css$/, // Only .css files
