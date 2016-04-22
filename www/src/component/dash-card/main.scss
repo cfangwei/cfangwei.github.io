@@ -11,11 +11,12 @@ $dash-avatar-size: 120px;
 .dash-card {
     box-shadow: 0 2px 20px 0 #999;
     position: absolute;
-    top: 10%;
+    top: 50%;
     left: 50%;
     height: $dash-card-height;
     width: $dash-card-width;
     margin-left: - $dash-card-width / 2;
+    margin-top: - $dash-card-height / 2;
     background: {
         color: $dash-card-bg;
     }
@@ -29,6 +30,8 @@ $dash-avatar-size: 120px;
         transform: scale(1.01, 1.01);
         box-shadow: 0 2px 40px 0 #fff;
     }
+    
+    
     
     &--hole {
         @include circle;

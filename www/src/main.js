@@ -1,7 +1,7 @@
 'use strict';
 
 var $ = require('jquery');
-
+import {CircleLine} from '../works/circleline/src/circleline.js';
 
 // var GlowLight = require('./lib/glowlight.js');
 // GlowLight.init(document.getElementById('backgroud-container'));
@@ -17,7 +17,6 @@ var stageController = require('./lib/stage-controller');
 var resizeScreen = function(width, height){
     $('body').find('.screen')
         .css('height', height + 'px');
-        //.css('width', width + 'px');
 };
 
 stageController.addResize('screen', resizeScreen);
@@ -39,12 +38,28 @@ var app = new Vue({
     },
     ready: function(){
         // init glowlight
-        this.$refs.glowlightBg.init();
+        // this.$refs.glowlightBg.init();
 
-        //$window.scrollTop(); // ensure on top when page ready
+        // $window.scrollTop(); // ensure on top when page ready
         // $('html, body').animate({
         //     scrollTop: $('.post-card-screen').offset().top
         // }, 1000);
+        
+        
+        
+        let canvas = document.getElementById('dash-card--canvas'),
+            ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let circleLine = new CircleLine(canvas.width / 2, canvas.height / 2, canvas,
+                                        50, 300, 5, '#000');
+        
+        circleLine.render2DCircles();
+        circleLine.move2D();
+        circleLine.move3D();
+
 
     },
     methods: {

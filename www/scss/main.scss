@@ -40,6 +40,14 @@ smoke-effect {
     position: relative;
 }
 
+.dash-card {
+    canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+}
+
 bookmark-footer {
     display: none;
 }
@@ -61,7 +69,7 @@ $wood-hanging-height: 1.3rem;
     
     .wood-hanging {
         margin: 1rem auto;
-        width: 35%;
+        width: 25%;
         position: relative;
         box-sizing: border-box;
         

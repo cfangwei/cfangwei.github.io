@@ -35,6 +35,11 @@ smoke-effect {
   width: 100%;
   position: relative; }
 
+.dash-card canvas {
+  position: absolute;
+  top: 0;
+  left: 0; }
+
 bookmark-footer {
   display: none; }
 
@@ -48,7 +53,7 @@ bookmark-footer {
   box-sizing: border-box; }
   .handwriting-screen .wood-hanging {
     margin: 1rem auto;
-    width: 35%;
+    width: 25%;
     position: relative;
     box-sizing: border-box; }
     .handwriting-screen .wood-hanging:before, .handwriting-screen .wood-hanging:after {
