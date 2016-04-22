@@ -1,0 +1,105 @@
+ @import "../base.scss";
+
+$dash-card-width: 350px;
+$dash-card-height: 500px;
+$dash-card-bg: #953422;
+
+$dash-hole-size: 16px;
+
+$dash-avatar-size: 120px;
+
+.dash-card {
+    box-shadow: 0 2px 20px 0 #999;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    height: $dash-card-height;
+    width: $dash-card-width;
+    margin-left: - $dash-card-width / 2;
+    background: {
+        color: $dash-card-bg;
+    }
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 8px;
+    transition: transform 200ms, box-shadow 150ms ease-in;
+    color: black;
+    
+    &:hover {
+        transform: scale(1.01, 1.01);
+        box-shadow: 0 2px 40px 0 #fff;
+    }
+    
+    &--hole {
+        @include circle;
+        @include margin-horizen-center($dash-hole-size);
+        position: relative;
+        height: $dash-hole-size;
+        width: $dash-hole-size;
+        background-color: white;
+        position: nabsolute;
+        top: 15px;
+    }
+
+    /* &--line { */
+    /*     position: absolute; */
+    /*     height: 100rem; */
+    /*     width: 2px; */
+    /*     background-color: #999; */
+    /*     left: 50%; */
+    /*     bottom: 100%; */
+    /*     margin-left: 1px; */
+    /* } */
+    
+    &--avatar {
+        @include clearfix;
+        @include circle;
+        @include margin-horizen-center($dash-avatar-size);
+        background-color: white;
+        height: $dash-avatar-size;
+        width: $dash-avatar-size;
+        height: $dash-avatar-size;
+        text-align: center;
+        position: relative;
+        margin-top: 60px;
+        line-height: $dash-avatar-size - 10px;
+        border: 5px solid #ddd;
+        box-sizing: border-box;
+    }
+    
+    
+    &--name {
+        margin: 0;
+    }
+    
+    &--list {
+        list-style: none;
+        margin: 6rem auto;
+        padding: 0;
+        width: 80%;
+        
+        li {
+            margin-top: 10px;
+            line-height: 20px;
+            height: 20px;
+            width: 100%;
+            & > span {
+                padding: 0 5px;
+                display: inline-block;
+            }
+            
+            & > span:first-child {
+                background-color: white;
+                border-radius: 5px;
+
+            }
+
+            & > span:last-child {
+                width: 59%;
+                float: right;
+                text-align: right;
+                color: white;
+            }
+        }
+    }
+}

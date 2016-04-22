@@ -1,0 +1,196 @@
+<!doctype html>
+<html class="no-js" lang="">
+  <head>
+    <meta charset="utf-8">
+    <title>放為 Projects</title>
+    <meta name="description" content="放為">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="cleartype" content="on">
+    
+    <link rel="stylesheet" href="css/projects.css">
+  </head>
+  <body id="project">
+    <script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
+    
+    <br/>
+
+    <hang-bookmark></hang-bookmark>
+
+    <span class="angular-corner">&lt;&gt;</span>
+    
+    <h1 class="title">Projects:</h1>
+
+    <project-card
+      github-id="AbyChan/StockPredict"
+      name="StockPredict"
+      chinese-name="股票预测系统"
+      time="大学"
+      state="停止维护">
+      
+      <div>
+        <p>在学校的时候跟研究了数据挖掘和数据分析(话说那个时候这个东东很火呢)</p>
+      </div>
+      
+    </project-card>
+    
+    <project-card github-id="AbyChan/HappyBird-ChatRoom"
+                  chinese-name="WebSocket 聊天室"
+                  name="HappyBird-ChatRoom"
+                  time="大学"
+                  state="完成">
+      <div>
+      </div>
+    </project-card>
+
+    <project-card github-id="AbyChan/Guess-Game"
+                  chinese-name="猜谜游戏"
+                  name="Guess-Game"
+                  time="大学"
+                  state="完成">
+      <div>
+
+      </div>
+    </project-card>
+
+    
+    <project-card github-id="AbyChan/cross-history"
+                  chinese-name="多终端共享 shell history"
+                  name="cross-history"
+                  time="2016"
+                  state="待开发">
+      <div>
+
+      </div>
+    </project-card>
+
+
+    <project-card github-id="AbyChan/Tap.js"
+                  chinese-name="tap事件库"
+                  name="AbyChan/Tap.js"
+                  time="2015"
+                  state="停止维护">
+      <div>
+
+      </div>
+    </project-card>
+
+    <project-card github-id="AbyChan/searcher"
+                  chinese-name="shell 交互搜索工具"
+                  name="searcher"
+                  time="2015"
+                  state="暂停开发">
+      <div>
+
+      </div>
+    </project-card>
+
+    <project-card github-id="AbyChan/Midas-Spider"
+                  chinese-name="爬取百度百科"
+                  name="Midas-Spider"
+                  time="大学"
+                  state="停止开发">
+      <div>
+
+      </div>
+    </project-card>
+
+    <project-card github-id="AbyChan/Orange-Hexo"
+                  chinese-name="hexo 主题 Orange"
+                  name="Orange-Hexo"
+                  time="大学"
+                  state="完成">
+      <div>
+	      <p>为博客框架 hexo 开发的一款主题，橙色主题，动态伸缩导航。</p>
+      </div>
+    </project-card>
+
+    <project-card github-id="AbyChan/Captcha-Server"
+                  chinese-name="python 验证码库"
+                  name="Captcha-Server"
+                  time="大学"
+                  state="完成">
+      <div>
+	      <p>小项目，使用 python 生成大量代码，数据储存在 redis，热插拔，十分易用。</p>
+      </div>
+    </project-card>
+
+    
+    <project-card github-id="AbyChan/Art-Daily"
+                  chinese-name="python 验证码库"
+                  name="Art-Daily"
+                  time="大学"
+                  state="停止维护">
+      <div>
+	      <p>这是大学时候转 javascript 练手项目，模仿《知乎日报》这款 App 做的一个 hybird 应用，cordova 打包，使用 ionic 框架，后台用 nodejs 搭建，使用富文本编辑器 aloha 能编辑文章发表，有注册登录功能等等，貌似数据库用的 mongodb。－。－</p>
+      </div>
+    </project-card>
+
+     <project-card github-id="AbyChan/SocialMap"
+                  chinese-name="毕业项目：地理社交系统"
+                  name="SocialMap"
+                  time="大学"
+                  state="停止开发">
+      <div>
+	     <p>呕心沥血的项目啊<br/>
+	        当年实习的时候做了一个 <a href="">1.0</a> 版，后台回到学校准备答辩发现过得太轻松了，时间也有多，于是再做一版 2.0，发现越来越坑，掉进坑里面去了 =.=<br/>
+	        额，当时用了很多新技术，准备在答辩的时候为老师耀武扬威的，不过当时答辩也只是走过场，说出来其他老师都不认识，一些东西听都没听过(nignx都没听过，当时我已经风中凌乱了),哎，不说了，伤心。<br/>
+	        <hr/>
+	        前端单页面响应式设计，BackBone MVC (当时在 backbone 和 angular 之间切来切去，纠结了很久。)
+			后端使用Django + Django ReST Framework 提供Api供前端调用	
+			完成的功能有：
+
+			1.用户注册，登陆，完善身份信息等
+			2.查看修改用户信息
+			3.用户在前端提交一个GPS（WGS-84），服务器记录起来，作为用户的行动记录
+			4.前端初始化界面，从服务器上取得用户位置附近7000米圆形区域内的MarkPost（类似微博一样的东西），显示在地图上，服务器用PostgreSQl GIS引擎支持地理查询
+			5.用户拖动地图，自动判断这里没有从服务器get过数据，没有就查询，显示到为地图上
+			6.点击信息气泡，显示Post的信息
+			7.点击用户，显示用户信息，可以点击关注，不看他
+			8.用户间Message互发
+	     </p>
+      </div>
+    </project-card>
+
+    <project-card github-id="AbyChan/TextGame"
+                  name="TextGame"
+                  chinese-name="Txt RPG游戏"
+                  time="大学"
+                  state="并没有维护">
+      <div>
+
+      </div>
+    </project-card>
+
+
+    <project-card github-id="AbyChan/Prediction-System-Exploration"
+                  name="Prediction-System-Exploration"
+                  chinese-name="python 和 R 的一些数据挖掘研究"
+                  time="大学"
+                  state="暂停开发">
+      <div>
+
+      </div>
+    </project-card>
+    
+    <project-card github-id="AbyChan/Maple-Java-Httpd"
+                  name="Maple-Java-Httpd"
+                  chinese-name="一个微型 java 静态 http 服务器"
+                  time="大学"
+                  state="完成">
+      <div>
+      <p>大学的时候研究 http，查阅《http权威指南》用 java 写的一个微型 http 服务器,并不好用。</p>
+      </div>
+    </project-card>
+    
+    
+    
+    <bookmark-footer>
+      Tyan Website Project page . Work hard developer  <br/>
+      © 2016 | Tyan . Coder Fangwei Chan | All Rights Reserved
+    </bookmark-footer>
+    
+    <script src="build/projects.bundle.js"></script>
+  </body>
+</html>
+
