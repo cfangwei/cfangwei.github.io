@@ -1,3 +1,6 @@
+#+TITLE: 浏览器工具与特性
+#+AUTHOR: 陳放為
 
-* awesome-chrome-devtools
+* chrome 工具以及技巧整理
+** awesome-chrome-devtools
 https://github.com/ChromeDevTools/awesome-chrome-devtools

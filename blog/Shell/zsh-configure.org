@@ -1,0 +1,11 @@
+#+TITLE: 我的 ZSH 配置
+#+AUTHOR: 陳放為
+
+在 shell 领域，一开始接触的是最经典的 bash，对 zsh 真是一无所知，自从开始折腾 Arch，了解到了她默认的 zsh（我一般读作 z shell，也有人都作 z s h 的，其实后者的读法是正确，youtube 上的外国人都是这样读，只不过太过拗口），从此 shell 中的操作就开始高效起来。
+
+常用的 shell 有 bash， zsh， sh， fish，dash。其中 fish 虽然酷炫了新颖，当时由于与主流的 bash 不兼容，一般没有人用。
+
+使用 zsh 
+
+
+但是 fish 的 autosuggestion 功能非常好用，于是我找到了一款插件。

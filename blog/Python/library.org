@@ -1,3 +1,5 @@
+#+TITLE: PYTHON 库备忘录
+#+AUTHOR: 陳放為
 
 ** clint(https://github.com/kennethreitz/clint)
 Python Command-line Application Tools 

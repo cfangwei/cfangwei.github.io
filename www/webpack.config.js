@@ -10,10 +10,13 @@ var config = {
     entry: {
         main: './src/main.js',
         projects: './src/projects.js',
+        card: './src/card.js',
+        aboutme: './src/aboutme.js',
         planttrees: './works/plant-trees/src/plant-trees.js',
         wavecircleworld: './works/wavecircle-world/src/wavecircle-world.js',
         flipclock: './works/flip-clock/src/flip-clock.js',
         treeriver: './works/tree-river/src/index.js',
+        circleline: './works/circleline/src/index.js',
         elasticcollision: './works/elastic-collision/src/elastic-collision.js',
         meteor: './works/meteor/src/main.js',
         textParticle: './works/text-particle/src/index.js',
@@ -25,9 +28,9 @@ var config = {
         flybird:  './works/flybird/src/index.js'
     },
     output: {
-        path: __dirname + '/build',
+        path: __dirname + '/build/build',
         publicPath: '/build/',
-        contentBase: 'build/',
+        contentBase: 'build/js/',
         filename: '[name].bundle.js'
     },
     module: {
@@ -35,7 +38,7 @@ var config = {
             {
                 test: /\.jsx?$/,
                 exclude: /(node_modules|bower_components)/,
-                loader: 'babel' // 'babel-loader' is also a legal name to reference
+                loader: 'babel-loader' // 'babel-loader' is also a legal name to reference
             },
             {
                 test: /\.css$/, // Only .css files

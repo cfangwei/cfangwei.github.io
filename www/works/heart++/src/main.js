@@ -23,6 +23,10 @@ function f(t) {
     return [x, y];
 }
 
+function f2 (t) {
+    
+}
+
 // SURFACE | Handles the canvas and stuff
 function Surface() {
     // Grabs the canvas element

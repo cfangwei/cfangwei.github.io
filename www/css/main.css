@@ -5,15 +5,91 @@
   transform: rotate(270deg) translate(-400px, 10px);
   transform-origin: left top 0; }
 
+.black-text {
+  color: black; }
+
+.red-text {
+  color: red; }
+
 html, body {
-  width: 100%;
-  height: 100%;
   margin: 0;
   padding: 0; }
+
+body {
+  color: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  background-image: linear-gradient(180deg, #073763, #0b5394, #3d85c6, #6fa8dc, #9fc5e8, #c8bede, #b3a6d5, #8675b8, #674ea7, #351c75, #741b47, #a64d79, #c27ba0, #d5a6bd, #d8aca4, #dd7e6b, #cc4125, #a61c00, #85200c, #571407);
+  background-repeat: no-repeat;
+  background-size: 100% 100%; }
+
+smoke-effect {
+  display: none; }
 
 ::-webkit-scrollbar {
   display: none; }
 
 .screen {
+  height: 100vh;
   width: 100%;
   position: relative; }
+
+.dash-card canvas {
+  position: absolute;
+  top: 0;
+  left: 0; }
+
+bookmark-footer {
+  display: none; }
+
+.bookmark-footer {
+  position: fixed;
+  bottom: 0;
+  font-size: 12px; }
+
+.handwriting-screen {
+  padding: 2rem;
+  box-sizing: border-box; }
+  .handwriting-screen .wood-hanging {
+    margin: 1rem auto;
+    width: 25%;
+    position: relative;
+    box-sizing: border-box; }
+    .handwriting-screen .wood-hanging:before, .handwriting-screen .wood-hanging:after {
+      content: '';
+      height: 1.3rem;
+      width: 104%;
+      position: absolute;
+      left: -2%;
+      background-color: #462300;
+      box-shadow: 0px 0px 10px #462300;
+      z-index: 1;
+      border-radius: 5px; }
+    .handwriting-screen .wood-hanging:before {
+      top: -1.3rem; }
+    .handwriting-screen .wood-hanging:after {
+      top: 100%; }
+    .handwriting-screen .wood-hanging p.desc {
+      position: absolute;
+      top: 50%;
+      right: -3rem;
+      transform: translate(0, -50%); }
+  .handwriting-screen .decoration-page {
+    margin: 0;
+    width: 100%;
+    position: relative;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 10px #777;
+    border-color: #edf4f2;
+    border-width: 3rem 2rem;
+    border-style: solid;
+    border-radius: 1px; }
+    .handwriting-screen .decoration-page img {
+      display: block;
+      margin: 0;
+      width: 100%;
+      box-sizing: border-box;
+      border-color: #000;
+      border-width: 0.5rem 0.3rem;
+      border-style: solid; }

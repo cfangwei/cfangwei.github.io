@@ -4,7 +4,9 @@ let colorPalettes = require('./misc/languageColor.json');
 
 
 let $ = require('jquery'),
-    _ = require('lodash');
+    _ = require('lodash'),
+    R = require('ramda');
+
 
 let Impure = {
     getJSON: _.curry((callback, url) => {
@@ -40,7 +42,7 @@ let getGithubProject = () => {
 };
 
 let fetchLanguages = (setLanuageHtml, id) => {
-    _.compose(Impure.getJSON(setLanuageHtml), languagesUrl)(id);
+    R.compose(Impure.getJSON(setLanuageHtml), languagesUrl)(id);
 };
 
 
@@ -67,7 +69,9 @@ var Vue = require('vue');
 var app = new Vue({
     el: '#project',
     components: {
-        'project-card': Vue.extend(require('./component/project-card/'))
+        'project-card': Vue.extend(require('./component/project-card/')),
+        'hang-bookmark': Vue.extend(require('./component/hang-bookmark/')),
+        'bookmark-footer': Vue.extend(require('./component/bookmark-footer/'))
     },
     ready: function(){
         getGithubProject().map(function(i, projectDom){

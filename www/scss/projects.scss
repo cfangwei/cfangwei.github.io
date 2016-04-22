@@ -16,6 +16,15 @@ html, body {
     padding: 0;
 }
 
+body {
+    background: {
+        image: url('../img/p-background.png');
+        attachment: fixed;
+        repeat: no-repeat;
+        size: 100% 100%;
+    }
+}
+
 .hide {
     display: none;
 }
@@ -46,15 +55,22 @@ project-card {
 
 .project-card {
     @include z-depth-1;
+
+    z-index: -1;
+    background: {
+        color: white;
+    }
     position: relative;
     padding: 12px 10px;
     width: 800px;
     margin: 3rem auto;
     border-radius: 3px;
     min-height: 135px;
-    transition: transform 100ms ease-in;
+    transition: transform 100ms ease-in, box-shadow 150ms ease-in;
+    
     &:hover {
         transform: scale(1.01, 1.01);
+        @include z-depth-4;
     }
 
     h2 {
@@ -81,6 +97,7 @@ project-card {
     
     .title {
         position: relative;
+        
         .arrow {
             color: #999;
             display: inline-block;
@@ -90,12 +107,11 @@ project-card {
             animation-iteration-count: infinite;
             animation-direction: alternate;
             animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-
         }
 
-        
-        
-        
+        h2 a {
+            text-decoration: underline;
+        }
 
         iframe {
             position: absolute;
@@ -119,7 +135,7 @@ project-card {
             font-size: 90%;
             color: #fff;
             font-weight: 100;
-
+            z-index: 1;
             .language-number {
                 margin-left: 10px;
             }
@@ -141,6 +157,35 @@ project-card {
     }
 }
 
+.hang-bookmark {
+    position: fixed;
+    left: 3rem;
+    top: 0;
+    height: 13rem;
+}
+
+.angular-corner {
+    font: {
+        family: Impact, Charcoal, sans-serif;
+        size: 500%;
+        weight: 900;
+    }
+    position: fixed;
+    display: block;
+    bottom: 2rem;
+    right: 3rem;
+    letter-spacing: 5px;
+}
+
+bookmark-footer {
+    display: none;
+}
+
+.bookmark-footer {
+    position: fixed;
+    bottom: 0;
+}
+
 @keyframes color-bar {
     from {
         transform: scale(0, 1);
@@ -158,3 +203,5 @@ project-card {
         transform: scale(1.2, 1.2);
     }
 }
+
+

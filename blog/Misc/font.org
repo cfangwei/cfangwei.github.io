@@ -1,3 +1,5 @@
+#+TITLE: 字体资料整理
+#+AUTHOR: 陳放為
 
 * nerd-fonts
 https://github.com/ryanoasis/nerd-fonts
