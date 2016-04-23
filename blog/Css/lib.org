@@ -1,0 +1,6 @@
+#+TITLE: CSS 库备忘
+#+AUTHOR: 陳放為
+
+** sweetalert
+https://github.com/t4t5/sweetalert
+A beautiful replacement for JavaScript's "alert"

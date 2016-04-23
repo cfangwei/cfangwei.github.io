@@ -28,7 +28,6 @@ let canvas,
     defaultGeneration = 1;
 
 var resizeFn = function(width, height) {
-    console.log(canvas);
     canvas.width = width;
     canvas.height = height;
 
@@ -83,7 +82,6 @@ var planttrees = new Vue({
     ready: function(){
         this.setup($(this.$el));
         this.start();
-        console.log('ready');
     },
     methods: {
 
@@ -127,11 +125,10 @@ var planttrees = new Vue({
 
 
 $(document).ready(function(){
-    console.log('$ ready');
-})
+});
 
 document.addEventListener("DOMContentLoaded", function(event) {
-    console.log("DOM fully loaded and parsed");
+
 });
 
 

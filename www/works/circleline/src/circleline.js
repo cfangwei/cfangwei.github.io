@@ -79,7 +79,7 @@ class Circle {
 }
 
 export class CircleLine {
-    constructor(centerX, centerY, canvas, circleOffsetBase, radius, n = 5, color = '#000') {
+    constructor(centerX, centerY, canvas, circleOffsetBase, radius, n = 5, color = '#fff') {
         this.centerX = centerX;
         this.centerY = centerY;
         this.canvas = canvas;
@@ -114,7 +114,6 @@ export class CircleLine {
             circle.calcV();
             circle.regDone(() => {
                 --n;
-                console.log(n);
                 if( n === 0 ){
                     self.run = false;
                 }

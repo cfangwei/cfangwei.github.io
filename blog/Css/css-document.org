@@ -5,3 +5,7 @@
 ** css-modules
 Documentation about css-modules
 git@github.com:css-modules/css-modules.git
+
+** flexbox
+https://github.com/cjcenizal/flexbox-patterns
+flex 布局的应用

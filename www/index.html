@@ -13,21 +13,53 @@
   <body id="app">
     
     <div class="dash-screen screen">
+      <div class="dash-mask"></div>
       <smoke-effect></smoke-effect>
     </div>
 
     
-    <glowlight-bg v-ref:glowlight-bg></glowlight-bg>
+    <!-- <glowlight-bg v-ref:glowlight-bg></glowlight-bg> -->
     
     <slide-icons v-ref:slide-icons></slide-icons>
     
-    <div class="dash-screen screen">
+    <div class="card-screen screen">
       <canvas id="dash-card--canvas"></canvas>
       <dash-card v-ref:dash-card></dash-card>
     </div>
 
     <div class="blog-screen screen">
-      <blog-story></blog-story>
+      <a href="http://blog.cfw.io">
+        <div class="imgs">
+          <img alt="" src="img/blog-1.png"/>
+          <img alt="" src="img/blog-2.png"/>
+          <img alt="" src="img/blog-3.png"/>
+          <img alt="" src="img/blog-4.png"/>
+          <img alt="" src="img/blog-5.png"/>
+        </div>
+        <div class="text">
+          <h2>Here is my blog.</h2>
+          <p>Where are your story?</p>
+        </div>
+      </a>
+    </div>
+
+    <div class="experience-screen screen">
+      <a href="http://experience.cfw.io">
+        <forest></forest>
+        <div class="text">
+          <h2>My Code Experience</h2>
+          <p>Experience too short to write a blog?<br/>
+            Maybe you can write some experience wall like me.<br/>
+          </p>
+          <a class="link-to-ew-github" href="https://github.com/Experience-Wall/Experience-Wall">About this project</a>
+        </div>
+      </a>
+    </div>
+
+    <div class="projects-screen screen">
+      <github-effect>
+        <img src="img/front-end-conftocat.png" style="display: none; max-height: 50%;">
+      </github-effect>
     </div>
 
     <div class="post-card-screen screen">
@@ -42,7 +74,10 @@
         <p class="desc" style="writing-mode : tb-rl;">臨摹米元章《蜀素貼》（部分）</p>
       </div>
     </div>
-    
+
+    <div class="skill-screen screen">
+      <div id="skill-container"></div>
+    </div>
     
     
     <bookmark-footer>

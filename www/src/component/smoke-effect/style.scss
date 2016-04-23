@@ -1,6 +1,10 @@
 @import url(https://fonts.googleapis.com/css?family=Lato:400,300);
 
 .smoke-effect {
+    overflow: hidden;
+    position: relative;
+    height: 100%;
+    width: 100%;
     .h {
         %title{
             position:absolute;

@@ -6,6 +6,11 @@ const Pi = Math.PI,
       angleUnit = Pi / 180,
       d = 60;
 
+const trunkMaxLength = 180,
+      trunkMinLength = 140,
+      trunkMaxBrance = 9,
+      trunkMinBrance = 6;
+
 let linePaths = {};
 
 
@@ -194,6 +199,16 @@ export default class TreeClass {
         this._changeColor = 90;
         this._brances.push(new Brance(startX, startY, length, angle,
                                       randomFloat(3, 6), depth, 1));
+    }
+
+    static generatTree(x, y) {
+        let trunkLength = randomFloat(trunkMinLength, trunkMaxLength),
+            T = trunkLength - trunkMinLength,
+            R = (trunkMaxLength - trunkMinLength) / (trunkMaxBrance - trunkMinBrance),
+            depth = trunkMinBrance + ((0.5 + (T / R)) | 0), 
+            color = (Math.random() * 360);
+
+        return new TreeClass(x, y, trunkLength, -90, color, depth, 1);
     }
 
     complete() {

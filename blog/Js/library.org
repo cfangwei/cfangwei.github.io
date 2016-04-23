@@ -16,3 +16,6 @@ JavaScript Performance Monitor
 * object-path
 A tiny JavaScript utility to access deep properties using a path (for Node and the Browser)
 访问对象的深属性，个人觉得还是很有用的
+* strman
+A Javascript string manipulation library without npm dependences.
+https://github.com/dleitee/strman

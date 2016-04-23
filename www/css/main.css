@@ -20,9 +20,34 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-  background-image: linear-gradient(180deg, #073763, #0b5394, #3d85c6, #6fa8dc, #9fc5e8, #c8bede, #b3a6d5, #8675b8, #674ea7, #351c75, #741b47, #a64d79, #c27ba0, #d5a6bd, #d8aca4, #dd7e6b, #cc4125, #a61c00, #85200c, #571407);
+  background-image: linear-gradient(180deg, #000, #111, #222, #333, #184d56, #1c5a64, #9fc5e8, #c8bede, #b3a6d5, #8675b8, #674ea7);
   background-repeat: no-repeat;
-  background-size: 100% 100%; }
+  background-size: 100% 100%;
+  margin-bottom: 2rem; }
+
+.dash-screen {
+  background-image: url("../img/dash-lines.png");
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  box-shadow: inset 0 -3px 40px #000000; }
+  .dash-screen .dash-mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 5; }
+  .dash-screen .smoke-effect {
+    z-index: 10; }
+
+.skill-screen .highcharts-background {
+  fill: transparent; }
+
+.skill-screen #skill-container {
+  height: 100%;
+  width: 100%; }
 
 smoke-effect {
   display: none; }
@@ -46,7 +71,80 @@ bookmark-footer {
 .bookmark-footer {
   position: fixed;
   bottom: 0;
+  z-index: 100;
   font-size: 12px; }
+
+.experience-screen {
+  border-bottom: 1px solid #999; }
+  .experience-screen > a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none; }
+  .experience-screen .text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-shadow: 0 0 2px white; }
+    .experience-screen .text h2, .experience-screen .text p {
+      color: white;
+      text-decoration: none; }
+    .experience-screen .text > a {
+      color: white;
+      text-decoration: none; }
+    .experience-screen .text .link-to-ew-github {
+      color: #4ec5df;
+      text-decoration: initial;
+      text-shadow: none; }
+
+.blog-screen {
+  overflow: hidden; }
+  .blog-screen a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none; }
+  .blog-screen .imgs img {
+    opacity: 0;
+    position: absolute;
+    margin: auto;
+    width: auto;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 50%;
+    max-height: 100%;
+    transition: opacity 0.2s ease-in-out;
+    border-radius: 5px; }
+  .blog-screen .text {
+    position: absolute;
+    height: 20rem;
+    width: 20rem;
+    top: 40%;
+    left: 50%;
+    background-color: rgba(0, 0, 0, 0.8);
+    text-align: center;
+    border-radius: 50%;
+    padding: 3rem;
+    box-shadow: 0 0 3rem black; }
+    .blog-screen .text:after {
+      content: '';
+      display: block;
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      top: -1.5rem;
+      left: -1.5rem;
+      padding: 1rem;
+      border-radius: 50%;
+      box-shadow: 0 0 3rem black;
+      border: 0.5rem solid #222; }
+    .blog-screen .text h2, .blog-screen .text p {
+      color: white;
+      text-shadow: 0 0 3px black; }
+    .blog-screen .text h2 {
+      font-size: 3rem; }
 
 .handwriting-screen {
   padding: 2rem;
