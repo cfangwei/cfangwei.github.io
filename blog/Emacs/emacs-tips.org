@@ -1,0 +1,244 @@
+#+TITLE: Emacs 基础函数
+#+AUTHOR: 陳放為
+
+
+初学 emacs 的人未必会有耐心学习 elisp，但是学会配置 emacs 是十分重要的，这篇博客给大家普及一下 elisp 基本的配置函数。
+
+** 加载脚本
+*** load
+加载脚本的函数是 (load)
+例如：
+#+BEGIN_SRC lisp
+(load "~/.emacs.d/phoenix-init.el")
+#+END_SRC
+
+*** load-path
+elisp 还有一个很重要的概念 load-path
+load-path 就是你可以 load 的脚本所在的地方，只有存在于 load-path 的 elisp 脚本才能被 require 到。
+https://www.gnu.org/software/emacs/manual/html_node/emacs/Lisp-Libraries.html
+
+通常有规划的配置会划分不同的文件夹来放不同的脚本
+#+BEGIN_SRC lisp
+;;加载各种文件夹
+(setq site-lisp-dir
+      (expand-file-name "site-lisp" user-emacs-directory))
+
+(setq setup-dir 
+      (expand-file-name "setup" user-emacs-directory))
+
+(setq setting-dir
+      (expand-file-name "setting" user-emacs-directory))
+
+(setq lib-dir
+      (expand-file-name "lib" user-emacs-directory))
+
+
+(add-to-list 'load-path site-lisp-dir)
+(add-to-list 'load-path setup-dir) 
+(add-to-list 'load-path setting-dir)
+(add-to-list 'load-path lib-dir)
+#+END_SRC
+
+*** 小技巧
+如果你有一些插件不在插件库安装，而是像我一样开了一个 elisp-site 来放，那么可以用下面的代码来加载每一个插件文件夹。
+#+BEGIN_SRC lisp
+(dolist (project (directory-files site-lisp-dir t "\\w+"))
+  (when (file-directory-p project)
+    (add-to-list 'load-path project)))
+#+END_SRC
+
+** 绑定键位
+https://www.gnu.org/software/emacs/manual/html_node/elisp/Key-Binding-Commands.html
+*** 全局绑定
+全局绑定的话使用的是(global-set-key)
+   
+键位的选择推荐是使用 (kbd), 因为比较好, 不用转义和考虑shift等，当然还有很多方法,例如:
+#+BEGIN_SRC lisp
+(global-set-key [M-mouse-1] 'mouse-set-point)
+#+END_SRC
+下面的例子是绑定 change-inner 这个插件的快捷键
+#+BEGIN_SRC lisp
+(require 'change-inner)
+(global-set-key (kbd "C-c i") 'change-inner)
+(global-set-key (kbd "C-c o") 'change-outer)
+#+END_SRC
+
+如果有些键位是原生自带的，通常需要先取消
+#+BEGIN_SRC lisp
+(global-unset-key "\C-z")
+#+END_SRC
+
+*** 模式绑定
+相当于局部绑定，绑定某个 mode
+#+BEGIN_SRC lisp
+(define-key js2-mode-map (kbd "C-k") 'js2r-kill)
+#+END_SRC
+
+** 设置 warning 级别
+https://www.gnu.org/software/emacs/manual/html_node/elisp/Warning-Options.html
+如果你的配置基本上都是自己安装，那么难免会遇到一些插件会报出 warning，在初始界面是十分烦人的，我们可以设置 warning 级别：
+#+BEGIN_SRC lisp
+(setq warning-minimum-level :emergency)
+#+END_SRC
+** server (daemon)
+emacs 装了很多插件的话，启动是十分满，比 vim 慢是公认的，但是 emacs 可以作为一个 server 存在，就是守护进程(daemon)，hold 在后台中，启动的话则启动 emacsclient，那样的话启动就会秒开，多个 emacsclient 共用一个 emacs 后台，也就是说 buffer 都是 hold 住的。
+以前我用 linux 的时候就很喜欢写一个脚本，开机的时候自动开启 emacs-daemon，参考这篇文章:https://www.emacswiki.org/emacs/EmacsAsDaemon
+不过现在也懒得折腾了，在开启 emacs 的时候开 server 开起来就行了，反正 emacs 也不关，下面是启动 server 的代码。
+#+BEGIN_SRC lisp
+(require 'server)
+(unless (server-running-p)
+  (server-start))
+#+END_SRC
+在 terminal，打开 emacsclient 的命令是很长，通常需要 alias，例如：
+#+BEGIN_SRC sh
+alias emax="emacsclient -t"                      # used to be "emacs -nw"
+alias semac="sudo emacsclient -t"                # used to be "sudo emacs -nw"
+alias emacsc="emacsclient -c -a emacs"           # new - opens the GUI with alternate non-daemon
+alias emacscn="emacsclient -n -a emacs"           # new - opens the GUI with alternate non-daemon
+alias ema="emacsclient -n -a emacs"           # new - opens the GUI with alternate non-daemon
+#+END_SRC
+
+其中我最常用的是 ema，在命令行打开文件十分好用，直接就跳到 emacs 界面打开文件了。
+
+*** tip
+emacs 默认的推出快捷键十分容易误按，我们需要换一个快捷键
+#+BEGIN_SRC lisp
+(global-set-key (kbd "C-x r q") 'save-buffers-kill-terminal)
+(global-set-key (kbd "C-x C-c") 'delete-frame)
+#+END_SRC
+这样设置之后 C-x C-c 只会退出一个 frame， 就是一个 emacsclient 窗口
+
+** 外观
+*** widget 
+emacs 默认的外观没有人能受得了的，我们需要去掉菜单栏，工具栏，很滚动条
+#+BEGIN_SRC lisp
+(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
+(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+#+END_SRC
+
+*** 初始化界面
+默认的初始化界面是一个帮助界面，当然你可以设置 spacemacs 那样的界面。
+不过我的习惯是设置陈一个 scratch (草稿)buffer。
+可以 load 出各种图案
+#+BEGIN_SRC lisp
+;;去除初始化页面
+(setq inhibit-startup-message t)
+
+(setq initial-scratch-message (with-temp-buffer
+                                (insert-file-contents "~/.emacs.d/misc/doge.ascii")
+                                (buffer-string)))
+#+END_SRC
+
+*** 透明度
+emacs 和 vim 的神格有一部分凝聚在这里，就是可以设置透明度，非常酷炫的，用其他编辑器的人是羡慕不来的，特别是前端开发，可以设置一个比较低的透明度，然后启动 liveload， 改了代码立马可以在 emacs 后面的浏览器看到效果。
+(有人说 vim 只是借助 terminal 的透明实现，其实 gvim 之类一样可以设置透明的)
+在 emacs 中设置透明度首先要激活透明度，我们可以先设置一个 92％ 透明的
+#+BEGIN_SRC lisp
+;;初始化透明度
+(set-frame-parameter (selected-frame) 'alpha '(92 92))
+#+END_SRC
+
+然后我们可以写一个交互函数来设置透明度
+(交互函数就是第二行的 interactive，函数要有这个才能被 smex 执行到)
+#+BEGIN_SRC lisp
+;; Set transparency of emacs
+(defun transparency (value)
+  "Sets the transparency of the frame window. 0=transparent/100=opaque"
+  (interactive "nTransparency Value 0 - 100 opaque:")
+  (set-frame-parameter (selected-frame) 'alpha value))
+#+END_SRC
+
+*** theme
+程序员世界好看的 theme 就那么几个，我们需要把 theme 脚本的目录设置好就可以通过 customisze-theme 来选择主题了。
+(记得要把 theme 加入 load-path)
+#+BEGIN_SRC lisp
+(setq custom-theme-directory (concat user-emacs-directory "themes"))
+#+END_SRC
+
+*** 高亮
+高亮当前行
+#+BEGIN_SRC lisp
+(global-hl-line-mode 1)
+#+END_SRC
+
+高亮 pair
+#+BEGIN_SRC lisp
+(show-paren-mode 1) 
+#+END_SRC
+
+** 基本设置
+自动刷新 buffer（就是外部该了文件之后 buffer 会刷新）
+#+BEGIN_SRC lisp
+(global-auto-revert-mode 1)
+#+END_SRC
+
+显示 keystrokes 在 message buffer
+#+BEGIN_SRC lisp
+;; Show keystrokes in progress
+(setq echo-keystrokes 0.01)
+#+END_SRC
+
+删除文件时候把文件丢进回收站
+#+BEGIN_SRC lisp
+(setq delete-by-moving-to-trash t)
+#+END_SRC
+
+自动打开压缩文件
+#+BEGIN_SRC lisp
+(auto-compression-mode t)
+#+END_SRC
+
+编码设置
+#+BEGIN_SRC lisp
+(setq locale-coding-system 'utf-8) ; pretty
+(set-terminal-coding-system 'utf-8) ; pretty
+(set-keyboard-coding-system 'utf-8) ; pretty
+(set-selection-coding-system 'utf-8) ; please
+(prefer-coding-system 'utf-8) ; with sugar on top
+#+END_SRC
+
+高亮选择区域
+#+BEGIN_SRC lisp
+(transient-mark-mode 1)
+(make-variable-buffer-local 'transient-mark-mode)
+(put 'transient-mark-mode 'permanent-local t)
+(setq-default transient-mark-mode t)
+#+END_SRC
+
+选择的时候，粘贴把原来的选择区覆盖
+#+BEGIN_SRC lisp
+(delete-selection-mode 1)
+#+END_SRC
+
+在 status-bar 显示行数
+#+BEGIN_SRC lisp
+(setq line-number-mode t)
+(setq column-number-mode t)
+#+END_SRC
+
+自动把 tab 转成空格
+#+BEGIN_SRC lisp
+(set-default 'indent-tabs-mode nil)
+#+END_SRC
+
+设置断行显示
+#+BEGIN_SRC lisp
+(setq-default truncate-lines t)
+#+END_SRC
+
+保存 session 状态
+#+BEGIN_SRC lisp
+(require 'saveplace)
+(setq-default save-place t)
+(setq save-place-file (expand-file-name ".places" user-emacs-directory))
+#+END_SRC
+
+保存 undo list
+#+BEGIN_SRC lisp
+(add-to-list 'desktop-locals-to-save 'buffer-undo-list)
+#+END_SRC
+
+
+……未完待续
+

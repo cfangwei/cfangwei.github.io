@@ -114,6 +114,7 @@ export class CircleLine {
             circle.calcV();
             circle.regDone(() => {
                 --n;
+                console.log(n);
                 if( n === 0 ){
                     self.run = false;
                 }

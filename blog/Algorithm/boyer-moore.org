@@ -13,7 +13,7 @@ width: 1em;
 </style>
 #+END_HTML
 
-最近因为项目需要，要用到 boyer-moore 算法, 看了阮一峰的老师的博客，感觉语言有点生硬，像是翻译的文章，有些地方说得不够清楚，特别是好后缀的部分，于是有了下面这样的一篇博客， 写得也不是很好，让大家见笑了。
+最近因为项目需要，要用到 boyer-moore 算法, 于是有了下面这样的一篇博客， 写得也不是很好，让大家见笑了。
 
 ** 源码
 首先上全部的代码, es6 写的，没有外部依赖
@@ -73,7 +73,7 @@ let makeGoodSuffixTable = (pattern) => {
     return goodSuffixArray;
 };
 
-export class BoyerMooreCount {
+export class BoyerMoore {
     constructor(pattern) {
         this.badRule = makeBadRule(pattern),
         this.goodSuffixTable = makeGoodSuffixTable(pattern);
@@ -106,7 +106,7 @@ export class BoyerMooreCount {
 | E | X | A | M | P | L | E |  |   |  |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
 
 第一行为待查找的字符串，第二行的 EXAMPLE 为查找的目标字符串。
-坏字符规则先从后面开始比较，就是 EXAMPLE 的最后一个字母 E，E 和上面的对齐的 S 不一样，这样可以肯定的是，上面与 EXAMPLE 对齐的字符都不匹配，这个很好理解，所以 EXAMPLE 可以直接右移自身的位数。
+坏字符规则先从后面开始比较，就是 EXAMPLE 的最后一个字母 E，E 和上面的对齐的 S 不一样，这样可以肯定的是，上面与 EXAMPLE 对齐的字符都不匹配，这个很好理解，所以 EXAMPLE 可以直接右移 E 到目标字符串最左的偏移量，就是自身位数，这个 E 就是坏字符。
 
 | H | E | R | E |   | I | S |   | A |   | S | I | M | P | L | E |   | E | X | A | M | P | L | E |
 |   |   |   |   |   |   |   | E | X | A | M | P | L | E |   |   |   |   |   |   |   |   |   |   |
@@ -116,12 +116,17 @@ export class BoyerMooreCount {
 | H | E | R | E |   | I | S |   | A |   | S | I | M | P | L | E |   | E | X | A | M | P | L | E |
 |   |   |   |   |   |   |   |   |   | E | X | A | M | P | L | E |   |   |   |   |   |   |   |   |
 
-再次从最后比较，E 相同，然后比较前一位 L，相同，再比较 P，最后比较到 A，噢，不同，A 对应上面的 I 不存在与目标字符串中，那么直接右移自身位数。
+再次从最后比较，E 相同，然后比较前一位 L，相同，再比较 P，最后比较到 A，噢，不同，A 对应上面的 I 不存在与目标字符串中，那么可以确定现在对齐的字符串都不匹配，移动字符串到 I 的后面一位，也就是右移 3 位。
 
 | H | E | R | E |   | I | S |   | A |   | S | I | M | P | L | E |   | E | X | A | M | P | L | E |
-|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   | E | X | A | M | P | L | E |   |
+|   |   |   |   |   |   |   |   |   |   |   |   | E | X | A | M | P | L | E |   |   |   |   |   |
 
-比较 E 和 L， L 存在与下面 E 的前一位，所以右移一位
+比较 E 和 M， 不匹配，移动目标字符串使得 M 前面的 E 对齐坏字符 E。
+
+| H | E | R | E |   | I | S |   | A |   | S | I | M | P | L | E |   | E | X | A | M | P | L | E |
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   | E | X | A | M | P | L | E |   |   |
+
+E 和 A 不匹配， 把目标字符串的前一个 E 对齐坏字符 E.
 
 | H | E | R | E |   | I | S |   | A |   | S | I | M | P | L | E |   | E | X | A | M | P | L | E |
 |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   | E | X | A | M | P | L | E |
@@ -130,10 +135,10 @@ export class BoyerMooreCount {
 
 我们可以终结出规律：
 
-后移位数 = 坏字符的位置 - 搜索词中的正在比较的位置前面出现偏移量
+后移位数 = 坏字符的位置 - 搜索词中的正在比较的位置前面出现偏移量 || -1 (在目标字符串的前面没有出现)
 
 牛逼的是，这个规律是与待比较字符串无关的，所以我们可以先生成一张坏字符规律的表。
-代码是这段。
+代码是这段:
 #+BEGIN_SRC javascript 
 let makeBadRule = (pattern) => { // pattern 是目标字符串
     let n = pattern.length,
@@ -150,7 +155,91 @@ let makeBadRule = (pattern) => { // pattern 是目标字符串
 
 这里我生成的是多维数组，从最后的位数开始，填入如果待比较字符串对应的字符出现在这个位置的右移位数。
 
-有很多算法是直接生成一维数组，从最后开始生成，填入目标字符串的字符如果出现待比较字符串中比较时，右移的位数，
+有很多算法是直接生成一维数组，从最后开始生成，填入目标字符串的字符如果出现待比较字符串中比较时，右移的位数，以下面的为例。
+
+| E | X | A | M | P | E | L | E | L | L | L |
+
+从最后开始生成，来到倒数第 4 的 E， 坏字符规则为碰到 E 的坏字符则右移 3 位，然后继续往前生成，又碰到 E，此时更新坏字符规则，碰到 E 则右移 2 位，有人会问，这样取最小的会不会出错，其实不会，一个坏字符，不同位置的右移位数取最小的只会增大比较次数，不会略过匹配的。
+
+** 好后缀规则
+
+其实我觉得好后缀规则其实跟坏字符规则差的不是很多，像是“坏后缀字符”，我们继续从上面的例子分析：
+
+| H | E | R | E |   | I | S |   | A |   | S | I | M | P | L | E |   | E | X | A | M | P | L | E |
+|   |   |   |   |   |   |   |   |   | E | X | A | M | P | L | E |   |   |   |   |   |   |   |   |
+
+坏字符规则走到这里，按照坏字符规则应该是右移 3 位，但是我们发现有更好的移动方法，因为 IMPLE 和 下面的 AMPLE 不匹配，右移 3 位之后 MPLE 段也肯定也是不匹配的，而这里，MPLE 是好后缀，好后缀可以拆分成几个后缀，分别是 MPLE， PLE， LE， E，这就跟坏字符规则有点像了，因为 E 这个后缀存在于目标字符串的开头，我们可以直接移动目标字符串，使得现在的 E 后缀对齐目标字符串最前面的 E。
+
+| H | E | R | E |   | I | S |   | A |   | S | I | M | P | L | E |   | E | X | A | M | P | L | E |
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   | E | X | A | M | P | L | E |   |   |
+
+这样移动了 6 位，比坏字符规则高效，如果目标字符串是 LEXAMPLE，我们可以照样处理：
+
+| H | E | R | E |   | I | S |   | A |   | S | I | M | P | L | E |   | E | X | A | M | P | L | E |
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   | L | E | X | A | M | P | L | E |   |   |
+
+继续假设，如果整个好后缀存在于目标字符串的开头:
+
+| H | E | R | E |   | I | S |   | A |   | S | I | M | P | L | E |   | E | X | A | M | P | L | E |
+|   |   |   |   |   |   |   |   |   |   |   |   | M | P | L | E | X | A | M | P | L | E |   |   |
+
+当然，这时候坏字符串移动的位数肯定比好后缀要多。
+
+到此，我们可以总结出规律：
+
+后移位数 = 好后缀的位置 - 搜索词中的前一次出现位置 || -1 (如果不出现，则为 -1)
+
+但是要注意：
+
+除了最长的好后缀，后面的后缀必须出现在字符串的开头，比如：
+
+| H | E | R | E |   | I | S |   | A |   | S | I | M | P | L | E |   | E | X | A | M | P | L | E |
+|   |   |   |   |   |   |   |   |   |   | X | X | M | P | L | E | X | A | M | P | L | E |   |   |
+
+XXMPLEXAMPLE 在 A 这个地方的好后缀为 MPLE，可以移动 6 位，使得 MPLE 对齐中间的 MPLE， 但是如果中间的 MPLE 只是 PLE， 好后缀中的 PLE 后缀就不能移动 6 位了。
+
+可以理解成 EXAMPLE 前面加了虚拟的 MPL
+
+(MPL)EAMPLE，我们只需要判断，MPLE 是否在开头匹配。
 
 
-| E | X | A | M | P | E | L | 
+这个好后缀也是可以事先准备好，代码的实现为：
+
+#+BEGIN_SRC javascript
+let makeGoodSuffixTable = (pattern) => {
+    let len = pattern.length,
+        goodSuffixArray = new Array(len),
+        lastPrefixSuffixIndex = len;
+    
+    for(let j = len - 2; j >= 0; --j) {
+        if( isPrefix(pattern, j + 1, len) ){
+            lastPrefixSuffixIndex = len - (len - j - 1);
+
+        }
+        goodSuffixArray[len - j - 1] = lastPrefixSuffixIndex;
+    }
+    for (let j = 0; j < len - 1; ++j) {
+        let suffixLength = getSuffixLength(pattern, j, len);
+        for (let k = suffixLength; k > 0; --k) {
+            goodSuffixArray[k] = len - suffixLength + 1 - j;
+        }
+    }
+    return goodSuffixArray;
+};
+#+END_SRC
+
+好像有点难理解，第一个循环从最后开始，判断后面的后缀是否是前缀，如果是，就计算右移位数，如果不是，就写入默认值(自身位数)或者之前的位数。
+
+第二个循环则是从前面开始，计算从那里开始，是否存在一个子串出现在那里(j)的开头和后缀，这是计算整个好后缀出现在中间的情况。
+
+** 查找
+
+最后的算法的思路是:
+先计算好后缀和坏字符表，然后开始遍历，判断两者中大的右移位数，进行位移。
+
+
+
+
+
+
+

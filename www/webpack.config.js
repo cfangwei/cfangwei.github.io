@@ -25,7 +25,8 @@ var config = {
         codeWall: './works/code-wall/src/index.js',
         textWeb:  './works/text-web/src/index.js',
         egg3d:  './works/egg3d/src/index.js',
-        flybird:  './works/flybird/src/index.js'
+        flybird:  './works/flybird/src/index.js',
+        txtShakeDemo: './src/misc/txtSnakeDemo.js'
     },
     output: {
         path: __dirname + '/build/build',

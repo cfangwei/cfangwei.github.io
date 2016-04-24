@@ -1,0 +1,10 @@
+#+TITLE: 项目工具备忘
+#+AUTHOR: 陳放為
+
+** critic
+https://github.com/jensl/critic
+Critic code review system.
+
+** ToolsOfTheTrade
+https://github.com/cjbarber/ToolsOfTheTrade
+HN Tools of The Trade, 2015 Edition

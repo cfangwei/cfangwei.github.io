@@ -3,9 +3,6 @@
 
 Javascript 尤其是 NodeJs 是回调地狱已经是广为人知了，一层层的回调看得让人头晕，但是 NodeJs 最重要的特性异步执行特性并不能放弃，因此出现了很多 async 之类的库，当然还有人喜欢用 promise 处理，链式调用。
 
-
-
-
 #+NAME: 完整代码
 #+BEGIN_SRC javascript
 'use strict';
@@ -39,3 +36,5 @@ export class MapDone {
     }
 }
 #+END_SRC
+
+这段代码其实很简单，做得也没有 Async 之类的库好，但是主要是比较简单，不想引入 async，而且 async 在使用 map 之类的函数式调用时，总是要动态生成待执行的函数

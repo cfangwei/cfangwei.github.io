@@ -1,0 +1,39 @@
+#+TITLE: 跨域调试方法
+#+AUTHOR: 陳放為
+
+有些时候，由于公司的业务原因（其实这种原因大多都是架构的问题），api 请求需要跨域，而后台人员配置 CORS 头部的线上的域名，前端人员有时候在本地开发，未必与域名一样，这时候我们可以自己解决， 不必麻烦后台人员。
+
+有两种方法：
+
+*** 第一种
+下载浏览器插件，下面就是一款 chrome 跨域插件，十分好用：
+
+[[./cross-domain-debug/20160424-163233.png]]
+https://chrome.google.com/webstore/detail/cors-toggle/omcncfnpmcabckcddookmnajignpffnh
+
+*** 第二种
+禁掉浏览器的同源策略，使用这种方法虽然有安全风险，但是只要你不去上那种乱七八糟的网站的话就没有问题：
+
+
+mac 或者 linux 可以用这条命令禁止掉 chrome 的同源策略，（linux 用户只需要 google-chrome 就可以打开 chrome）
+#+BEGIN_SRC sh
+/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary --disable-web-security
+#+END_SRC
+
+
+注意：
+chrome 49 之后:
+会报下面的错
+#+BEGIN_SRC sh
+[43975:1295:0321/200441:ERROR:chrome_content_browser_client.cc(2304)] Web security may only be disabled if '--user-data-dir' is also specified.
+#+END_SRC
+
+
+则需要再加一个参数
+#+BEGIN_SRC sh
+--user-data-dir
+#+END_SRC
+
+
+
+

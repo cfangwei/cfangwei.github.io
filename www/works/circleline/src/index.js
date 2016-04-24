@@ -9,8 +9,8 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 let circleLine = new CircleLine(canvas.width / 2, canvas.height / 2, canvas,
-                                50, 300, 5, '#000');
+                                50, 300, 500, '#000');
 
 circleLine.render2DCircles();
-//circleLine.move2D();
-circleLine.move3D();
+circleLine.move2D();
+//circleLine.move3D();
