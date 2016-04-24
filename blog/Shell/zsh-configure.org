@@ -6,7 +6,12 @@
 常用的 shell 有 bash， zsh， sh， fish，dash。其中 fish 虽然酷炫了新颖，当时由于与主流的 bash 不兼容，一般没有人用。
 
 ** zgen
-使用 zsh，有流行的 oh-my-zsh，但是我不是很喜欢，第一 omz 主要还是一大堆 alias （别名）
+
+使用 zsh，有流行的 oh-my-zsh，但是我不是很喜欢，第一 omz 主要还是一大堆 alias （别名）,我不打喜欢别名，像我这种打字比较快的人来说，别名其实没有什么用，而且会造成依赖，容易忘记本来的命令，一到陌生的 shell 里头就懵逼了。
+
+有一款 zsh 配置叫做 zgen 非常小众，但是我觉得还不错，虽然后面也有很多不错的 zsh 配置，但是我还是习惯 zgen， 启动速度比 oh-my-zsh 快很多，不像 oh-my-zsh 那样加载一大堆脚本，zgen 可以自由选择插件，包括 oh-my-zsh 插件和主题。
+
+下面是我的 zgen 配置，
 
 #+BEGIN_SRC sh
 source "${HOME}/zgen/zgen.zsh"
@@ -47,19 +52,16 @@ if ! zgen saved; then
     # completions
     zgen load zsh-users/zsh-completions src
 
-
     # theme
     zgen oh-my-zsh themes/af-magic
 
-    zgen load zsh-users/zsh-history-substring-search
-    zgen load tarruda/zsh-autosuggestions
+
     #zgen load autosuggest-fzf-completion-orig
 
     # Set keystrokes for substring searching
     zmodload zsh/terminfo
     bindkey "$terminfo[kcuu1]" history-substring-search-up
     bindkey "$terminfo[kcud1]" history-substring-search-down
-
 
     # save all to init script
     zgen save
@@ -73,23 +75,64 @@ zle-line-init() {
 }
 zle -N zle-line-init
 
-alias emax="emacsclient -t"                      # used to be "emacs -nw"
-alias semac="sudo emacsclient -t"                # used to be "sudo emacs -nw"
-alias emacsc="emacsclient -c -a emacs"           # new - opens the GUI with alternate non-daemon
-alias emacscn="emacsclient -n -a emacs"           # new - opens the GUI with alternate non-daemon
-alias ema="emacsclient -n -a emacs"           # new - opens the GUI with alternate non-daemon
-alias py="python"
-alias ks='ls'
-alias rg='ranger'
-alias v=nvim
 
 [[ -s /home/aby/.autojump/etc/profile.d/autojump.sh ]] && source /home/aby/.autojump/etc/profile.d/autojump.sh
 
 
 export EDITOR=nvim
 export PATH=~/bin:$PATH
+#+END_SRC
 
 
+*** autosuggestion
+    在 fish 里面的 autosuggestion 功能非常好用，于是我找到了一款 zsh 插件，也叫 autosuggestion，只需要加入 zgen 里面就能用了。
+https://github.com/zsh-users/zsh-autosuggestions
+#+BEGIN_SRC sh
+zgen load tarruda/zsh-autosuggestions
+#+END_SRC
+
+*** substring search
+    substring search 同样是一款好插件，例如想查找 git 的历史命令，只需要习惯性得打出 git，再按 Alt ＋ p， 就能找出 git 开头的命令.
+#+BEGIN_SRC sh
+zgen load zsh-users/zsh-history-substring-search
+#+END_SRC
+
+
+下面我就不介绍工具和插件了,一些好用的工具在我的这篇文章里面有介绍 [[./terminal-awesome-tool.html][[Terminal-awesome-tool]]]
+
+
+** 有用的函数
+*** dumb
+下面的这段代码在 emacs 非常有用，解决了很多 eshell 的很多问题。
+#+begin_src sh
+if [[ "$TERM" == "dumb" ]]
+then
+  unsetopt zle
+  unsetopt prompt_cr
+  unsetopt prompt_subst
+  unfunction precmd
+  unfunction preexec
+  PS1='$ '
+fi
+#+end_src
+
+
+*** cat
+带颜色的 cat 命令
+#+begin_src sh
+cat() {
+    local out colored
+    out=$(/bin/cat $@)
+    colored=$(echo $out | pygmentize -f console -g 2>/dev/null)
+    [[ -n $colored ]] && echo "$colored" || echo "$out"
+}
+#+end_src
+
+*** percol
+percol 的几个好用函数 (percol请看这篇文章 [[./terminal-awesome-tool.html][[Terminal-awesome-tool]]] )
+第一个是交互搜索进程
+第二个是交互杀死进程
+#+begin_src sh
 function ppgrep() {
     if [[ $1 == "" ]]; then
         PERCOL=percol
@@ -108,72 +151,20 @@ function ppkill() {
     fi
     ppgrep $QUERY | xargs kill $*
 }
+#+end_src
 
-function exists { which $1 &> /dev/null }
-
-if exists percol; then
-    function percol_select_history() {
-        local tac
-        exists gtac && tac="gtac" || { exists tac && tac="tac" || { tac="tail -r" } }
-        BUFFER=$(fc -l -n 1 | eval $tac | percol --query "$LBUFFER")
-        CURSOR=$#BUFFER         # move cursor
-        zle -R -c               # refresh
-    }
-
-    zle -N percol_select_history
-    bindkey '^v' percol_select_history
-fi
-[[ -s $(brew --prefix)/etc/profile.d/autojump.sh  ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
-
-
-cat() {
-    local out colored
-    out=$(/bin/cat $@)
-    colored=$(echo $out | pygmentize -f console -g 2>/dev/null)
-    [[ -n $colored ]] && echo "$colored" || echo "$out"
-}
-
-# after cd auto ls
+*** chpwd
+    如果你也是那种 cd 进一个目录就习惯性地打下 ls 的人，下面的这个函数非常适合你，cd 进入目录后自动 ls
+#+begin_src sh
 function chpwd() {
     emulate -L zsh
     ls
 }
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-export PYTHONPATH=.:$PYTHONPATH
+#+end_src
 
-git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
-
-
-export NVM_DIR="/Users/soul/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-export ANDROID_HOME=/Users/soul/Packages/android-sdk-macosx
-
-
-export PATH=/Users/soul/Packages/android-sdk-macosx/tools:/Users/soul/Packages/android-sdk-macosx/platform-tools:$PATH
-
-eval $(thefuck --alias)
-
-alias ewall="java -jar /Users/soul/PROJECT/Experience-Wall/app/target/app-0.1.0-SNAPSHOT-standalone.jar"
-
-export PKG_CONFIG_PATH=$(brew --prefix python3)/Frameworks/Python.framework/Versions/3.4/lib/pkgconfig:$(brew --prefix qt5)/lib/pkgconfig:$(brew --prefix oniguruma)/lib/pkgconfig
-#[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-alias bnode="babel-node"
-
-export MSF_DATABASE_CONFIG=/Users/soul/Source/metasploit-framework/config/database.yml
-
-if [[ "$TERM" == "dumb" ]]
-then
-  unsetopt zle
-  unsetopt prompt_cr
-  unsetopt prompt_subst
-  unfunction precmd
-  unfunction preexec
-  PS1='$ '
-fi
-#+END_SRC
-
-
-但是 fish 的 autosuggestion 功能非常好用，于是我找到了一款插件。
-
+*** exsit
+判断一个命令是否存在，十分实用
+    #+begin_src sh
+    function exists { which $1 &> /dev/null }
+    #+end_src
