@@ -5,7 +5,8 @@
 
 常用的 shell 有 bash， zsh， sh， fish，dash。其中 fish 虽然酷炫了新颖，当时由于与主流的 bash 不兼容，一般没有人用。
 
-使用 zsh 
+** zgen
+使用 zsh，有流行的 oh-my-zsh，但是我不是很喜欢，第一 omz 主要还是一大堆 alias （别名）
 
 #+BEGIN_SRC sh
 source "${HOME}/zgen/zgen.zsh"
