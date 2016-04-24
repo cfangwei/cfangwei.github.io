@@ -99,6 +99,18 @@ gulp.task('copy:cname', function(){
         .pipe(gulp.dest('build/'));
 });
 
+gulp.task('copy:favicon', function(){
+    return gulp.src(['favicon.ico'])
+        .pipe(gulp.dest('build/'));
+});
+
+gulp.task('copy:resume', function(){
+    return gulp.src(['resume/**/*'])
+        .pipe(gulp.dest('build/resume/'));
+});
+
+
+
 
 /**
  *   

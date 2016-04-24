@@ -1,0 +1,45 @@
+div, p, ul, h2{
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    list-style: none;
+}
+
+.main {
+    overflow: hidden;
+    width: 1024px;
+    margin: auto;
+    position: relative;
+    border: {
+        width: 0 1px 0 1px;
+        style: solid;
+        color: #999;
+    }
+    height: 100%;
+
+    .header {
+        overflow: hidden;
+        position: relative;
+        &--name, &--concat {
+            display: inline-block;
+            float: left;
+        }
+
+        &--name {
+            width: 40%;
+            h2 {
+                font: {
+                    size: 2rem;
+                }
+            }
+        }
+
+        &--concat {
+            width: 60%;
+        }
+
+        
+    }
+}

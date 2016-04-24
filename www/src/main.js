@@ -69,7 +69,7 @@ var app = new Vue({
         canvas.height = window.innerHeight;
 
         let circleLine = new CircleLine(canvas.width / 2, canvas.height / 2, canvas,
-                                        50, 300, 15, '#999');
+                                        50, 320, 150, '#555');
         
         circleLine.render2DCircles();
         circleLine.move2D();

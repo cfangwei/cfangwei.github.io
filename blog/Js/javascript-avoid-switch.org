@@ -1,0 +1,2 @@
+#+TITLE: JAVASCRIPT Switch 替代方法
+#+AUTHOR: 陳放為

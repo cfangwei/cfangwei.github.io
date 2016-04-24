@@ -15,6 +15,7 @@
 
 #+END_HTML
 
+** es6 代码
 #+BEGIN_SRC javascript
 'use strict';
 
@@ -69,7 +70,57 @@ let txtSnake = (dom, interal) => {
 };
 
 export {txtSnake};
-
 #+END_SRC
 
-其实我觉得函数式编程最大特性就是代码的可描述性，写的代码都是描述性，在主体代码里面
+上面的代码，用了 curry 和 compose，curry 实在是挺好用，使得函数生成函数更方便，在使用高阶函数的时候，一方面函数缓存起来，使得代码更为高效，也更便于阅读。
+
+** curry
+例如下面的代码这样:
+#+begin_src javscript
+var add = function(x) {
+  return function(y) {
+    return x + y;
+  };
+};
+
+var increment = add(1);
+var addTen = add(10);
+
+increment(2);
+// 3
+
+addTen(2);
+// 12
+#+end_src
+通过函数生成函数，使这类函数的定义和调用更加容易。
+
+
+** compose
+而组合更加好玩了， 通过组合，可以使得 f g 两个函数组合成管道
+#+begin_src javascript
+var compose = function(f,g) {
+  return function(x) {
+    return f(g(x));
+  };
+};
+#+end_src
+
+一个小小的例子
+#+begin_src javascript
+var toUpperCase = function(x) { return x.toUpperCase(); };
+var exclaim = function(x) { return x + '!'; };
+var shout = compose(exclaim, toUpperCase);
+#+end_src
+
+** lodash vs ramda
+上面我 require 了两个库，lodash 和 ramada， 其实我之前是直接用 lodash 的，lodash 名气也大一些，但是我后来换了一台电脑跑，发现 lodash 有些函数不全，不知道什么回事，于是就换了个 ramda 用 compose，浏览了一下，发现 ramda 更好，更好扩展，我自己也 fork 了一份传到 npm 了，叫做 fw-ramda，增加了一些我常用的函数。
+
+
+最后，返回一个取消的函数，这种写法应该是一种规范吧，据我所知是从 angular 流行出来了，注册了 snake 效果返回取消函数，整个代码块得到隔离，重用和维护性都很好。
+ 
+** 感悟
+其实我觉得函数式编程最大特性就是代码的可描述性，写的代码都是描述性，在主体代码里面,用的都是描述性的，我们只需要关注这个程序应该怎么做，而不是怎么写，用函数式编程，可以从自顶向下写程序，把基础代码分散出来，从而使得写代码的时候不会写着写着就好像忘了究竟要写什么（这在写复杂程序程序里面十分常见）。
+
+不过函数式编程总是强调函数的纯性，但是一个程序是不可能纯的，函数式编程刻意忽视程序的状态性和动作，一旦涉及状态和动作就想方设法回避，要用比较复杂的手段才能把状态和动作纯化，这也是非常麻烦的地方。
+
+函数式，面对对象，乃至指令式，我觉得 3 者都不是互斥的存在，3 者能友好共存，这也是为什么新生代的语言大多是多范式语言的原因，有些时候面对对象方便，有些时候函数式能做得更美好，有些时候指令更为高效。例如，我在写 canvas 效果的时候大多数使用面对对象，十分方便，我也想不到如果用函数式编程应该怎么写。平时写脚本的时候当然是纯粹的指令编程来的快和高效。

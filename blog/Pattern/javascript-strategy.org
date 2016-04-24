@@ -1,0 +1,216 @@
+#+TITLE: JAVASCRIPT 策略模式
+#+AUTHOR: 陳放為
+
+模式的作用其实都差不多，复用性，可维护性，按照设计模式盛行的领域---Java 所推崇的那样，对扩展开放，对修改关闭。
+                                                     －－－－－ 开闭原则
+
+* 策略模式
+策略模式的定义是：定义一系列的算法，把它们一个个封装起来，并且使它们可以相互替换。
+使用策略模式的优点如下：
+** 优点
+1.策略模式利用组合、委托和多态等技术和思想，可以有效地避免多重条件选择语句。
+2.策略模式提供了对开放—封闭原则的完美支持，将算法封装在独立的strategy中，使得它们易于切换，易于理解，易于扩展。
+3.策略模式中的算法也可以复用在系统的其他地方，从而避免许多重复的复制粘贴工作。
+
+
+** 缺点
+1.首先，使用策略模式会在程序中增加许多策略类或者策略对象
+2.对逻辑简单的地方略显麻烦
+
+
+下面让我们来看一个例子,来实现用不同的方法进行排序，排序方法我就直接略过了。
+#+begin_src javascript
+var Sort = {}
+
+var BubbleSort = Object.create(Sort)
+BubbleSort.sort = function(data) {
+  console.log('冒泡')
+  return data.sort()
+}
+
+var MergeSort = Object.create(Sort)
+MergeSort.sort = function(data) {
+  console.log('合并')
+  return data.sort()
+}
+
+var Strategy = {
+  init: function(type) {
+    if (type === 'bubble')
+      this.sortAlgorithm = BubbleSort
+    else if (type === 'merge')
+      this.sortAlgorithm = MergeSort
+  }
+, process: function(data) {
+    return this.sortAlgorithm.sort(data)
+  }
+}
+
+s1 = Object.create(Strategy)
+s1.init('bubble')
+s1.process([1,3,4,2])
+
+s2 = Object.create(Strategy)
+s2.init('merge')
+s2.process([1,3,4,2])
+#+end_src
+
+可见，这样写就是策略模式，使用一个 strategy 控制对象进行分发，符合开闭原则, 如果我们需要创造尽可能多排序的方法来适应不同的需求，我们可以随便增加，代码没有耦合，只需要改变策略的方法名即可。
+
+** 表单验证
+有一个非常牛逼的验证库 jquery-validation 
+https://jqueryvalidation.org/
+不过在一些简单的地方，我还是喜欢用策略模式来验证表单:
+
+比较不好的一种写法是:
+#+begin_src javascript
+if (registerForm.userName.value === '') {
+    alert('用户名不能为空');
+    return;
+}
+if (registerForm.password.value.length < 6) {
+    alert("密码的长度不能小于6位");
+    return;
+}
+if (!/(^1[3|5|8][0-9]{9}$)/.test(registerForm.phoneNumber.value)) {
+    alert("手机号码格式不正确");
+    return;
+}
+#+end_src
+这样写有很多缺点
+1. 业务函数比较大，代码中包含了很多if语句；
+2. 函数缺乏弹性，如果增加了一种新的效验规则，或者想把密码的长度效验从6改成8，我们必须修改函数内部的代码，有悖开闭原则。
+3. 算法的复用性差，如果另一个表达或者另一个页面需要这个验证，也许只能复制粘贴了。
+
+如果用策略模式来重构验证表达，会解决上述问题，逼格也高很多。
+
+展示我一个用在 angular 的部分代码，模块部分我就不贴出来了
+
+file: validateStrategy.js
+#+begin_src javascript
+         return {
+            alwayTrue: function(errMsg){
+                return function() {
+                    return true;
+                };
+            },
+            idCard: function(errMsg){
+                return function(val){
+                    if( /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/.test(val) ){
+                        return null;
+                    } else {
+                        return errMsg;
+                    }
+                };
+            },
+            notEmpty: function(errMsg){
+                return function(val){
+                    if ( !val ) {
+                        return errMsg;
+                    }
+                    return null;
+                };
+            },
+            minLength: function(n, errMsg){
+                return function(val){
+                    if ( !val ) {
+                        return errMsg;
+                    }
+                    if (val.length < n) {
+                        return errMsg;
+                    }
+                    return null;
+                };
+            },
+            maxLength: function(n, errMsg){
+                return function(val){
+                    if ( !val ) {
+                        return errMsg;
+                    }
+                    if ( val.length > Number(n) ) {
+                        return errMsg;
+                    }
+                    return null;
+                };
+            },
+            eqLength: function(n, errMsg){
+                return function(val){
+                    if ( !val ) {
+                        return errMsg;
+                    }
+                    if ( String(val).length !== Number(n) ) {
+                        return errMsg;
+                    }
+                    return null;
+                };
+            },
+            indexOfNotEmpty: function(index, errMsg){
+                return function(val){
+                    if( !val ){
+                        return errMsg;
+                    }
+                    if( !val[index] ){
+                        return errMsg;
+                    }
+                    return null;
+                };
+            },
+            mail: function(errMsg){
+                return function(val){
+                    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                    if( !re.test(val) ){
+                        return errMsg;
+                    }
+                    return null;
+                };
+            },
+            lenghtRange: function(a, b, errMsg){
+                return function(val){
+                    if (val.length < a || val.length > b) {
+                        return errMsg;
+                    }
+                    return null;
+                };
+            }
+        };
+#+end_src
+
+
+file: validateGenerager.js
+
+#+begin_src javascript
+         return function(ruleMap, callback){
+            var attrs = [];
+            var validators = [];
+            Object.keys(ruleMap).map(function(attr){
+                attrs.push(attr);
+                var attrValidators = [];
+                ruleMap[attr].map(function(validateCommand){
+                    var vm = validateCommand.split('::'),
+                        validateStrategyAndParams = vm[0].split('#'),
+                        validateStrategyName = validateStrategyAndParams[0],
+                        validateParams = validateStrategyAndParams.slice(1),
+                        errMsg = vm[1];
+                    
+                    if ( !$validateStrategy[validateStrategyName] ) {
+                        throw '找不到 -> ' + validateStrategyName + ' <- 验证策略';
+                    }
+                    attrValidators.
+                        push($validateStrategy[validateStrategyName]
+                             .apply(null, validateParams.concat(errMsg)));
+                });
+                validators.push(attrValidators);
+            });
+            return function(targets){
+                for(var i = 0, max = validators.length; i < max; i++) {
+                    for (var j = 0, jmax = validators[i].length; j < jmax; j++) {
+                        var errMsg = validators[i][j](targets[i]);
+                        if (errMsg) {
+                            return callback(errMsg);
+                        }
+                    }
+                }
+                return callback(null);
+            };
+        };
+#+end_src
