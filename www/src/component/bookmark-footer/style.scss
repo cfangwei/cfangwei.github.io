@@ -55,6 +55,7 @@ $bookmark-raidus: 10px;
                 margin: 0;
                 font-size: 90%;
             }
+            margin-top: 0.5rem;
         }
     }
     
@@ -67,6 +68,8 @@ $bookmark-raidus: 10px;
         width: 70%;
         position: relative;
         left: 20%;
+        display: inline-block;
+        vertical-align: middle;
     }
 
     

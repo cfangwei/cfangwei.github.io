@@ -3,5 +3,77 @@
 
 搞过 angular1.x 的人都知道，这个坑爹的框架有时候的报错会让人崩溃，apply is undefined 之类的，根本没办法定位，只能通过 debugger 或者 console， 要是你搞上 ionic 这样的 hybird 应用开发，那真是坑爹了，到了测试阶段，那错误真是无法定位，哎。。。。。。。。。
 
-所以，在复杂应用中，
+所以，在复杂应用中，正确处理错误是很重要的。
+
+错误处理分为两个方面，异常处理 和 错误分发
+
+* 异常处理
+** anti-patter
+有一些不好的异常处理方式，例如 nodejs 里头：
+  #+begin_src javascript
+  process.on('uncaughtException', function(err) {
+    console.log('Threw Exception: ', err);
+  });
+  #+end_src
+通过这种 emit 的方式是十分没有必要的，而且在开发中显得有点搞笑，在开发中，每一个不可预料的 error 都要使你的程序崩掉，不然的话你会漏掉很多 bug。
+
+** 模块错误化
+ node 很多 log 库都是区分模块的，报错或者抛错都很直观，当然，你也可以自己现实一个适合自己的，还可以搬到浏览器端实现
+ #+begin_src javascript
+var domain = require('domain').create();
+domain.on('error', function(err){
+    console.log(err);
+});
+
+domain.run(function(){
+    throw new Error('thwump');
+});
+ #+end_src
+
+** 函数式实现
+用函数式处理错误，这种方式在 express 经常可见
+#+begin_src javascript
+function error(res,next) {
+  return function( err, result ) {
+    if( err ) {
+      res.writeHead(500); res.end(); console.log(err);
+    } else {
+      next(result)
+    }
+  }
+}
+#+end_src
+
+** custom error stack 
+正如我开头所说，维护一个自定义的错误 stack 有时候是非常有必要的，有一篇文章专门阐述这个问题
+http://www.bennadel.com/blog/2828-creating-custom-error-objects-in-node-js-with-error-capturestacktrace.htm
+
+
+
+
+* 错误分发
+
+无论前后端，当复杂到一定程度，必然会把一些逻辑分层，这时候错误处理就尤为重要。
+
+下面谈一谈关于 callback 传递错误的方式
+
+*** 第一种
+全部在最底层处理错误，然后返回处理后的模式。
+
+这种方法的优点是写起来比较直观，但是缺点是上层修改起来比较难改。
+
+*** 第二种
+
+全部抛到最上层处理，这里的最上层，可能是 node 的路由，也可能是浏览器的 ui，然后最上层统一处理，返回错误码阿，显示提示信息。
+
+这种方法的优点是上层改起来比较方便，但是缺点是复用性太差。
+
+*** 第三种
+关于 callback 的错误处理最大忌的是， 在上层处理一点，下层处理点，中间层时不时来一个 throw ，或者 new Error，这种代码维护起来简直就是地狱
+
+不过，很多时候需求的改动是不可避免的，有一种方法可以解决使用这种模式。
+
+就是使用设计模式，使用一个错误工厂来统一生成错误，然后用一个管理者对象统一对错误进行处理
+
+
 

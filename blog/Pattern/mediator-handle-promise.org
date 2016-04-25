@@ -8,13 +8,92 @@ Javascript 很美好，可惜一旦操作到网络和文件系统，调用的方
 
 #+begin_src javascript
 
-let p = new Promise(() = {
+let promise1 = new Promise(function(reject, resolve){
+    let data1 = request(); // 通常都是异步获取数据，异步我就不模拟了
 
+    resolve(data1);
+
+})
+
+let promise2 = new Promise(function(reject2, resolve2){
+
+    promise1.then(function(data1){
+        let data2 = request(); // 通过 data1 获取 data2
+        resolve2(data2);
+    }).then(function(){
+        let data3 = process(data1, data2); // 处理 data1 和 data2
+        resolve(data3);
+    });
+    
 });
+
+
 
 #+end_src
 
+这么复杂的逻辑可能还有人不相信，但是事实上真的就会有，因为很多原因，无法避免的，这样的代码开发和维护的难度就可想而知了。
+
+当然，我们可以引入中介者模式:
 
 
 
 
+
+
+
+#+begin_src javascript
+var mediator = {};
+
+var orgChart = {
+ 
+  addNewEmployee: function(){
+ 
+    // getEmployeeDetail provides a view that users interact with
+    var employeeDetail = this.getEmployeeDetail();
+ 
+    // when the employee detail is complete, the mediator (the 'orgchart' object)
+    // decides what should happen next
+    employeeDetail.on("complete", function(employee){
+ 
+      // set up additional objects that have additional events, which are used
+      // by the mediator to do additional things
+      var managerSelector = this.selectManager(employee);
+      managerSelector.on("save", function(employee){
+        employee.save();
+      });
+ 
+    });
+  },
+ 
+  // ...
+}
+#+end_src
+
+#+begin_src javascript
+var MenuItem = MyFrameworkView.extend({
+ 
+  events: {
+    "click .thatThing": "clickedIt"
+  },
+ 
+  clickedIt: function(e){
+    e.preventDefault();
+ 
+    // assume this triggers "menu:click:foo"
+    MyFramework.trigger("menu:click:" + this.model.get("name"));
+  }
+ 
+});
+ 
+// ... somewhere else in the app
+ 
+var MyWorkflow = function(){
+  MyFramework.on("menu:click:foo", this.doStuff, this);
+};
+ 
+MyWorkflow.prototype.doStuff = function(){
+  // instantiate multiple objects here.
+  // set up event handlers for those objects.
+  // coordinate all of the objects into a meaningful workflow.
+};
+#+end_src

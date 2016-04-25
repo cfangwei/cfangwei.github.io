@@ -64,7 +64,8 @@ http://gabriel0402.github.io/2015/12/25/angular-dependency-injection/
 
 *** Index Page
 
-ionic 封装了一个 component
+ionic 封装了一个 component 叫做 page， 使用装饰器 @Page 可以轻松创建一个页面，templateUrl 指定一个 html template， 是用 webpack 加载的，十分方便，不用担心再次请求一个文件。
+
 #+begin_src typescript
 import {Page, Icon, NavController, Storage, LocalStorage, Hostlistener} from 'ionic';
 import {Http, HTTP_PROVIDERS} from 'angular2/http';
@@ -343,3 +344,434 @@ export class IndexPage {
 }
 
 #+end_src
+
+上面的代码中，创建了一个 index 视图，从 hacker news 提供的 api 中获取新闻列表，这个我已经封装了一个 service，但是上面的也就留着吧。
+
+
+*** 视图
+取回来之后计算一些时间距离，渲染了一个列表，点开列表，有两个高亮的按钮，可以选择打开欣慰列表和收藏， 收藏的话，就存入 localstorage 中。
+
+file: index.html
+
+#+begin_src html
+<ion-navbar hack *navbar>
+    <ion-title>Hack News</ion-title>
+
+    <ion-buttons end>
+    <button (click)="goStar($event, bs)">
+        <ion-icon [name]="'md-star'"></ion-icon>
+    </button>
+  </ion-buttons>
+</ion-navbar>
+
+<button-sequence #bs [vButtons]="vButtons" [hButtons]="hButtons" (clicked)="bsClicked = !bsClicked; closeChoose(bsClicked)"></button-sequence>
+
+
+<ion-content (click)="contentClick($event, bs)">
+
+  <ion-refresher (refresh)="doRefresh($event)">
+    <ion-refresher-content>
+    </ion-refresher-content>
+  </ion-refresher>
+
+
+    
+    <ion-card wave *ngFor="#item of items; #i = index" class="item-card" (click)="cardClick(item, i)">
+
+        <ion-card-content>
+            <p>{{ item.title }}</p>
+        </ion-card-content>
+
+        <ion-item>
+            <p>{{ item.by }}</p>
+            <p *ngIf="item.text">{{ item.text }}</p>
+            <p>{{ calcTimeDistance(item.time) }}</p>
+        </ion-item>
+        
+        <div *ngIf="item.opChoose" class="choose-container" [ngClass]="{move: item.chooseMove}">
+            <div class="choose-button star" (click)="starItem($event, item.id)">
+                <ion-icon [name]="'md-star'"></ion-icon>
+            </div>
+
+            <div class="choose-button open" (click)="openUrl($event, item.url)">
+                <ion-icon [name]="'md-compass'"></ion-icon>
+            </div>
+        </div>
+        
+    </ion-card>
+
+
+</ion-content>
+#+end_src
+
+*** component
+angular2 的 component 的模式的好处在于，一般都会把 scss， html， js 三个文件放在同一个文件夹，改动起来十分方便。
+
+index.html 定义了旁边的一系列按钮，不用的时候收缩成一个，可以选择新闻的类型，这些按钮定义成了一个组件
+
+/file: button-squence.js/
+#+begin_src typescript
+import {Component, Input, Output, ElementRef, EventEmitter, Hostlistener} from 'angular2/core';
+import {Icon, Animation} from 'ionic';
+
+import './buttonSequence.scss'
+
+const buttonSize = 60;
+const buttonGap = 30;
+const buttonHideOpacity = 0.5;
+//const marginToCorner = 30;
+
+@Component({
+    selector: 'button-sequence',
+    template: `
+    <div>
+        <div class="sequence-button" (click)="toggle($event)">
+            <ion-icon name="md-add"></ion-icon>
+        </div>
+        <div  class="buttons-container">
+        <div *ngFor="#button of vButtons" [ngStyle]="{bottom: button.bottom, opacity: button.opacity}"
+               (click)="buttonClick(button.fn, $event)" class="sequence-button v">
+               <ion-icon [name]="button.icon"></ion-icon>
+        <span class="button-txt" *ngIf="showButtons">{{ button.txt }}</span>
+            </div>
+      
+        <div *ngFor="#button of hButtons" [ngStyle]="{right: button.right, opacity: button.opacity}"
+               (click)="buttonClick(button.fn, $event)" class="sequence-button h">
+               <ion-icon [name]="button.icon"></ion-icon>
+        <span class="button-txt" *ngIf="showButtons">{{ button.txt }}</span>
+            </div>
+
+    </div>`,
+    host: {
+        'class': 'button-sequence'
+    },
+    directives: [Icon]
+})
+export class ButtonSequence {
+    // 水平 buttons
+    private showButtons:bolean = false;
+    
+    @Input() hButtons: Array<{
+        icon: string,
+        txt: string,
+        fn: any
+    }> = [];
+    // 垂直 buttons
+    @Input() vButtons: Array<{
+        icon: string,
+        txt: string,
+        fn: any
+    }> = [];
+
+    @Output() clicked = new EventEmitter();
+    
+    constructor(private elementRef :ElementRef) {
+
+        this.vButtons.map((button) => {
+            button.opacity = buttonHideOpacity;
+        });
+        this.hButtons.map((button) => {
+            button.opacity = buttonHideOpacity;
+        });
+    }
+
+    buttonClick(fn, e) {
+        fn(e);
+        this.toggle(e);
+    }
+
+
+    public toggle(event) {
+        console.log('toggle');
+        
+        event.preventDefault();
+        event.stopPropagation();
+        
+        this.showButtons = !this.showButtons;
+
+        this.clicked.emit(this.showButtons);
+        
+        if( this.showButtons ){
+            let b = 0;
+            this.vButtons.map((button) => {
+                b = buttonGap + buttonSize + b;
+                button.bottom = b + 'px';
+                button.opacity = 1;
+            });
+
+            b = 0;
+            this.hButtons.map((button) => {
+                b = buttonGap + buttonSize + b;
+                button.right = b + 'px';
+                button.opacity = 1;
+            });
+            
+        } else {
+            this.vButtons.map((button) => {
+                button.bottom = null;
+                button.opacity = buttonHideOpacity;
+            });
+
+            this.hButtons.map((button) => {
+                button.right = null;
+                button.opacity = buttonHideOpacity;
+            });
+        }
+
+
+
+    }
+    
+}
+
+#+end_src
+
+/file: button.js/
+#+begin_src typescript
+import {Component, Input, HostListener, ElementRef} from 'angular2/core';
+import {Icon, Animation} from 'ionic/ionic';
+
+import './buttonSequence.scss'
+
+@Component({
+    selector: 'sequence-button',
+    template: `
+        <div class="sequence-button">
+            <ion-icon [name]="content.icon"></ion-icon>
+        </div>`,
+    host: {
+        'class': 'button-sequence'
+    },
+    directives: [Icon],
+    host: {
+        style: 'content.style'
+    }
+})
+export class SequenceButton {
+    // 水平 buttons
+    @Input() content;
+
+    
+    constructor(private _elementRef: ElementRef) {
+        
+    }
+
+    public click(elem) {
+
+        
+        
+    }
+    
+}
+
+#+end_src
+
+*** 收藏页面
+
+ionic2 默认的路由策略不是通过 url，是直接操作 dom，这个好像在调试的时候会麻烦一些，下面定义收藏页面
+
+/file: star.html/
+#+begin_src typescript
+import {Page, Icon, NavController, Storage, LocalStorage, Hostlistener} from 'ionic';
+
+import {HacknewApi} from '../../service/hacknew-api/hacknew-api'
+import {CONFIG} from '../../config.js';
+
+
+@Page({
+    templateUrl: 'build/pages/star/star.html',
+    directives: [Icon],
+    providers: [HacknewApi]
+})
+export class StarPage {
+    constructor(nav: NavController, hack: HacknewApi) {
+        this.items = [];
+        this.local = new Storage(LocalStorage);
+        this.hackapi = hack;
+
+        this.refresh();
+    }
+
+    refresh() {
+        let starList = JSON.parse(this.local.get('star_list')._result);
+        console.log(starList);
+        starList.map((starItem) => {
+            let starItem = JSON.parse(starItem);
+            this.hackapi.getItem(starItem.itemId, (data) => {
+                this.renderItem(starItem.date, data);
+            });
+            
+        });
+    }
+
+    renderItem(date, item) {
+        console.log(item);
+        this.items.push(item);
+    }
+
+    cardClick() {
+        
+    }
+}
+
+#+end_src
+
+
+#+begin_src html
+<ion-navbar hack *navbar>
+    <ion-title>Star</ion-title>
+</ion-navbar>
+
+<ion-content>
+
+  <ion-card wave *ngFor="#item of items; #i = index" class="item-card" (click)="cardClick(item, i)">
+
+    <ion-card-content>
+      <p>{{ item.title }}</p>
+    </ion-card-content>
+
+    <ion-item>
+      <p>{{ item.by }}</p>
+      <p *ngIf="item.text">{{ item.text }}</p>
+    </ion-item>
+    
+    <div *ngIf="item.opChoose" class="choose-container" [ngClass]="{move: item.chooseMove}">
+      <div class="choose-button star" (click)="openUrl($event, item.url)">
+        <ion-icon [name]="'md-star'"></ion-icon>
+      </div>
+
+      <div class="choose-button open" (click)="starItem($event, item.id)">
+        <ion-icon [name]="'md-compass'"></ion-icon>
+      </div>
+    </div>
+    
+  </ion-card>
+    
+</ion-content>
+
+
+
+
+#+end_src
+
+*** 指令
+angular2 的指令思想和 angular1 差的不是很多，都是操作 dom 的地方， 把 dom 和逻辑层隔开。
+虽然形式上有很大的不一样, 例如注入函数变成了构造器形式，element 也封装成了一系列装饰器了
+
+/file choose.js/
+#+begin_src javascript
+wimport {Directive, ElementRef, Input, HostListener} from 'angular2/core';
+
+import './choose.scss';
+
+//const headerHeight = 44;
+
+@Directive({
+    selector: '[card-choose]'
+})
+export class ChooseDirective {
+    
+    constructor(private el: ElementRef) {
+        // el.nativeElement.style.backgroundColor = 'yellow';
+        this.buttons = [{
+            icon: 'md-star',
+            txt: 'Star',
+            fn: ($event) => {
+                console.log('star');
+            }
+        },{
+            icon: 'md-star',
+            txt: 'Star2',
+            fn: ($event) => {
+                console.log('star2');
+            }
+        }]
+    }
+
+    @HostListener('click', ['$event'])
+    public onClick($event) {
+        $event.preventDefault();
+
+        /* let offsetX = $event.pageY - this.el.nativeElement.offsetTop + this.el.nativeElement.parentNode.scrollTop - headerHeight,
+           offsetY = $event.pageX - this.el.nativeElement.offsetLeft - 25; */
+
+        let cardHeight = this.el.nativeElement.clientHeight,
+            cardWidth = this.el.nativeElement.clientWidth;
+
+        let centerX = cardWidth / 2,
+            centerY = cardHeight / 2;
+
+        console.log($event);
+        console.log(this.el);
+
+        let container = document.createElement('div');
+
+        container.classList.add('card-choose-container');
+        container.style.top = centerX + 'px';
+        container.style.left = centerY + 'px';
+
+        this.buttons.map((button) => {
+            let ct = document.createElement('div');
+            ct.classList.add('choose-button');
+
+            //let icon = document.
+
+        });
+
+        this.el.nativeElement.appendChild(container);
+        
+        
+    }
+    
+    
+}
+#+end_src
+
+/file wave.js/
+#+begin_src javascript
+import {Directive, ElementRef, Input, HostListener} from 'angular2/core';
+
+import './wave.scss';
+
+@Directive({
+    selector: '[wave]',
+    host: {
+        'class': 'wave-ripple'
+    }
+})
+export class WaveDirective {
+    
+    constructor(private el: ElementRef) {
+        // el.nativeElement.style.backgroundColor = 'yellow';
+    }
+
+    @HostListener('click', ['$event'])
+    public onClick($event) {
+        $event.preventDefault();
+        let elHeight = this.el.nativeElement.clientHeight,
+        elWidth = this.el.nativeElement.clientWidth;
+        // console.log(this.el.nativeElement.parentNode.scrollTop);
+        // console.log($event.y);
+        // console.log(this.el.nativeElement.offsetTop);
+        let ripple = document.createElement('div');
+        ripple.classList.add('wave-ripple-effect');
+
+        // 还要减去 content 的 scrollTop 的值
+        ripple.style.top = ($event.pageY - this.el.nativeElement.offsetTop + this.el.nativeElement.parentNode.scrollTop - 44 - 25 ) + 'px'; // 44 为头部的高度
+        ripple.style.left = ($event.pageX - this.el.nativeElement.offsetLeft - 25) + 'px';
+        
+        this.el.nativeElement.appendChild(ripple);
+
+        setTimeout(() => {
+            this.el.nativeElement.removeChild(ripple);
+        }, 2000)
+
+        // console.log(this.el)
+        //console.log($event);
+    }
+    
+    
+}
+#+end_src
+
+

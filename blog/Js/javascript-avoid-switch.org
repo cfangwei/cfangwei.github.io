@@ -1,2 +1,111 @@
 #+TITLE: JAVASCRIPT Switch 替代方法
 #+AUTHOR: 陳放為
+
+不知道你会不会像我一样，觉得一层一层的 if 嵌套很难看，更别提了 swtich 了，一大段长得不太一样的代码树立在你的代码文件中,显得很不雅。
+
+
+像这样的代码，有点像命令模式，但是这样的代码在判断命令有点不必要, 虽然说没有代码阅读的问题，但在命令又增加的时候，又得手动新增代码，有悖开闭原则。
+#+begin_src javascript
+function processInput(command) {
+    switch (command) {
+        case "Help":
+            help();
+            break;
+        case "new":
+            newA()
+            break;
+        case "delete":
+            deleteA()
+            break;
+        case "remove":
+            remove();
+            break;
+        case "look":
+            look();
+            break;
+        case "backpack":
+            backpack()
+            break;
+    }
+}
+#+end_src
+
+
+我们稍微改造一下？
+#+begin_src javascript
+var commandTable = {
+    help:    help,
+    'new':    newA,
+    'delete':    deleteA,
+    remove:     remove,
+    look:    describeLocation,
+    backpack: showBackpack
+}
+
+function processInput(command) {
+    commandTable[command]();
+}
+#+end_src
+
+在这个重构版本中，我们使一张表来保存所有可能的命令，程序通过名字调用函数，并消除所有的条件语句，如果需要增加，只需要动态在 commandTable 里面增加命令即可,整个代码块也漂亮了,一举两得。
+
+
+=函数式方法=
+
+在函数式领域，是有另一种方法，之前在书上见过，没想到有一次浏览 gihub 遇到一个人把书上的例子实现了一次。
+https://github.com/CascadeEnergy/dispatch-fn
+
+例子在这里
+#+begin_src javascript
+var _ = require('lodash');
+var dispatch = require('../es5');
+
+function fail(thing) {
+    throw new Error(thing);
+}
+
+function existy(x) {
+    return x != null;
+}
+
+function truthy(x) {
+    return (x !== false) && existy(x);
+}
+
+function doWhen(cond, action) {
+    if (truthy(cond)) return action();
+    else return undefined;
+}
+
+function invoker(NAME, METHOD) {
+    return function(target /* args ... */ ) {
+        if (!existy(target)) fail('Must provide a target');
+        var targetMethod = target[NAME];
+        var args = _.rest(arguments);
+        return doWhen((existy(targetMethod) && METHOD === targetMethod), function() {
+            return targetMethod.apply(target, args);
+        });
+    };
+}
+
+function stringReverse(s) {
+    if (!_.isString(s)) return undefined;
+    return s.split('').reverse().join('');
+}
+console.log(stringReverse('abc')); 
+//=> "cba" console.log(stringReverse(1));
+ //=> undefined 
+
+var rev = dispatch( invoker('reverse', Array.prototype.reverse), stringReverse ); 
+
+console.log(rev([1,2,3])); 
+
+//=> [3, 2, 1] 
+console.log(rev('abc')); 
+
+//=> "cba"
+#+end_src
+这个例子使用了 dispatch 这个函数分发条件，构造了一个 rev 函数，去判断是 array 还是 string， 然后选择正确的函数去处理
+
+
+这样写十分有函数味，但是就是太复杂了，可读性也不强，看大家怎么选择了,项目基建得好的，函数风格重的，也许用这种方法挺好的。
