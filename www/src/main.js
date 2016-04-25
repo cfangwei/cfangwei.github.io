@@ -61,20 +61,28 @@ var app = new Vue({
          * circleLine
          * 
          */
-
+        
         let canvas = document.getElementById('dash-card--canvas'),
             ctx = canvas.getContext('2d');
-
+        
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
 
         let circleLine = new CircleLine(canvas.width / 2, canvas.height / 2, canvas,
-                                        50, 320, 150, '#555');
+                                        70, 320, 150, '#555');
         
         circleLine.render2DCircles();
         circleLine.move2D();
-        circleLine.move3D();
-
+        //circleLine.move3D();
+        let moving = false;
+        $(this.$refs.dashCard.$el).hover(function(){
+            if(moving) return;
+            moving = true;
+            circleLine.move2D();
+            setTimeout(function(){
+                moving = false;
+            }, 4000);
+        });
 
         /**
          *   

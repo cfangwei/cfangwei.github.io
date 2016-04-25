@@ -6,6 +6,15 @@ Javascript 很美好，可惜一旦操作到网络和文件系统，调用的方
 因为公司中涉及这个问题的代码我不好贴出来，我就随便模拟一个例子。
 
 
+#+begin_src javascript
+
+let p = new Promise(() = {
+
+});
+
+#+end_src
+
+
 
 
 

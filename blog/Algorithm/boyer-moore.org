@@ -1,4 +1,4 @@
-#+TITLE: Boyer Moore 算法
+    #+TITLE: Boyer Moore 算法
 #+AUTHOR: 陳放為
 
 #+BEGIN_HTML

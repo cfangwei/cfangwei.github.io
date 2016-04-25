@@ -1,7 +1,6 @@
 #+TITLE: Emacs 基础函数
 #+AUTHOR: 陳放為
 
-
 初学 emacs 的人未必会有耐心学习 elisp，但是学会配置 emacs 是十分重要的，这篇博客给大家普及一下 elisp 基本的配置函数。
 
 ** 加载脚本

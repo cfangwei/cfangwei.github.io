@@ -19,3 +19,6 @@ A tiny JavaScript utility to access deep properties using a path (for Node and t
 * strman
 A Javascript string manipulation library without npm dependences.
 https://github.com/dleitee/strman
+* javascript-state-machine
+https://github.com/jakesgordon/javascript-state-machine
+A finite state machine javascript micro framework http://codeincomplete.com/posts/2014/3/15/javascript_state_machine_v2_3_0/
