@@ -1,5 +1,4 @@
-<div class="post-card" v-bind:style="{ height: height,
-                                       width: width}">
+<div class="post-card" v-bind:style="{ height: height,width: width}">
 
   <div class="post-card-left">
     <p><span class="red-text">root<span class="black-text">@</span>kali:</span>~# msfvenom -a x86 --platform windows -p windows/shell/bind_tcp -e x86/alpha_mixed -f python</p>
@@ -26,7 +25,7 @@
     <form>
       <textarea v-model="message" placeholder="Send me message?"></textarea>
       <input v-model="name" type="text" placeholder="Your name?"/>
-      <img alt="send" src="/img/paper-plane.png" @click="sendMessage()"/>
+      <img alt="send" src="/img/paper-plane.png" v-on:click="sendMessage()"/>
     </form>
     
   </div>
