@@ -40,8 +40,9 @@
 /******/ 	return __webpack_require__(0);
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
+/******/ ({
+
+/***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49,23 +50,23 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	__webpack_require__(43);
+	__webpack_require__(57);
 
-	__webpack_require__(45);
+	__webpack_require__(59);
 
-	var _sky = __webpack_require__(47);
+	var _sky = __webpack_require__(61);
 
-	var _ring = __webpack_require__(51);
+	var _ring = __webpack_require__(65);
 
-	var _sun = __webpack_require__(52);
+	var _sun = __webpack_require__(66);
 
-	var _meteor = __webpack_require__(53);
+	var _meteor = __webpack_require__(67);
 
-	var _star = __webpack_require__(49);
+	var _star = __webpack_require__(63);
 
-	var _util = __webpack_require__(48);
+	var _util = __webpack_require__(62);
 
-	var _data = __webpack_require__(50);
+	var _data = __webpack_require__(64);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -235,12 +236,8 @@
 	mainControl.start();
 
 /***/ },
-/* 1 */,
-/* 2 */,
-/* 3 */,
-/* 4 */,
-/* 5 */,
-/* 6 */
+
+/***/ 7:
 /***/ function(module, exports) {
 
 	/*
@@ -296,7 +293,8 @@
 
 
 /***/ },
-/* 7 */
+
+/***/ 8:
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -521,58 +519,24 @@
 
 
 /***/ },
-/* 8 */,
-/* 9 */,
-/* 10 */,
-/* 11 */,
-/* 12 */,
-/* 13 */,
-/* 14 */,
-/* 15 */,
-/* 16 */,
-/* 17 */,
-/* 18 */,
-/* 19 */,
-/* 20 */,
-/* 21 */,
-/* 22 */,
-/* 23 */,
-/* 24 */,
-/* 25 */,
-/* 26 */,
-/* 27 */,
-/* 28 */,
-/* 29 */,
-/* 30 */,
-/* 31 */,
-/* 32 */,
-/* 33 */,
-/* 34 */,
-/* 35 */,
-/* 36 */,
-/* 37 */,
-/* 38 */,
-/* 39 */,
-/* 40 */,
-/* 41 */,
-/* 42 */,
-/* 43 */
+
+/***/ 57:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(44);
+	var content = __webpack_require__(58);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(7)(content, {});
+	var update = __webpack_require__(8)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/sass-loader/index.js!./animate.scss", function() {
-				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/sass-loader/index.js!./animate.scss");
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/sass-loader/index.js!./../../../node_modules/autoprefixer-loader/index.js?{browsers:[\">1%\"]}!./animate.scss", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/sass-loader/index.js!./../../../node_modules/autoprefixer-loader/index.js?{browsers:[\">1%\"]}!./animate.scss");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -582,10 +546,11 @@
 	}
 
 /***/ },
-/* 44 */
+
+/***/ 58:
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(6)();
+	exports = module.exports = __webpack_require__(7)();
 	// imports
 
 
@@ -596,23 +561,24 @@
 
 
 /***/ },
-/* 45 */
+
+/***/ 59:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(46);
+	var content = __webpack_require__(60);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(7)(content, {});
+	var update = __webpack_require__(8)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/sass-loader/index.js!./style.scss", function() {
-				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/sass-loader/index.js!./style.scss");
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/sass-loader/index.js!./../../../node_modules/autoprefixer-loader/index.js?{browsers:[\">1%\"]}!./style.scss", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/sass-loader/index.js!./../../../node_modules/autoprefixer-loader/index.js?{browsers:[\">1%\"]}!./style.scss");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -622,21 +588,23 @@
 	}
 
 /***/ },
-/* 46 */
+
+/***/ 60:
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(6)();
+	exports = module.exports = __webpack_require__(7)();
 	// imports
 
 
 	// module
-	exports.push([module.id, "html, body, div {\n  margin: 0;\n  padding: 0; }\n\n.world {\n  background: linear-gradient(to top left, #4cddff, #3b9aca 10%, #2d6ca5 20%, #2a5291 27%, #283d81 35%, #222654 50%, #1e1635 63%, #0c0010 93%, #000);\n  height: 700px; }\n\n.sky .star {\n  -webkit-animation: star1 5s alternate ease-in-out infinite;\n  animation: star1 5s alternate ease-in-out infinite; }\n\n.sky *, .sky-parallax * {\n  position: absolute;\n  box-sizing: border-box;\n  border-radius: 50%; }\n\n.flare {\n  width: 40px;\n  height: 40px;\n  margin: -20px 0 0 -20px;\n  border: 2px solid #fff;\n  -webkit-animation: flare 1s linear;\n  animation: flare 1s linear;\n  -webkit-animation-fill-mode: forwards;\n  animation-fill-mode: forwards; }\n", ""]);
+	exports.push([module.id, "html, body, div {\n  margin: 0;\n  padding: 0; }\n\n.world {\n  background: -webkit-linear-gradient(bottom right, #4cddff, #3b9aca 10%, #2d6ca5 20%, #2a5291 27%, #283d81 35%, #222654 50%, #1e1635 63%, #0c0010 93%, #000);\n  background: linear-gradient(to top left, #4cddff, #3b9aca 10%, #2d6ca5 20%, #2a5291 27%, #283d81 35%, #222654 50%, #1e1635 63%, #0c0010 93%, #000);\n  height: 700px; }\n\n.sky .star {\n  -webkit-animation: star1 5s alternate ease-in-out infinite;\n  animation: star1 5s alternate ease-in-out infinite; }\n\n.sky *, .sky-parallax * {\n  position: absolute;\n  box-sizing: border-box;\n  border-radius: 50%; }\n\n.flare {\n  width: 40px;\n  height: 40px;\n  margin: -20px 0 0 -20px;\n  border: 2px solid #fff;\n  -webkit-animation: flare 1s linear;\n  animation: flare 1s linear;\n  -webkit-animation-fill-mode: forwards;\n  animation-fill-mode: forwards; }\n", ""]);
 
 	// exports
 
 
 /***/ },
-/* 47 */
+
+/***/ 61:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -646,11 +614,11 @@
 	});
 	exports.Sky = undefined;
 
-	var _util = __webpack_require__(48);
+	var _util = __webpack_require__(62);
 
-	var _star = __webpack_require__(49);
+	var _star = __webpack_require__(63);
 
-	var _data = __webpack_require__(50);
+	var _data = __webpack_require__(64);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -670,7 +638,8 @@
 	};
 
 /***/ },
-/* 48 */
+
+/***/ 62:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -738,7 +707,8 @@
 	exports.canvasClearFill = canvasClearFill;
 
 /***/ },
-/* 49 */
+
+/***/ 63:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -748,9 +718,9 @@
 	});
 	exports.SmallStar = exports.Star = undefined;
 
-	var _util = __webpack_require__(48);
+	var _util = __webpack_require__(62);
 
-	var _data = __webpack_require__(50);
+	var _data = __webpack_require__(64);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -791,7 +761,8 @@
 	};
 
 /***/ },
-/* 50 */
+
+/***/ 64:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -801,7 +772,7 @@
 	});
 	exports.meteorCurvePoints = exports.cssPrefix = exports.meteorOption = exports.meteorInterval = exports.meteorColor = exports.sunOption = exports.ringsOption = exports.skysOptions = undefined;
 
-	var _util = __webpack_require__(48);
+	var _util = __webpack_require__(62);
 
 	var meteorColor = [[185, 164, 255], [83, 236, 184]];
 
@@ -963,7 +934,8 @@
 	exports.meteorCurvePoints = meteorCurvePoints;
 
 /***/ },
-/* 51 */
+
+/***/ 65:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -973,7 +945,7 @@
 	});
 	exports.Ring = undefined;
 
-	var _util = __webpack_require__(48);
+	var _util = __webpack_require__(62);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -994,7 +966,8 @@
 	};
 
 /***/ },
-/* 52 */
+
+/***/ 66:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1004,9 +977,9 @@
 	});
 	exports.Sun = undefined;
 
-	var _util = __webpack_require__(48);
+	var _util = __webpack_require__(62);
 
-	var _data = __webpack_require__(50);
+	var _data = __webpack_require__(64);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -1032,7 +1005,8 @@
 	};
 
 /***/ },
-/* 53 */
+
+/***/ 67:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1044,11 +1018,11 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _util = __webpack_require__(48);
+	var _util = __webpack_require__(62);
 
-	var _vec = __webpack_require__(54);
+	var _vec = __webpack_require__(68);
 
-	var _data = __webpack_require__(50);
+	var _data = __webpack_require__(64);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -1159,7 +1133,8 @@
 	}();
 
 /***/ },
-/* 54 */
+
+/***/ 68:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1239,4 +1214,5 @@
 	}();
 
 /***/ }
-/******/ ]);
+
+/******/ });

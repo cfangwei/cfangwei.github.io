@@ -47,9 +47,9 @@
 
 	'use strict';
 
-	var _box = __webpack_require__(16);
+	var _box = __webpack_require__(17);
 
-	var _creeper = __webpack_require__(17);
+	var _creeper = __webpack_require__(18);
 
 	var createLights = function createLights(scene) {
 	    var globalLight = new THREE.HemisphereLight(0xffffff, 0xffffff, 0.5);
@@ -160,7 +160,7 @@
 
 /***/ },
 
-/***/ 16:
+/***/ 17:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -214,7 +214,7 @@
 
 /***/ },
 
-/***/ 17:
+/***/ 18:
 /***/ function(module, exports) {
 
 	'use strict';

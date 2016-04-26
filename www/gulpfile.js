@@ -5,7 +5,7 @@ var livereload = require('gulp-livereload');
 
 var webpack = require('webpack-stream');
 var ghPages = require('gulp-gh-pages');
-
+var autoprefixer = require('gulp-autoprefixer');
 var runSequence = require('run-sequence');
 
 
@@ -23,6 +23,9 @@ var runSequence = require('run-sequence');
 gulp.task('sass', function () {
     gulp.src('./scss/**/**/*.scss')
         .pipe(sass().on('error', sass.logError))
+        .pipe(autoprefixer({
+	    browsers: ['>1%']
+	}))
         .pipe(gulp.dest('./css'));
         // .pipe(livereload({
         //     port: 35727
@@ -49,8 +52,8 @@ gulp.task('watch:sass', function () {
  *
  */
 gulp.task('webpack', function(){
-    return gulp.src('src/entry.js')
-        .pipe(webpack( require('./webpack.config.js') ))
+    return gulp.src('src/main.js')
+        .pipe(webpack( require('./webpack.config.js')))
         .pipe(gulp.dest('dist/'));
 });
 
@@ -66,7 +69,9 @@ gulp.task('copy', [
     'copy:html',
     'copy:font',
     'copy:src',
-    'copy:cname'
+    'copy:cname',
+    'copy:favicon',
+    'copy:resume'
 ]);
 
 gulp.task('copy:img', function(){

@@ -2,8 +2,10 @@
   display: none; }
 
 .vertical-text {
-  transform: rotate(270deg) translate(-400px, 10px);
-  transform-origin: left top 0; }
+  -webkit-transform: rotate(270deg) translate(-400px, 10px);
+          transform: rotate(270deg) translate(-400px, 10px);
+  -webkit-transform-origin: left top 0;
+          transform-origin: left top 0; }
 
 .black-text {
   color: black; }
@@ -15,6 +17,14 @@
   font-family: BigLou;
   src: url("/font/fancy/BigLou.ttf"); }
 
+@font-face {
+  font-family: VtksVelhosTempos;
+  src: url("/font/fancy/VtksVelhosTempos.ttf"); }
+
+@font-face {
+  font-family: CurlyFleurCaps;
+  src: url("/font/fancy/CurlyFleurCaps.ttf"); }
+
 html, body {
   margin: 0;
   padding: 0; }
@@ -24,6 +34,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  background-image: -webkit-linear-gradient(top, #000, #111, #222, #333, #184d56, #1c5a64, #9fc5e8, #c8bede, #b3a6d5, #8675b8, #674ea7);
   background-image: linear-gradient(180deg, #000, #111, #222, #333, #184d56, #1c5a64, #9fc5e8, #c8bede, #b3a6d5, #8675b8, #674ea7);
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -43,15 +54,37 @@ body {
     height: 100%;
     background: rgba(0, 0, 0, 0.7);
     z-index: 5; }
+  .dash-screen h1 {
+    font-family: CurlyFleurCaps; }
   .dash-screen .smoke-effect {
     z-index: 10; }
 
-.skill-screen .highcharts-background {
-  fill: transparent; }
-
-.skill-screen #skill-container {
+.projects-screen a {
+  display: block;
   height: 100%;
-  width: 100%; }
+  width: 100%;
+  position: relative; }
+
+.projects-screen .text {
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  bottom: 15%;
+  left: 0;
+  font-family: VtksVelhosTempos;
+  font-size: 3rem; }
+  .projects-screen .text h3 {
+    color: #b88984; }
+
+.skill-screen {
+  padding: 3rem 0; }
+  .skill-screen .highcharts-background {
+    fill: transparent; }
+  .skill-screen #skill-container {
+    height: 100%;
+    width: 100%; }
+  .skill-screen .highcharts-title {
+    margin-bottom: -10px; }
 
 smoke-effect {
   display: none; }
@@ -89,7 +122,8 @@ bookmark-footer {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
     text-shadow: 0 0 2px white; }
     .experience-screen .text h2, .experience-screen .text p {
       color: white;
@@ -116,9 +150,11 @@ bookmark-footer {
     width: auto;
     left: 50%;
     top: 50%;
-    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
     max-width: 50%;
     max-height: 100%;
+    -webkit-transition: opacity 0.2s ease-in-out;
     transition: opacity 0.2s ease-in-out;
     border-radius: 5px; }
   .blog-screen .text {
@@ -147,8 +183,15 @@ bookmark-footer {
     .blog-screen .text h2, .blog-screen .text p {
       color: white;
       text-shadow: 0 0 3px black; }
+    .blog-screen .text p {
+      font-size: 2rem;
+      font-family: BigLou; }
     .blog-screen .text h2 {
-      font-size: 3rem; }
+      margin-top: 5rem;
+      text-shadow: 0 0 5px #fff;
+      text-transform: uppercase;
+      font-size: 3rem;
+      font-family: CurlyFleurCaps; }
 
 .handwriting-screen {
   padding: 2rem;
@@ -158,11 +201,12 @@ bookmark-footer {
     position: absolute;
     font-family: BigLou;
     left: 50%;
-    top: 20%;
-    transform: translate(-100%, 0);
+    top: 70%;
+    -webkit-transform: translate(-100%, 0);
+            transform: translate(-100%, 0);
     z-index: 100; }
     .handwriting-screen .text h3 {
-      font-size: 3rem;
+      font-size: 3.5rem;
       color: #2eafaf;
       text-shadow: 0 0 10px white; }
   .handwriting-screen .wood-hanging {
@@ -190,7 +234,8 @@ bookmark-footer {
       position: absolute;
       top: 50%;
       right: -3rem;
-      transform: translate(0, -50%); }
+      -webkit-transform: translate(0, -50%);
+              transform: translate(0, -50%); }
   .handwriting-screen .decoration-page {
     margin: 0 auto;
     height: 100%;

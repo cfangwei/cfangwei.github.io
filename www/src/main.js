@@ -69,7 +69,7 @@ var app = new Vue({
         canvas.height = window.innerHeight;
 
         let circleLine = new CircleLine(canvas.width / 2, canvas.height / 2, canvas,
-                                        70, 320, 150, '#555');
+                                        70, 300, 150, '#555');
         
         circleLine.render2DCircles();
         circleLine.move2D();
@@ -122,7 +122,8 @@ var app = new Vue({
 		enabled: false
 	    },
 	    title: {
-	        text: 'Skill Breakdown'
+	        text: 'Skill Breakdown',
+                y: 50
 	    },
 	    
 	    pane: {
@@ -142,7 +143,7 @@ var app = new Vue({
                     'Nodejs',
                     'Python',
                     'Java',
-                    'Clojure',
+                    'vue',
                     'Linux'
                 ],
 	        min: 0,
@@ -153,7 +154,11 @@ var app = new Vue({
 	        labels: {
 	            formatter: function () {
         		return this.value;
-	            }
+	            },
+                    style: {
+			color: '#000',
+			textShadow:'0px 0px 4px #fff'
+		    }
 	        }
 	    },
 	    tooltip: {
@@ -194,7 +199,7 @@ var app = new Vue({
 	    series: [{
 	        type: 'area',
 	        name: 'Skills',
-	        data: [4, 4, 5, 4, 4, 4.5, 4, 3.5, 3.5, 5],
+	        data: [4, 4, 5, 4, 4, 4.5, 4, 3.5, 4, 5],
 	        pointPlacement: "on"
 	    }]
 	});

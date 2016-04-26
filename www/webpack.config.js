@@ -47,7 +47,8 @@ var config = {
             },
             {
                 test: /\.scss$/,
-                loaders: ["style", "css", "sass"]
+                //loaders: ["style", "css", "sass", "autoprefixer"]
+                loader: 'style-loader!css-loader!sass-loader!autoprefixer-loader?{browsers:[">1%"]}'
             },
             {
                 test: /\.html$/, loader: "html"

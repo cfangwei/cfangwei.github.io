@@ -1,0 +1,9 @@
+#+TITLE: 树莓派体验 Chromium OS
+#+AUTHOR: 陳放為
+
+
+一言以蔽之，辣鸡
+
+[[./rpi-chromium-os/P60426-220037.jpg]]
+
+在中国根本没法用， 而且卡成狗

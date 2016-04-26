@@ -9,26 +9,27 @@
         %title{
             position:absolute;
             z-index:3;
-            text-transform:uppercase;
             text-shadow:0px 10px rgba(0,0,0,.15);
             left:0;
             right:0;
             margin:auto;
             transform:translateY(-50%);
-            font-family:lato;
             font-weight:300;
             color:white;
         }
         h1{
             @extend %title !optional;
+            text-transform:uppercase;
             letter-spacing:28px;
-            font-size:14px;
-            top:50%;
+            font-size: 1.5rem;
+            font-weight: 700;
+            top:40%;
+            margin-bottom: 20px;
         }
         h2{
             @extend %title !optional;
-            letter-spacing:10px;
-            font-size:10px;
+            letter-spacing: 2px;
+            font-size:15px;
             top:60%;
         }
         text-align:center;
