@@ -3,9 +3,12 @@
 @import "./mixin/shape.scss";
 @import "./mixin/position.scss";
 @import "./common.scss";
-
-
 @import "./type.scss";
+
+@font-face {
+    font-family: BigLou;
+    src: url( '/font/fancy/BigLou.ttf');
+}
 
 html, body {
     margin: 0;
@@ -200,12 +203,28 @@ $wood-hanging-height: 1.3rem;
 .handwriting-screen {
     padding: 2rem;
     box-sizing: border-box;
+    text-align: center;
+    .text {
+        position: absolute;
+        font-family: BigLou;
+        left: 50%;
+        top: 20%;
+        transform: translate(-100%, 0);
+        z-index: 100;
+        h3 {
+            font-size: 3rem;
+            color: #2eafaf;
+            text-shadow: 0 0 10px white;
+        }
+    }
     
     .wood-hanging {
         margin: 1rem auto;
-        width: 25%;
+        width: auto;
         position: relative;
         box-sizing: border-box;
+        height: 100%;
+        display: inline-block;
         
         &:before, &:after {
             content: '';
@@ -237,11 +256,17 @@ $wood-hanging-height: 1.3rem;
     }
     
     .decoration-page {
-        margin: 0;
-        width: 100%;
+        margin: 0 auto;
+        height: 100%;
+        //left: 50%;
+        width: auto;
         position: relative;
         box-sizing: border-box;
         box-shadow: 0px 0px 10px #777;
+        display: inline-block;
+
+        //transform: translate(-50%, 0);
+        
         border: {
             color: #edf4f2;
             width: 3rem 2rem;
@@ -249,9 +274,9 @@ $wood-hanging-height: 1.3rem;
             radius: 1px;
         }
         img {
-            display: block;
+            display: inline-block;
             margin: 0;
-            width: 100%;
+            height: 100%;
             box-sizing: border-box;
             border: {
                 color: #000;

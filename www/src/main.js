@@ -84,6 +84,7 @@ var app = new Vue({
             }, 4000);
         });
 
+        
         /**
          *   
          * blog
@@ -105,7 +106,7 @@ var app = new Vue({
         };
         setInterval(intervalBlogImgfn, 2000);
         intervalBlogImgfn();
-
+        
         /**
          *   
          * skill
@@ -132,22 +133,26 @@ var app = new Vue({
 	    xAxis: {
 	    	type: 'category',
 	        tickInterval: 1,
-	        categories: ['CSS',
-                             'HTML',
-                             'JavaScript',
-                             'jQuery',
-                             'Customer Service',
-                             'Marketing',
-                             'Project Management',
-                             'Social Media'],
+	        categories: [
+                    'CSS',
+                    'HTML',
+                    'JavaScript',
+                    'Angular',
+                    'Canvas',
+                    'Nodejs',
+                    'Python',
+                    'Java',
+                    'Clojure',
+                    'Linux'
+                ],
 	        min: 0,
-	        max: 8,
+	        max: 10,
 	        tickmarkPlacement: 'on',
 
 	        lineWidth: 0,
 	        labels: {
 	            formatter: function () {
-        		return this.value
+        		return this.value;
 	            }
 	        }
 	    },
@@ -180,7 +185,6 @@ var app = new Vue({
 	        series: {
 	            pointStart: 0,
 	            pointInterval: 1
-
 	        },
 	        column: {
 	            pointPadding: 0,
@@ -190,7 +194,7 @@ var app = new Vue({
 	    series: [{
 	        type: 'area',
 	        name: 'Skills',
-	        data: [4.5, 4.5, 2, 2.5, 5, 4.1, 4, 3.75],
+	        data: [4, 4, 5, 4, 4, 4.5, 4, 3.5, 3.5, 5],
 	        pointPlacement: "on"
 	    }]
 	});
