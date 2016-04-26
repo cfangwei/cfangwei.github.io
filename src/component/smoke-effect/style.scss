@@ -1,0 +1,79 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:400,300);
+
+.smoke-effect {
+    overflow: hidden;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    .h {
+        %title{
+            position:absolute;
+            z-index:3;
+            text-shadow:0px 10px rgba(0,0,0,.15);
+            left:0;
+            right:0;
+            margin:auto;
+            transform:translateY(-50%);
+            font-weight:300;
+            color:white;
+        }
+        h1{
+            @extend %title !optional;
+            text-transform:uppercase;
+            letter-spacing:28px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            top:40%;
+            margin-bottom: 20px;
+        }
+        h2{
+            @extend %title !optional;
+            letter-spacing: 2px;
+            font-size:15px;
+            top:60%;
+        }
+        text-align:center;
+        background-image: url("/img/overlay.png");
+        width:500px;
+        height:500px;
+        overflow:hidden;
+        position:absolute;
+        border:4px solid white;
+        left:0;
+        right:0;
+        margin:auto;
+        top:50%;
+        transform:translateY(-50%);
+        .c{
+            border:2px solid rgba(255,255,255,.1);
+            border-radius:400px;
+            position:absolute;
+            margin:auto;
+            @for $i from 1 through 60{
+                &:nth-of-type(#{$i}){
+                    box-shadow: 3px 0px rgba(255,255,255, - ($i/40)),6px -5px rgba(10, 0, 0,  - ($i/40));
+                    width:($i * 6) + 0px;
+                    height:($i * 1) + 0px;
+                    right:($i * 10) + 0px;
+                    bottom:($i * 10) + 0px;
+                    -webkit-filter:blur($i/3 + 8px);
+                    -webkit-filter: blur($i/3 + 8px);
+                    -moz-filter: blur($i/3 + 8px);
+                    -o-filter: blur($i/3 + 8px);
+                    -ms-filter: blur($i/3 + 8px);
+                    filter: url(#blur);
+                    transform-origin: ($i * 4) + 0px ($i * 2) + 0px;
+                    animation: spin 3s ($i/10) + 0s linear infinite;
+                    background:rgba(90 + ($i*3),33 + ($i*1) ,205,1 - ($i/80));
+                }
+            }
+        }
+    }
+
+    @keyframes spin{
+        0%{transform:rotate(0deg)}
+        100%{transform:rotate(360deg)}
+    }
+    
+}
+

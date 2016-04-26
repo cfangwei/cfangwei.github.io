@@ -1,0 +1,99 @@
+<!doctype html>
+<html class="no-js" lang="">
+  <head>
+    <meta charset="utf-8">
+    <title>放為</title>
+    <meta name="description" content="放為">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="cleartype" content="on">
+    
+    <link rel="stylesheet" href="css/main.css">
+  </head>
+  <body id="app">
+    
+    <div class="dash-screen screen">
+      <div class="dash-mask"></div>
+      <smoke-effect></smoke-effect>
+    </div>
+
+    
+    <!-- <glowlight-bg v-ref:glowlight-bg></glowlight-bg> -->
+    
+    <slide-icons v-ref:slide-icons></slide-icons>
+    
+    <div class="card-screen screen">
+      <canvas id="dash-card--canvas"></canvas>
+      <dash-card v-ref:dash-card></dash-card>
+    </div>
+
+    <div class="blog-screen screen">
+      <a href="http://blog.cfw.io">
+        <div class="imgs">
+          <img alt="" src="img/blog-1.png"/>
+          <img alt="" src="img/blog-2.png"/>
+          <img alt="" src="img/blog-3.png"/>
+          <img alt="" src="img/blog-4.png"/>
+          <img alt="" src="img/blog-5.png"/>
+        </div>
+        <div class="text">
+          <h2>Here is my blog.</h2>
+          <p>Where are your story?</p>
+        </div>
+      </a>
+    </div>
+
+    <div class="experience-screen screen">
+      <a href="http://experience.cfw.io">
+        <forest></forest>
+        <div class="text">
+          <h2>My Code Experience</h2>
+          <p>Experience too short to write a blog?<br/>
+            Maybe you can write some experience wall like me.<br/>
+          </p>
+          <a class="link-to-ew-github" href="https://github.com/Experience-Wall/Experience-Wall">About this project</a>
+        </div>
+      </a>
+    </div>
+    
+    <div class="projects-screen screen">
+      <a href="./projects.html">
+        <github-effect>
+          <img src="img/front-end-conftocat.png" style="display: none; max-height: 50%;">
+        </github-effect>
+        <div class="text">
+          <h3>My Github Projects!</h3>
+        </div>  
+      </a>
+    </div>
+
+    <div class="post-card-screen screen">
+      <post-card v-ref:post-card></post-card>
+    </div>
+    
+    <div class="handwriting-screen screen">
+      <div class="text">
+        <h3>Some Works</h3>
+      </div>
+      <div class="wood-hanging">
+        <div class="decoration-page">
+          <img alt="handwriting" src="img/mifu1.jpeg"/>
+        </div>
+        <p class="desc" style="-webkit-writing-mode:vertical-rl;writing-mode:tb-rl;writing-mode:vertical-rl;writing-mode: vertical-rl;writing-mode: tb-rl;">臨摹米元章《蜀素貼》（部分）</p>
+      </div>
+    </div>
+
+    <div class="skill-screen screen">
+      <div id="skill-container"></div>
+    </div>
+    
+    
+    <bookmark-footer>
+      Tyan Website Home page . Work hard developer  <br/>
+      © 2016 | Tyan . Coder Fangwei Chan | All Rights Reserved
+    </bookmark-footer>
+    <script src="http://localhost:35729/livereload.js"></script>
+    <script src="build/main.bundle.js"></script>
+  </body>
+</html>
+

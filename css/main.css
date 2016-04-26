@@ -1,0 +1,258 @@
+.hidden {
+  display: none; }
+
+.vertical-text {
+  -webkit-transform: rotate(270deg) translate(-400px, 10px);
+          transform: rotate(270deg) translate(-400px, 10px);
+  -webkit-transform-origin: left top 0;
+          transform-origin: left top 0; }
+
+.black-text {
+  color: black; }
+
+.red-text {
+  color: red; }
+
+@font-face {
+  font-family: BigLou;
+  src: url("/font/fancy/BigLou.ttf"); }
+
+@font-face {
+  font-family: VtksVelhosTempos;
+  src: url("/font/fancy/VtksVelhosTempos.ttf"); }
+
+@font-face {
+  font-family: CurlyFleurCaps;
+  src: url("/font/fancy/CurlyFleurCaps.ttf"); }
+
+html, body {
+  margin: 0;
+  padding: 0; }
+
+body {
+  color: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  background-image: -webkit-linear-gradient(top, #000, #111, #222, #333, #184d56, #1c5a64, #9fc5e8, #c8bede, #b3a6d5, #8675b8, #674ea7);
+  background-image: linear-gradient(180deg, #000, #111, #222, #333, #184d56, #1c5a64, #9fc5e8, #c8bede, #b3a6d5, #8675b8, #674ea7);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  margin-bottom: 2rem; }
+
+.dash-screen {
+  background-image: url("../img/dash-lines.png");
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  box-shadow: inset 0 -3px 40px #000000; }
+  .dash-screen .dash-mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 5; }
+  .dash-screen h1 {
+    font-family: CurlyFleurCaps; }
+  .dash-screen .smoke-effect {
+    z-index: 10; }
+
+.projects-screen a {
+  display: block;
+  height: 100%;
+  width: 100%;
+  position: relative; }
+
+.projects-screen .text {
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  bottom: 15%;
+  left: 0;
+  font-family: VtksVelhosTempos;
+  font-size: 3rem; }
+  .projects-screen .text h3 {
+    color: #b88984; }
+
+.skill-screen {
+  padding: 3rem 0; }
+  .skill-screen .highcharts-background {
+    fill: transparent; }
+  .skill-screen #skill-container {
+    height: 100%;
+    width: 100%; }
+  .skill-screen .highcharts-title {
+    margin-bottom: -10px; }
+
+smoke-effect {
+  display: none; }
+
+::-webkit-scrollbar {
+  display: none; }
+
+.screen {
+  height: 100vh;
+  width: 100%;
+  position: relative; }
+
+.dash-card canvas {
+  position: absolute;
+  top: 0;
+  left: 0; }
+
+bookmark-footer {
+  display: none; }
+
+.bookmark-footer {
+  position: fixed;
+  bottom: 0;
+  z-index: 100;
+  font-size: 12px; }
+
+.experience-screen {
+  border-bottom: 1px solid #999; }
+  .experience-screen > a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none; }
+  .experience-screen .text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+    text-shadow: 0 0 2px white; }
+    .experience-screen .text h2, .experience-screen .text p {
+      color: white;
+      text-decoration: none; }
+    .experience-screen .text > a {
+      color: white;
+      text-decoration: none; }
+    .experience-screen .text .link-to-ew-github {
+      color: #4ec5df;
+      text-decoration: initial;
+      text-shadow: none; }
+
+.blog-screen {
+  overflow: hidden; }
+  .blog-screen a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none; }
+  .blog-screen .imgs img {
+    opacity: 0;
+    position: absolute;
+    margin: auto;
+    width: auto;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+    max-width: 50%;
+    max-height: 100%;
+    -webkit-transition: opacity 0.2s ease-in-out;
+    transition: opacity 0.2s ease-in-out;
+    border-radius: 5px; }
+  .blog-screen .text {
+    position: absolute;
+    height: 20rem;
+    width: 20rem;
+    top: 40%;
+    left: 50%;
+    background-color: rgba(0, 0, 0, 0.8);
+    text-align: center;
+    border-radius: 50%;
+    padding: 3rem;
+    box-shadow: 0 0 3rem black; }
+    .blog-screen .text:after {
+      content: '';
+      display: block;
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      top: -1.5rem;
+      left: -1.5rem;
+      padding: 1rem;
+      border-radius: 50%;
+      box-shadow: 0 0 3rem black;
+      border: 0.5rem solid #222; }
+    .blog-screen .text h2, .blog-screen .text p {
+      color: white;
+      text-shadow: 0 0 3px black; }
+    .blog-screen .text p {
+      font-size: 2rem;
+      font-family: BigLou; }
+    .blog-screen .text h2 {
+      margin-top: 5rem;
+      text-shadow: 0 0 5px #fff;
+      text-transform: uppercase;
+      font-size: 3rem;
+      font-family: CurlyFleurCaps; }
+
+.handwriting-screen {
+  padding: 2rem;
+  box-sizing: border-box;
+  text-align: center; }
+  .handwriting-screen .text {
+    position: absolute;
+    font-family: BigLou;
+    left: 50%;
+    top: 70%;
+    -webkit-transform: translate(-100%, 0);
+            transform: translate(-100%, 0);
+    z-index: 100; }
+    .handwriting-screen .text h3 {
+      font-size: 3.5rem;
+      color: #2eafaf;
+      text-shadow: 0 0 10px white; }
+  .handwriting-screen .wood-hanging {
+    margin: 1rem auto;
+    width: auto;
+    position: relative;
+    box-sizing: border-box;
+    height: 100%;
+    display: inline-block; }
+    .handwriting-screen .wood-hanging:before, .handwriting-screen .wood-hanging:after {
+      content: '';
+      height: 1.3rem;
+      width: 104%;
+      position: absolute;
+      left: -2%;
+      background-color: #462300;
+      box-shadow: 0px 0px 10px #462300;
+      z-index: 1;
+      border-radius: 5px; }
+    .handwriting-screen .wood-hanging:before {
+      top: -1.3rem; }
+    .handwriting-screen .wood-hanging:after {
+      top: 100%; }
+    .handwriting-screen .wood-hanging p.desc {
+      position: absolute;
+      top: 50%;
+      right: -3rem;
+      -webkit-transform: translate(0, -50%);
+              transform: translate(0, -50%); }
+  .handwriting-screen .decoration-page {
+    margin: 0 auto;
+    height: 100%;
+    width: auto;
+    position: relative;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 10px #777;
+    display: inline-block;
+    border-color: #edf4f2;
+    border-width: 3rem 2rem;
+    border-style: solid;
+    border-radius: 1px; }
+    .handwriting-screen .decoration-page img {
+      display: inline-block;
+      margin: 0;
+      height: 100%;
+      box-sizing: border-box;
+      border-color: #000;
+      border-width: 0.5rem 0.3rem;
+      border-style: solid; }
