@@ -1,4 +1,6 @@
 * {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box; }
 
 body {
@@ -15,22 +17,16 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
-  -webkit-perspective: 1000;
-          perspective: 1000; }
+  perspective: 1000; }
   .card .flipper {
-    -webkit-transition: 0.6s;
     transition: 0.6s;
-    -webkit-transform-style: preserve-3d;
-            transform-style: preserve-3d;
+    transform-style: preserve-3d;
     position: relative;
-    -webkit-transform-origin: center 175px;
-            transform-origin: center 175px; }
+    transform-origin: center 175px; }
   .card:hover .flipper, .card.hover .flipper {
-    -webkit-transform: rotateY(180deg) rotateZ(90deg);
-            transform: rotateY(180deg) rotateZ(90deg); }
+    transform: rotateY(180deg) rotateZ(90deg); }
   .card div.front, .card div.back {
-    -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
+    backface-visibility: hidden;
     position: absolute;
     top: 0;
     left: 0;
@@ -43,8 +39,7 @@ body {
     width: 490px;
     height: 350px;
     box-sizing: border-box;
-    -webkit-transform: rotateY(180deg) rotateZ(90deg);
-            transform: rotateY(180deg) rotateZ(90deg); }
+    transform: rotateY(180deg) rotateZ(90deg); }
     .card div.back div.container-sm {
       float: left;
       width: 40%;
@@ -113,6 +108,7 @@ body {
     background-position-x: -162px;
     background-position-y: 93px;
     background-repeat: no-repeat;
+    -moz-animation: fadeInDark 0.8s forwards;
     -webkit-animation: fadeInDark 0.8s forwards;
     animation: fadeInDark 0.8s forwards; }
   .card .front:after {
@@ -125,8 +121,7 @@ body {
     background: rgba(225, 98, 63, 0.7);
     filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
     opacity: 0;
-    -webkit-animation: fadeInRed 0.7s 0.5s forwards;
-            animation: fadeInRed 0.7s 0.5s forwards; }
+    animation: fadeInRed 0.7s 0.5s forwards; }
   .card .front .content {
     z-index: 10;
     position: absolute;
@@ -134,10 +129,8 @@ body {
     left: 50%;
     filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
     opacity: 0;
-    -webkit-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
-    -webkit-animation: fadeInText 1.2s 0.1s forwards;
-            animation: fadeInText 1.2s 0.1s forwards; }
+    transform: translate(-50%, -50%);
+    animation: fadeInText 1.2s 0.1s forwards; }
     .card .front .content h1 {
       font-size: 60px;
       line-height: 40px;
@@ -153,6 +146,7 @@ body {
     top: 16px;
     left: 24px;
     opacity: 0;
+    -moz-animation: fadeInMark 0.8s 0.5s forwards;
     -webkit-animation: fadeInMark 0.8s 0.5s forwards;
     animation: fadeInMark 0.8s 0.5s forwards; }
     .card .front .mark:after {
@@ -169,6 +163,8 @@ body {
       margin-left: -5px;
       margin-top: 4px; }
     .card .front .mark .upside-down {
+      -moz-transform: rotate(180deg);
+      -ms-transform: rotate(180deg);
       -webkit-transform: rotate(180deg);
       transform: rotate(180deg);
       top: auto;
@@ -180,25 +176,25 @@ body {
 .dark {
   color: #0C0B13; }
 
-@-webkit-keyframes fadeInCard {
-  from {
-    top: 40px;
-    -webkit-transform: scale(1.2) rotate(10deg);
-            transform: scale(1.2) rotate(10deg); }
-  to {
-    top: 0px;
-    -webkit-transform: scale(1) rotate(0deg);
-            transform: scale(1) rotate(0deg); } }
-
 @keyframes fadeInCard {
   from {
     top: 40px;
-    -webkit-transform: scale(1.2) rotate(10deg);
-            transform: scale(1.2) rotate(10deg); }
+    transform: scale(1.2) rotate(10deg); }
   to {
     top: 0px;
-    -webkit-transform: scale(1) rotate(0deg);
-            transform: scale(1) rotate(0deg); } }
+    transform: scale(1) rotate(0deg); } }
+
+@-moz-keyframes fadeInDark {
+  from {
+    opacity: 0;
+    -moz-transform: rotate(72deg) translate(120px, 800px);
+    transform: rotate(72deg) translate(120px, 800px); }
+  30% {
+    opacity: 0.1; }
+  to {
+    opacity: 1;
+    -moz-transform: rotate(72deg) translate(75px, 20px);
+    transform: rotate(72deg) translate(75px, 20px); } }
 
 @-webkit-keyframes fadeInDark {
   from {
@@ -215,14 +211,30 @@ body {
 @keyframes fadeInDark {
   from {
     opacity: 0;
+    -moz-transform: rotate(72deg) translate(120px, 800px);
+    -ms-transform: rotate(72deg) translate(120px, 800px);
     -webkit-transform: rotate(72deg) translate(120px, 800px);
     transform: rotate(72deg) translate(120px, 800px); }
   30% {
     opacity: 0.1; }
   to {
     opacity: 1;
+    -moz-transform: rotate(72deg) translate(75px, 20px);
+    -ms-transform: rotate(72deg) translate(75px, 20px);
     -webkit-transform: rotate(72deg) translate(75px, 20px);
     transform: rotate(72deg) translate(75px, 20px); } }
+
+@-moz-keyframes fadeInRed {
+  from {
+    opacity: 0;
+    -moz-transform: rotate(70deg) translate(7px, 800px);
+    transform: rotate(70deg) translate(7px, 800px); }
+  30% {
+    opacity: 0.2; }
+  to {
+    opacity: 1;
+    -moz-transform: rotate(58deg) translate(0px, 0px);
+    transform: rotate(58deg) translate(0px, 0px); } }
 
 @-webkit-keyframes fadeInRed {
   from {
@@ -239,14 +251,19 @@ body {
 @keyframes fadeInRed {
   from {
     opacity: 0;
-    -webkit-transform: rotate(70deg) translate(7px, 800px);
-            transform: rotate(70deg) translate(7px, 800px); }
+    transform: rotate(70deg) translate(7px, 800px); }
   30% {
     opacity: 0.2; }
   to {
     opacity: 1;
-    -webkit-transform: rotate(58deg) translate(0px, 0px);
-            transform: rotate(58deg) translate(0px, 0px); } }
+    transform: rotate(58deg) translate(0px, 0px); } }
+
+@-moz-keyframes fadeInText {
+  from {
+    opacity: 0; }
+  to {
+    top: 50%;
+    opacity: 1; } }
 
 @-webkit-keyframes fadeInText {
   from {
@@ -260,6 +277,12 @@ body {
     opacity: 0; }
   to {
     top: 50%;
+    opacity: 1; } }
+
+@-moz-keyframes fadeInMark {
+  from {
+    opacity: 0; }
+  to {
     opacity: 1; } }
 
 @-webkit-keyframes fadeInMark {

@@ -2,9 +2,38 @@
 #+AUTHOR: 陳放為
 
 
-Emacs 的标志是不是一头牛，学名叫非洲角马，是一种羚羊。
 
-从大学开始就开始使用 Emacs 了,到现在多多少少
 
-** 自己配置 emacs.d
+从大学开始就开始使用 Emacs 了,到现在多多少少有点手感了，分享一些自己学习 emacs 的经验。
+
+* 上手配置
+
+自己开发都是在 linux 下或者 Mac 下的，所以 Windows 的配置不清除，印象中是可以通过 babun 调用 emacs-w32 来启动 emacs 的，但是最好还是建议在 linux 和 Mac 下折腾
+
+
 除了 eval 和 spacemas 等 vim 党,emacs 入门一般分为俩种,一种是一开始直接用高手的配置; 另一种是从零开始一步一步配置。
+** 自己配置 emacs.d
+
+
+[[https://github.com/technomancy/better-defaults][https://github.com/technomancy/better-defaults]]
+
+
+** 大神级别配置
+
+emacs-rocks 作者的配置 [[https://github.com/magnars/.emacs.d][https://github.com/magnars/.emacs.d]]
+
+[[https://github.com/magnars/.emacs.d]]
+
+之前我就是学习他的配置自己改了一套，不过这个我已经不用很久了，之后自己重新撸了一套 
+
+https://github.com/AbyChan/Emacs.d
+
+
+* 我一些 emacs 项目
+[[https://github.com/Emacs-Phoenix][https://github.com/Emacs-Phoenix]]
+
+** emacs phoenix 开箱配置 
+ 
+
+* 另
+注：Emacs 的标志是不是一头牛，学名叫非洲角马，是一种羚羊。
