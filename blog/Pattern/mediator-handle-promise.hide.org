@@ -12,7 +12,6 @@ let promise1 = new Promise(function(reject, resolve){
     let data1 = request(); // 通常都是异步获取数据，异步我就不模拟了
 
     resolve(data1);
-
 })
 
 let promise2 = new Promise(function(reject2, resolve2){
@@ -33,12 +32,7 @@ let promise2 = new Promise(function(reject2, resolve2){
 
 这么复杂的逻辑可能还有人不相信，但是事实上真的就会有，因为很多原因，无法避免的，这样的代码开发和维护的难度就可想而知了。
 
-当然，我们可以引入中介者模式:
-
-
-
-
-
+当然，我们可以引入中介者模式, 會
 
 
 #+begin_src javascript

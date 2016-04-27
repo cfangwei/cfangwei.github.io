@@ -21,7 +21,7 @@ div.hr {
     height: 1px;
     background-color: #bebebe;
     opacity: 0.8;
-    margin: 1.8rem auto 0.5rem;
+    margin: 1.8rem auto 1rem;
 }
 
 .main {
@@ -81,7 +81,7 @@ div.hr {
             display: inline-block;
             padding: 0.5rem;
             float: left;
-            background-color: #e8e8e8;
+            background-color: #bbffe7;
             border-radius: 3px;
             margin-right: 0.3rem;
             margin-top: 0.3rem;
@@ -91,7 +91,7 @@ div.hr {
             }
             
             &:nth-child(even) {
-                background-color: #89fffc;
+                background-color: #c1fcff;
             }
         }
     }
@@ -133,6 +133,20 @@ div.hr {
             margin-bottom: 0rem;
         }
     }
+
+    p.project {
+        margin-bottom: 0.5rem;
+        &:last-child {
+            margin-bottom: 0rem;    
+        }
+    }
+
+    .blod {
+        color: #000;
+        font: {
+            width: 700;
+        }
+    }
 }
 
 .links {
@@ -141,5 +155,10 @@ div.hr {
         &:last-child {
             margin-bottom: 0rem;
         } 
+    }
+
+    .note {
+        margin-top: 0.2rem;
+        font-size: 0.8rem;
     }
 }

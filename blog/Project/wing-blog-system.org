@@ -1,0 +1,289 @@
+#+TITLE: Wing 静态博客生成工具
+#+AUTHOR: 陳放為
+
+之前写的博客 [[http://tyan.io/][http://tyan.io/]] 是用 Hexo 写的，但是慢慢得就不用了，主要原因是自定义程度不够强，还可能是感情不够吧，于是想自己撸一套，满足自己造轮子的欲望。
+
+于是我就撸另一个静态博客生成系统 Wing，还是一个静态博客生成工具，支所以选择静态，是觉得现在用 md 和 org 写博客还是占主流，要是写在数据库里，总是有一种不安全感，万一自己的服务器挂了没有备份那么就悲剧了，而且像 md 和 org 这种文件可以直接保存在 github 之类的服务器上，永久保存，还能看到 diff，十分方便。
+
+这个工具的 github 仓库在这里 [[https://github.com/A-Horse/Wing]] ，支持 md 和 org，平时比较忙，现在还没有搞完，但是已经可以像 hexo 一样部署了，目前只能部署到 gihub pages。
+
+当作这个作品的一个阶段性记录吧，这里分享一下这个博客生成系统的实现
+
+/核心渲染部分/
+#+begin_src javascript
+export class RenderController {
+    constructor(inputPath, outputRoot, theme) {
+        this.inputPath = inputPath;
+        this.outputRoot = outputRoot;
+        this.categorys = {};
+        this.theme = theme;        
+        this.rendering = false;
+    }
+
+    static renderDir(dirPath, theme, outputPath, cb) {
+        let renderController = new RenderController(dirPath, outputPath, theme);
+        renderController.render(cb);
+    }
+
+    render(cb) {
+        if( this.rendering ){
+            return cb();
+        }
+        this.rendering = true;
+        this.clearData();
+        let self = this;
+        this.loadDir(this.inputPath, this.outputRoot, 'index', () => {
+            fsExtra.copy(path.join(themePath, this.theme, 'static'),
+                         path.join(this.outputRoot, 'static'), () => {
+                             self.renderCategorys(() => {
+                                 this.rendering = false;
+                                 cb();
+                             });
+                         }); 
+        });
+    }
+
+    loadDir(dirPath, outputPath, category, cb) {
+        let self = this;
+
+        fs.readdir(dirPath, (err, paths) => {
+            fs.mkdir(outputPath, () => {
+
+                self.addCategory(category, dirPath, outputPath);
+                
+                let mapdone = new MapDone(cb);
+                
+                let [files, dirs] = _.partition(paths, (pathName) => {
+                    return isFile(path.resolve(dirPath, pathName));
+                });
+
+                
+                let fileNames = files.filter((file) => {
+                    return ignoreNames.indexOf(file) < 0;
+                }).filter((file) => {
+                    return !isSuffix('hide', file);
+                }).map((file) => {
+                    let fileNameWithoutSuffix = takeFileNameWithoutSuffix(file);
+                    self.addArticle(file, category, mapdone.reg());
+                    return fileNameWithoutSuffix;
+                });
+
+
+
+                let [articleAsserts, subDirs] = _.partition(dirs, (dir) => {
+                    return fileNames.indexOf(dir) >= 0;
+                });
+
+                articleAsserts.filter((articleAssert) => {
+                    return fileNames.indexOf(articleAssert) >= 0;
+                }).map((articleAssert) => {
+                    fsExtra.copy(path.join(dirPath, articleAssert),
+                                 path.join(outputPath, articleAssert), mapdone.reg());
+                });
+                
+                subDirs.map((subDir) => {
+                    self.loadDir(path.join(dirPath, subDir), 
+                                 path.join(outputPath, subDir), subDir, mapdone.reg());
+                });
+
+                mapdone.done();
+            });
+        });
+    }
+
+    // add article info to category.articles array
+    addArticle(fileName, category, cb){
+        let self = this;
+        getModifyDates(path.join(this.categorys[category].inputPath, fileName), (dateInfo) => {
+            self.categorys[category].articles.push({
+                fileName: fileName,
+                dateInfo: dateInfo
+            });
+            cb();
+        });
+
+    }
+
+    // clear data
+    clearData() {
+        this.categorys = [];
+    }
+
+    // init category data
+    addCategory(name, inputPath, outputPath) {
+        this.categorys[name] = {
+            outputPath: outputPath,
+            inputPath: inputPath,
+            articles: []
+        };
+    }
+
+    // TODO
+    // cut content for index and category display
+    static cutOffArticle(content) {
+        let text = htmlToText.fromString(content, {
+            wordwrap: 130
+        });
+        return text.substring(0, ARTICLE_SUMMARY_CHAR_NUMBER);
+    }
+
+    // dispatch task for every dir
+    renderCategorys(cb) {
+        if( !this.categorys ){
+            return cb();
+        }
+        let self = this;
+        let mapdone = new MapDone(() => {
+            self.renderIndex(cb);
+        });
+
+
+        Object.keys(this.categorys).map((name) => {
+            if( name === 'index' ){
+                return;
+            }
+
+            let category = this.categorys[name];
+            let done = mapdone.reg();
+
+            self.renderCategory(category, () => {
+                let outputPath = category.outputPath;
+
+                done();
+                self.renderCategoryIndex(name, outputPath, category.articles, () => {
+                    
+                });
+            });
+        });
+    }
+
+    // dispatch category or index
+    renderCategoryIndex(name, outputPath, articles, cb) {
+        let self = this;
+        fs.readFile(path.resolve(__dirname, '..', themePath, self.theme, 'category.html'),
+                    'utf-8', (err, data) => {
+                        var html = ejs.render(data, {
+                            title: name,
+                            articles: articles
+                        });
+                        let outputFilePath = path.join(outputPath, 'index.html');
+                        fs.writeFile(outputFilePath, html, (err) => {
+                            if( err ){
+                                Error(err);
+                            }
+                        });
+                        
+        });
+    }
+
+    renderCategory(category, cb) {
+        let self = this;
+        let outputPath = category.outputPath,
+            inputPath = category.inputPath;
+
+        
+        let mapdone = new MapDone(cb);
+        
+        category.articles.sort((a, b) => {
+            return a.dateInfo[SORT_ARTICLE_BY].getTime() - b.dateInfo[SORT_ARTICLE_BY].getTime();
+        }).map((articleInfo) => {
+            let done = mapdone.reg();
+            
+            parseCode2Html(path.join(inputPath, articleInfo.fileName), (err, article) => {
+                if( !err ){
+
+                    fs.readFile(path.resolve(__dirname, '..', themePath, self.theme, 'article.html'),
+                                'utf-8', (err, data) => {
+
+                                    let renderData = {
+                                        title: article.title,
+                                        content: article.content,
+                                        createDate: articleInfo.dateInfo.create,
+                                        type: article.type
+                                    };
+                                    var result = ejs.render(data, renderData);
+
+                                    articleInfo.title = article.title;
+                                    articleInfo.content = article.content;
+                                    
+                                    
+                                    let fileNameWithoutSuffix = takeFileNameWithoutSuffix(articleInfo.fileName);
+                                    let outputFilePath = path.join(outputPath, fileNameWithoutSuffix + '.html');
+
+                                    let contentPart = RenderController.cutOffArticle(article.content);
+
+                                    articleInfo.outputfilename = fileNameWithoutSuffix + '.html';
+                                    articleInfo.contentPart = contentPart;
+                                    articleInfo.showTime = dateFormat(articleInfo.dateInfo.create,
+                                                                      "dddd, mmmm dS, yyyy, h:MM:ss");
+                                    
+                                    
+                                    fs.writeFile(outputFilePath, result, (err) => {
+                                        if( err ){
+                                            Error(err);
+                                        }
+                                        done();
+                                    });
+                                    
+                                });
+                }
+            });
+        });
+
+    }
+
+    renderIndex(cb) {
+        let allarticles = Object.keys(this.categorys).reduce((result, categoryName) => {
+            this.categorys[categoryName].articles.map((article) => {
+                article.outputfilename = categoryName + '/' + article.outputfilename;
+            });
+            return result.concat(this.categorys[categoryName].articles);
+        }, []).sort((a, b) => {
+
+            return a.dateInfo[SORT_ARTICLE_BY].getTime() - b.dateInfo[SORT_ARTICLE_BY].getTime();
+        });
+
+        let mapdone = new MapDone(cb);
+
+        let self = this;
+        let pageN = Math.ceil(allarticles.length / INDEX_ARTICLE_NUMBER);
+        _.chunk(allarticles, INDEX_ARTICLE_NUMBER).map((articles, i) => {
+            let done = mapdone.reg();
+
+            fs.readFile(path.resolve(__dirname, '..', themePath, self.theme, 'index.html'),
+                        'utf-8', (err, data) => {
+                            var html = ejs.render(data, {
+                                title: BLOG_NAME,
+                                articles: articles,
+                                currentPageN: i,
+                                pageN: pageN
+                            });
+                            
+                            let outputPath = i === 0 ? this.outputRoot : this.outputRoot + '/page/' + i;
+
+                            fsExtra.mkdirs(outputPath, (err) => {
+                                
+                                let outputFilePath = path.join(outputPath, 'index.html');
+                                
+                                fs.writeFile(outputFilePath, html, (err) => {
+                                    if( err ){
+                                        Error(err);
+                                    }
+                                    done();
+                                });
+                            });
+                        });
+        });
+    }
+
+    searchKeyWord() {
+
+    }
+    
+    toHtml() {
+
+    }
+}
+#+end_src
+
+首先用类的方法实现一个渲染类，输入适当的参数
