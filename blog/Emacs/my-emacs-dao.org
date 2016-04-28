@@ -33,7 +33,7 @@
 
 
 ** 大神级别配置
-
+其实我是建议一上来就用大神级别的配置的，我一开始也是用大神的配置的，github 上有很多，不过我最喜欢的还是 emacs rock
 emacs-rocks 作者的配置 [[https://github.com/magnars/.emacs.d][https://github.com/magnars/.emacs.d]]
 
 [[https://github.com/magnars/.emacs.d]] 
