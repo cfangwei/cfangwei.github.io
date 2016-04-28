@@ -286,4 +286,67 @@ export class RenderController {
 }
 #+end_src
 
-首先用类的方法实现一个渲染类，输入适当的参数
+首先用类的方法实现一个渲染类，输入适当的参数,读取博客目录下的文件夹，然后不断递归所有目录，生成一个一个目录,目录的层级结构取决于文件夹的目录。然后读取文件名，过滤不必要的的文件，然后开始读取文件，在解析成 html，再读取模板文件，渲染，生成到指定的目录，由于追求效率，所以必须要使用 NodeJs 的异步特性，这就导致了必需要处理回调，这里没有使用 Async，而是自己实现了一个小方法, MapDone;
+[[../Js/map-callback-done.html]]
+这篇文章有介绍。
+
+解析文章的时候判断同文件夹里面有没有相同名字的文件夹，如果有，就一并复制，这跟 Hexo 是一样的，主要放置一些图片，单篇文章需要用到的 js 或者 css 等等,剩余的目录进行递归，继续生成下一级目录。
+
+
+server的代码
+
+#+begin_src javascript
+export let server = (targetPath,
+    themePath, blogPath, reload,
+    port = DEFAULT_PORT, host = DEFAULT_HOST) => {
+    let options = {
+        root: targetPath
+    };
+
+    let server = httpServer.createServer(options);
+    server.listen(port, host, () => {
+        console.log(`Server Listen on ${host}:${port} `);
+    });
+
+    let themeStaticPath = path.join(themePath, 'static');
+
+
+
+    fs.watch(themeStaticPath, {
+        persistent: true,
+        recursive: true
+    }, (event, filename) => {
+        // ignore dot file
+        // TODO do it better
+        if (filename && takeFileName(filename)[0] !== '.') {
+            fs.createReadStream(path.join(themeStaticPath, filename))
+                .pipe(fs.createWriteStream(path.join(targetPath, 'static', filename)));
+        }
+    });
+
+    let isHtmlFile = R.curry(isSuffix, 'html');
+    fs.watch(themePath, {
+        persistent: true
+    }, (event, filename) => {
+        if (filename && takeFileName(filename)[0] !== '.') {
+            if (isHtmlFile(filename)) {
+                reload();
+            }
+        }
+    });
+
+
+    let watch = watchTree(blogPath, {
+        exclude: ["~", "#", /^\./]
+    }, function(event) {
+        reload();
+    });
+
+};
+#+end_src
+
+
+
+
+
+

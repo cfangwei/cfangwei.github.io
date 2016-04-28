@@ -11,18 +11,32 @@
 自己开发都是在 linux 下或者 Mac 下的，所以 Windows 的配置不清除，印象中是可以通过 babun 调用 emacs-w32 来启动 emacs 的，但是最好还是建议在 linux 和 Mac 下折腾
 
 
-除了 eval 和 spacemas 等 vim 党,emacs 入门一般分为俩种,一种是一开始直接用高手的配置; 另一种是从零开始一步一步配置。
+2除了 eval 和 spacemas 等 vim 党,emacs 入门一般分为俩种,一种是一开始直接用高手的配置; 另一种是从零开始一步一步配置。
 ** 自己配置 emacs.d
 
+一上来就手工配置 emacs 难免有点难度，而且容易令人打退堂鼓，而且还要先学习 elisp，这对于没有 lisp 的人来说学习曲线会十分陡峭，不是一般人能受得了的，虽然说这样的，但是我还是有点建议。
 
+首先就是要基本的配置改一下，因为 emacs 出生的年代实在是比较久远，一些默认的配置会让 21 世纪的我们无所适从。这篇文章也有说到：
 [[https://github.com/technomancy/better-defaults][https://github.com/technomancy/better-defaults]]
+
+把一些基础的东西换掉之后，就可以开始学习 emacs，尽管你会觉得 emacs 一打开的界面很难看，但是相信我，经过你的配置一定会变得很好看的
+
+另，如果你是 mac 用户，那可能你要替换一下 alt 和 command 的位置，alt 在 emacs 的世界里面被称作 M, command 相当于 windows 里面的 win 键，被成为 s，control 键则是 C。
+
+可以参考下面的代码把 M 和 s 键的位置替换一下，随便把 fn 当作 H 键来用用：
+
+#+begin_src lisp
+(setq mac-option-modifier 'super)
+(setq mac-command-modifier 'meta)
+(setq ns-function-modifier 'hyper)
+#+end_src
 
 
 ** 大神级别配置
 
 emacs-rocks 作者的配置 [[https://github.com/magnars/.emacs.d][https://github.com/magnars/.emacs.d]]
 
-[[https://github.com/magnars/.emacs.d]]
+[[https://github.com/magnars/.emacs.d]] 
 
 之前我就是学习他的配置自己改了一套，不过这个我已经不用很久了，之后自己重新撸了一套 
 
@@ -37,3 +51,4 @@ https://github.com/AbyChan/Emacs.d
 
 * 另
 注：Emacs 的标志是不是一头牛，学名叫非洲角马，是一种羚羊。
+

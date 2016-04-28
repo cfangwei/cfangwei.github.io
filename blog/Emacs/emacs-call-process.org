@@ -1,2 +1,89 @@
 #+TITLE: Emacs 调用外部程序
 #+AUTHOR: 陳放為
+
+elisp 开发调用外部程序应该是家常便饭了，因为 elisp 有一个先天性缺点，单线程同步语言，也就是意味着当你访问网络和磁盘的时候，程序是卡着，其实这也是当时的设计原因，emacs 定位成编辑器，那其实很多其他功能也是不必要了，是定制的 lisp，不过 emacs 发展成现在的样子，很多程序都需要调用外部程序了，为了不让 emacs 卡出翔，调用外部程序还是很有必要的。
+
+调用外部进程也分为同步和异步的。
+
+*  同步
+同步函数为
+
+Function: call-process program &optional infile destination display &rest args
+
+同步调用一般用作 shell 命令的调用
+
+** call-process
+#+begin_src lisp
+(call-process "pwd" nil t)
+     ⇒ 0
+
+---------- Buffer: foo ----------
+/home/lewis/manual
+---------- Buffer: foo ----------
+(call-process "grep" nil "bar" nil "lewis" "/etc/passwd")
+     ⇒ 0
+
+---------- Buffer: bar ----------
+lewis:x:1001:1001:Bil Lewis,,,,:/home/lewis:/bin/bash
+
+---------- Buffer: bar ----------
+#+end_src
+
+** call-process-region
+如果你是用来处理一段区域的话，可以用 call-process-region
+#+begin_src lisp
+(apply 'call-process-region beg end program t (list t nil) t args))
+#+end_src
+
+还有很多不常用的：
+** process-file 
+
+** process-file-side-effects
+
+** call-process-shell-command 
+
+** process-file-shell-command
+
+** shell-command-to-string
+
+** process-lines program
+
+
+* 异步
+
+** start-process
+上面同步的用法一般是用来 shell 输出的，如果需要调出外部程序一般用 start-process
+#+begin_src lisp
+(defun reveal-dir ()
+  "Reveal the file associated with the current buffer in the linux File Manager."
+  (interactive)
+  (let ((file-path (file-name-directory (or load-file-name buffer-file-name))))
+    (start-process "xdg-open" nil "xdg-open" file-path)))
+
+;;;###autoload
+(defun reveal-in-nautilus ()
+  "Reveal the file associated with the current buffer in the linux Nautilus."
+  (interactive)
+  (let ((file-name (if buffer-file-name
+                       buffer-file-name
+                     (error "Cannot open this buffer because it not visiting a file."))))
+    (start-process "nautilus" nil "nautilus" file-name)))
+#+end_src
+上面的代码是在 linux 下掉出文件管理器，下面的函数是专门调出 nautilus 函数
+
+如果进程是一直运行的，通常也保存 (start-process) 返回的变量
+
+** delete
+
+删除一个进程也很简单, 只要把那个进程的变量删掉就行了
+#+begin_src lisp
+(delete-process 'process)
+#+end_src
+
+** 区别
+
+同步和异步的很容易搞混，不过看上去同意的大多数是以 process 开头的，而异步的大多数是以 start 开头的
+
+**** 参考资料
+https://www.gnu.org/software/emacs/manual/html_node/elisp/Synchronous-Processes.html
+https://www.gnu.org/software/emacs/manual/html_node/elisp/Asynchronous-Processes.html

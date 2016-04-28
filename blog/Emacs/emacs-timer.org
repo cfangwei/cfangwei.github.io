@@ -3,6 +3,53 @@
 
 在 emacs 插件开发中，调用定时器是比较常见，elisp 的定时器比较有点意思，所以分享一下。
 
+elisp 中的 timer 分为两种，一种是普通的 timer，一种是空闲 timer，第二种的用处比较少，因为第二种是在 emacs 空闲的时候才开始计算，不是很准。
+
+两种 timer 的创建函数分别是
+
+/Command: run-at-time time repeat function &rest args/
+#+begin_src lisp
+;; Command: run-with-idle-timer secs repeat function &rest args
+
+;; example 
+(defvar my-resume-timer nil
+  "Timer for `my-timer-function' to reschedule itself, or nil.")
+
+(defun my-timer-function ()
+  ;; If the user types a command while my-resume-timer
+  ;; is active, the next time this function is called from
+  ;; its main idle timer, deactivate my-resume-timer.
+  (when my-resume-timer
+    (cancel-timer my-resume-timer))
+  ...do the work for a while...
+  (when taking-a-break
+    (setq my-resume-timer
+          (run-with-idle-timer
+            ;; Compute an idle time break-length
+            ;; more than the current value.
+            (time-add (current-idle-time)
+                      (seconds-to-time break-length))
+            nil
+            'my-timer-function))))
+#+end_src
+
+/Command: run-at-time time repeat function &rest args/
+#+begin_src lisp
+;; Command: run-at-time time repeat function &rest args
+
+;; example 
+(setq my-timer-store (run-at-time "1 min" 900 'my-func))
+#+end_src
+
+
+两者的取消函数都是
+
+#+begin_src lisp
+(cancel-timer 'function)
+#+end_src
+
+之前我用 timer 撸了一个定时提示休息眼睛的 elisp 插件，不像其他软件那么烦，强制你休息，关掉屏幕，因为程序员都知道，打断自己的编码是十分令人厌烦的，贴一下核心代码部分
+
 #+begin_src lisp
 ;;; eye-care.el --- uglify HTML, CSS and JavaScript/JSON by js-beautify
 
@@ -165,7 +212,7 @@ Usually just deletes the appointment buffer."
               (- eye-care-display-duration 1)))
       (message "start eye care!")
       (setq eye-care-timer (run-at-time t eye-care-interval 'eye-care-check)))))
-P
+
 ;;;###autoload
 (defun eye-care-stop ()
   "Stop eye care."
@@ -191,4 +238,14 @@ P
 
 ;;; eye-care.el ends here
 #+end_src
+
+
+
+gihtub 仓库在这里 [[git@github.com:Emacs-Phoenix/eye-care.git]]
+
+-----
+
+/参考资料 wiki/
+https://www.gnu.org/software/emacs/manual/html_node/elisp/Timers.html
+https://www.gnu.org/software/emacs/manual/html_node/elisp/Idle-Timers.html
 
