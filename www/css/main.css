@@ -1,9 +1,20 @@
+html, body, div, p {
+  padding: 0;
+  margin: 0; }
+
+html, body {
+  height: 100%;
+  width: 100%;
+  border: 0; }
+
 .hidden {
   display: none; }
 
 .vertical-text {
-  transform: rotate(270deg) translate(-400px, 10px);
-  transform-origin: left top 0; }
+  -webkit-transform: rotate(270deg) translate(-400px, 10px);
+          transform: rotate(270deg) translate(-400px, 10px);
+  -webkit-transform-origin: left top 0;
+          transform-origin: left top 0; }
 
 .black-text {
   color: black; }
@@ -32,6 +43,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  background-image: -webkit-linear-gradient(top, #000, #111, #222, #333, #184d56, #1c5a64, #9fc5e8, #c8bede, #b3a6d5, #8675b8, #674ea7);
   background-image: linear-gradient(180deg, #000, #111, #222, #333, #184d56, #1c5a64, #9fc5e8, #c8bede, #b3a6d5, #8675b8, #674ea7);
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -86,9 +98,6 @@ body {
 smoke-effect {
   display: none; }
 
-::-webkit-scrollbar {
-  display: none; }
-
 .screen {
   height: 100vh;
   width: 100%;
@@ -119,7 +128,8 @@ bookmark-footer {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
     text-shadow: 0 0 2px white; }
     .experience-screen .text h2, .experience-screen .text p {
       color: white;
@@ -146,9 +156,11 @@ bookmark-footer {
     width: auto;
     left: 50%;
     top: 50%;
-    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
     max-width: 50%;
     max-height: 100%;
+    -webkit-transition: opacity 0.2s ease-in-out;
     transition: opacity 0.2s ease-in-out;
     border-radius: 5px; }
   .blog-screen .text {
@@ -196,7 +208,8 @@ bookmark-footer {
     font-family: BigLou;
     left: 50%;
     top: 70%;
-    transform: translate(-100%, 0);
+    -webkit-transform: translate(-100%, 0);
+            transform: translate(-100%, 0);
     z-index: 100; }
     .handwriting-screen .text h3 {
       font-size: 3.5rem;
@@ -227,7 +240,8 @@ bookmark-footer {
       position: absolute;
       top: 50%;
       right: -3rem;
-      transform: translate(0, -50%); }
+      -webkit-transform: translate(0, -50%);
+              transform: translate(0, -50%); }
   .handwriting-screen .decoration-page {
     margin: 0 auto;
     height: 100%;

@@ -17,14 +17,19 @@ ul {
 
 .flex {
   width: 100%;
+  display: -webkit-box;
   display: flex;
-  flex-direction: row; }
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+          flex-direction: row; }
   .flex > div {
-    flex: 1 1 auto;
+    -webkit-box-flex: 1;
+            flex: 1 1 auto;
     width: 30px;
     /* To make the transition work nicely.  (Transitions to/from
                       "width:auto" are buggy in Gecko and Webkit, at least.
                       See http://bugzil.la/731886 for more info.) */
+    -webkit-transition: width 0.7s ease-out;
     transition: width 0.7s ease-out;
     padding: 0 18px; }
     .flex > div p {

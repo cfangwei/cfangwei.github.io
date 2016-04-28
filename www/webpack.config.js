@@ -9,6 +9,7 @@ var LiveReloadPlugin = require('webpack-livereload-plugin');
 var config = {
     entry: {
         main: './src/main.js',
+        movieDash: './src/moviedash.js',
         projects: './src/projects.js',
         card: './src/card.js',
         aboutme: './src/aboutme.js',

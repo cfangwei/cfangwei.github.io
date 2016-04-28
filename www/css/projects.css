@@ -1,9 +1,20 @@
+html, body, div, p {
+  padding: 0;
+  margin: 0; }
+
+html, body {
+  height: 100%;
+  width: 100%;
+  border: 0; }
+
 .hidden {
   display: none; }
 
 .vertical-text {
-  transform: rotate(270deg) translate(-400px, 10px);
-  transform-origin: left top 0; }
+  -webkit-transform: rotate(270deg) translate(-400px, 10px);
+          transform: rotate(270deg) translate(-400px, 10px);
+  -webkit-transform-origin: left top 0;
+          transform-origin: left top 0; }
 
 .black-text {
   color: black; }
@@ -53,9 +64,13 @@ project-card {
   margin: 3rem auto;
   border-radius: 3px;
   min-height: 135px;
-  transition: transform 100ms ease-in, box-shadow 150ms ease-in; }
+  -webkit-transition: box-shadow 150ms ease-in, -webkit-transform 100ms ease-in;
+  transition: box-shadow 150ms ease-in, -webkit-transform 100ms ease-in;
+  transition: transform 100ms ease-in, box-shadow 150ms ease-in;
+  transition: transform 100ms ease-in, box-shadow 150ms ease-in, -webkit-transform 100ms ease-in; }
   .project-card:hover {
-    transform: scale(1.01, 1.01);
+    -webkit-transform: scale(1.01, 1.01);
+            transform: scale(1.01, 1.01);
     box-shadow: 0 16px 28px 0 rgba(0, 0, 0, 0.22), 0 25px 55px 0 rgba(0, 0, 0, 0.21); }
   .project-card h2 {
     color: #5EC8DD; }
@@ -75,11 +90,16 @@ project-card {
       color: #999;
       display: inline-block;
       font-size: 130%;
-      animation: pulse;
-      animation-duration: 100ms;
-      animation-iteration-count: infinite;
-      animation-direction: alternate;
-      animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1); }
+      -webkit-animation: pulse;
+              animation: pulse;
+      -webkit-animation-duration: 100ms;
+              animation-duration: 100ms;
+      -webkit-animation-iteration-count: infinite;
+              animation-iteration-count: infinite;
+      -webkit-animation-direction: alternate;
+              animation-direction: alternate;
+      -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+              animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1); }
     .project-card .title h2 a {
       text-decoration: underline; }
     .project-card .title iframe {
@@ -115,10 +135,14 @@ project-card {
         z-index: -1;
         height: 100%;
         background-color: #999;
-        animation: color-bar;
-        animation-duration: 0.5s;
-        animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-        transform-origin: left; }
+        -webkit-animation: color-bar;
+                animation: color-bar;
+        -webkit-animation-duration: 0.5s;
+                animation-duration: 0.5s;
+        -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+                animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+        -webkit-transform-origin: left;
+                transform-origin: left; }
 
 .hang-bookmark {
   position: fixed;
@@ -143,14 +167,34 @@ bookmark-footer {
   position: fixed;
   bottom: 0; }
 
+@-webkit-keyframes color-bar {
+  from {
+    -webkit-transform: scale(0, 1);
+            transform: scale(0, 1); }
+  to {
+    -webkit-transform: scale(1, 1);
+            transform: scale(1, 1); } }
+
 @keyframes color-bar {
   from {
-    transform: scale(0, 1); }
+    -webkit-transform: scale(0, 1);
+            transform: scale(0, 1); }
   to {
-    transform: scale(1, 1); } }
+    -webkit-transform: scale(1, 1);
+            transform: scale(1, 1); } }
+
+@-webkit-keyframes pulse {
+  from {
+    -webkit-transform: scale(1, 1);
+            transform: scale(1, 1); }
+  to {
+    -webkit-transform: scale(1.2, 1.2);
+            transform: scale(1.2, 1.2); } }
 
 @keyframes pulse {
   from {
-    transform: scale(1, 1); }
+    -webkit-transform: scale(1, 1);
+            transform: scale(1, 1); }
   to {
-    transform: scale(1.2, 1.2); } }
+    -webkit-transform: scale(1.2, 1.2);
+            transform: scale(1.2, 1.2); } }

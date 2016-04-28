@@ -1,0 +1,27 @@
+@import "./common.scss";
+@import  "./base.scss";
+
+::-webkit-scrollbar {
+    display: none; 
+}
+
+
+#canvas {
+    @include full;
+    background-color: black;
+}
+
+.process-bar {
+    position: absolute;
+    height: 3rem;
+    width: 80%;
+    bottom: 3rem;
+    left: 50%;
+    margin-left: -40%;
+    background: {
+        color: rgba(255, 255, 255, 0.5);
+    }
+    border: {
+        radius: 2rem;
+    }
+}
