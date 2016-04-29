@@ -1,0 +1,12 @@
+
+BLOG:
+  NAME: '陳放為的博客'
+  TMPDIR: '/tmp'
+  TMPNAME: 'WIngTmp'
+  PORT: 8080
+  HOST: '127.0.0.1'
+
+
+STYLE:
+  theme: 'white-card'
+  
