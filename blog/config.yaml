@@ -5,8 +5,9 @@ BLOG:
   TMPNAME: 'WIngTmp'
   PORT: 8080
   HOST: '127.0.0.1'
-
+  INDEX_ARTICLE_NUMBER: 20
+  SORT_ARTICLE_BY: 'create'
 
 STYLE:
-  theme: 'white-card'
+  THEME: 'white-card'
   
