@@ -32,12 +32,8 @@ function getPixels (imageData, width, pixelsPerLine) {
             } 
         }
     }
-
     return pixels;
 }
-
-
-
 
 module.exports = {
     template: require('./template.html'),

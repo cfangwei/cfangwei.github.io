@@ -240,7 +240,6 @@ export default class TreeClass {
                 }
                 branceLen = brances.length;
             }
-
         }
 
         if (this._isDay === 1) {

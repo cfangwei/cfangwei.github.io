@@ -7,18 +7,22 @@
 Waypoints is a library that makes it easy to execute a function whenever you scroll to an element.
 https://github.com/imakewebthings/waypoints
 
-* cyclejs
-https://github.com/cyclejs/core
+** cyclejs
+https://github.com/cyclejs/core   
 
-* stats.js
+** stats.js
 https://github.com/mrdoob/stats.js
 JavaScript Performance Monitor
-* object-path
+** object-path
 A tiny JavaScript utility to access deep properties using a path (for Node and the Browser)
 访问对象的深属性，个人觉得还是很有用的
-* strman
+** strman
 A Javascript string manipulation library without npm dependences.
 https://github.com/dleitee/strman
-* javascript-state-machine
+** javascript-state-machine
 https://github.com/jakesgordon/javascript-state-machine
 A finite state machine javascript micro framework http://codeincomplete.com/posts/2014/3/15/javascript_state_machine_v2_3_0/
+** javascript-bignum
+https://github.com/jtobey/javascript-bignum   
+Scheme arithmetic library for JavaScript
+
