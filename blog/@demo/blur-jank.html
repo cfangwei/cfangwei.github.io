@@ -1,0 +1,152 @@
+<!doctype html>
+<html class="no-js" lang="">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="cleartype" content="on">
+
+
+    <style>
+      .blur {
+      filter: blur(3px);
+      -webkit-filter: blur(3px);
+      }
+
+      #canvas {
+        position: absolute;
+        height: 100%;
+      width: 100%;
+      margin-left: -50%;
+      left: 0;
+      top: 0;
+      }
+
+    </style>
+
+  </head>
+  <body>
+      <div >
+
+
+      <canvas id="canvas"></canvas>
+    <div class="blur">
+      假动作  <br/>
+      八大韩剧《妻子的诱惑》片头曲<br/>
+      专辑：<br/>
+      乱<br/>
+      歌手：<br/>
+      房祖名<br/>
+      来源：<br/>
+      【实力封面说话】百听不厌的国/粤语精选<br/>
+      作曲 : 黄韵仁<br/>
+      作词 : 小寒<br/>
+      要不是他在眼前对你的爱怜<br/>
+      我想爱你的心将持续冬眠<br/>
+      梦被叫醒如何能疏远<br/>
+      要不是你在耳边对我吐真言<br/>
+      我想我会怎样和你没关联<br/>
+      从此连见到你的脸 也能免则免<br/>
+      我明白知觉<br/>
+      会因为视觉听觉触觉产生错觉<br/>
+      於是要你误解<br/>
+      也不要你了解<br/>
+      挥挥手只是 假动作<br/>
+      掩饰我 我深爱过的线索<br/>
+      不该无理剥夺<br/>
+      该你的幸福结果<br/>
+      就算冷漠是 假动作<br/>
+      没有错 我背负心碎藏躲<br/>
+      独自人海漂泊<br/>
+      为的只是要你能忘了我<br/>
+      要不是我开始在深陷的边缘<br/>
+      没想到那麽快就必须弃权<br/>
+      割舍所有的可能不允许剩一点<br/>
+      我明白知觉<br/>
+      会因为视觉听觉触觉产生错觉<br/>
+      於是要你误解<br/>
+      也不要你了解<br/>
+      挥挥手只是 假动作<br/>
+      掩饰我 我深爱过的线索<br/>
+      不该无理剥夺<br/>
+      该你的幸福结果<br/>
+      就算冷漠是 假动作<br/>
+      没有错 我背负心碎藏躲<br/>
+      独自人海漂泊<br/>
+      为的只是要你能忘了我<br/>
+      两人禁不起流言的挑拨<br/>
+      感情体质虚弱<br/>
+      人的骨子里难免有许多<br/>
+      痛和不妥 尽量躲过<br/>
+      才能好好生活<br/>
+      挥挥手只是<br/>
+      放开你只是 假动作<br/>
+      掩饰我 我深爱过的线索<br/>
+      不该无理剥夺<br/>
+      该你的幸福结果<br/>
+      就算冷漠是 假动作<br/>
+      没有错 我背负心碎藏躲<br/>
+      独自人海漂泊<br/>
+      为的只是要你能忘了我<br/>
+    </div>
+
+      </div>
+    <script>
+     window.addEventListener('load', function(){
+         var canvas = document.getElementById('canvas'),
+             ctx = canvas.getContext('2d');
+
+         ctx.lineWidth = 0.5;
+         ctx.strokeStyle = 'rgba(0, 0, 0, 0.75)';
+         console.log(canvas
+         );
+         canvas.height = canvas.parentElement.offsetHeight;
+         canvas.width = canvas.parentElement.offsetWidth;
+
+         var count = 75,
+             rotation = 270 * (Math.PI / 180),
+             speed = 6;
+
+
+
+
+
+         var centerX = canvas.width / 2, centerY = canvas.height / 2;
+
+         var updateLoader = function(){
+             rotation += speed / 100;
+         };
+
+         var renderLoader = function(){
+                                       ctx.save();
+             ctx.globalCompositeOperation = 'source-over';
+             ctx.translate(centerX, centerY);
+             ctx.rotate(rotation);
+             var i = count;
+             while(i--){
+                        ctx.beginPath();
+                 ctx.arc(0, 0, i + (Math.random() * 35), Math.random(), Math.PI / 3 + (Math.random() / 12), false);
+                 ctx.stroke();
+             }
+             ctx.restore();
+         };
+
+         var canvasLoop = function(){
+             requestAnimationFrame(canvasLoop, canvas);
+             ctx.globalCompositeOperation = 'destination-out';
+             ctx.fillStyle = 'rgba(0, 0, 0, 0.03)';
+             ctx.fillRect(centerX - 125, centerY - 125, centerX + 125, centerY + 125);
+             updateLoader();
+             renderLoader();
+         };
+
+         canvasLoop();
+     });
+
+    </script>
+
+  </body>
+</html>
