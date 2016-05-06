@@ -1,0 +1,94 @@
+#+TITLE: CSS3 加速复合层优化实践
+#+AUTHOR: 陳放為
+
+踩到一个 css3 加速复合层的坑
+
+在做自己的博客的主题，我准备是将卡片这样排列，如果点击了卡片之后，卡片插到最前面来，然后后面的的卡片全部 blur 掉
+
+[[./composite-layer-optimization-action/1.png]]
+
+看，现在的 fps 是好的， 大约 60
+
+
+但是：
+
+
+当我触发了动作之后:
+
+[[./composite-layer-optimization-action/2.png]]
+
+fps 狂降到 30 多了，中间的 canvas 动画卡成狗
+
+
+要是 retina 屏幕的更夸张，变成 14 多，canvas 简直不能动了：
+
+[[./composite-layer-optimization-action/3.png]]
+
+从此立马可以反应出，是 GPU 的问题！
+
+我立马想到，是不是 blur 的问题，后面那么多 blur 的元素，听说 filter 是属性都很卡，于是我写了一个 demo：
+
+[[/demo/blur-jank.html]]
+
+但是无论我怎么加属性，加动画，加 canvas 帧税，都是稳稳的 60 fps，我当时就纳闷了，竟然不是 blur 的问题？
+
+然后没办法了，开始看复合层
+
+
+
+[[./composite-layer-optimization-action/4.png]]
+
+
+乍一看，没问题啊，都是复合层，而且都是绝对定位，应该是 css3 加速，而且没有影响才对啊！
+
+咦，等等，我好像没有开复合层加速啊，然后仔细看了看，不知道什么时候顺手加了这么一句：
+
+#+begin_src css
+backface-visibility: hidden;
+#+end_src
+
+复合层的触发条件：
+
+   #+BEGIN_QUOTE
+   -   3D 或透视变换(perspective transform) CSS 属性
+   -   使用加速视频解码的 <video> 元素
+   -   拥有 3D (WebGL) 上下文或加速的 2D 上下文的 <canvas> 元素
+   -   混合插件(如 Flash)
+   -   对自己的 opacity 做 CSS 动画或使用一个动画变换的元素
+   -   拥有加速 CSS 过滤器的元素
+   -   元素有一个包含复合层的后代节点(换句话说，就是一个元素拥有一个子元素，该子元素在自己的层里)
+   -   元素有一个 z-index 较低且包含一个复合层的兄弟元素(换句话说就是该元素在复合层上面渲染)
+   #+END_QUOTE
+
+原来就是这个属性触发了复合层！
+
+！我靠，突然想起来，复合层多了也不是好事，分分钟消耗很多资源，难道就是这个问题，把他去掉:
+
+[[./composite-layer-optimization-action/5.png]]
+
+果然！又恢复成了流畅的 60 fps！
+
+查了一下资料，发现
+ 
+
+*如果几个复合层一起渲染，浏览器会把所有的复合层一起叠加渲染！*
+
+所以，复合层不是越多越好的！
+
+
+----- 
+参考资料
+
+
+[[http://www.html5rocks.com/zh/tutorials/speed/layers/][Accelerated Rendering in Chrome]]
+
+https://developers.google.com/web/fundamentals/performance/rendering/
+
+https://developers.google.com/web/fundamentals/performance/rendering/stick-to-compositor-only-properties-and-manage-layer-count?hl=zh-cn
+
+https://developers.google.com/web/fundamentals/performance/rendering/optimize-javascript-execution?hl=zh-cn
+
+https://developers.google.com/web/fundamentals/performance/rendering/reduce-the-scope-and-complexity-of-style-calculations?hl=zh-cn
+
+
+

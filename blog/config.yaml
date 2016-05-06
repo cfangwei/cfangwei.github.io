@@ -1,4 +1,4 @@
-
+ 
 AUTHOR:
   NAME: '陳放為'
   GITHUB: 'AbyChan'
@@ -14,4 +14,14 @@ BLOG:
 
 STYLE:
   THEMEDIR: '@themes'
-  THEME: 'white-card'  
+  THEME: 'white-card'
+
+SERVE:
+  HOST: '0.0.0.0'
+  PORT: '8080'
+
+
+MAPPING:
+  image: '/static/img/'
+  root-assert: '/'
+  demo: '/demo/'
