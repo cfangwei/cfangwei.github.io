@@ -13,5 +13,5 @@ BLOG:
   SORT_ARTICLE_BY: 'create'
 
 STYLE:
-  THEME: 'white-card'
-  
+  THEMEDIR: '@themes'
+  THEME: 'white-card'  
