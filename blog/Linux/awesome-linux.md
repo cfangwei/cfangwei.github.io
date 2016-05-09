@@ -1,5 +1,4 @@
 <!--TITLE: Linux 实用工具 -->
-# Awesome Linux
 
 ### [Autokey](https://code.google.com/p/autokey/)
 非常强大的按键软件。
