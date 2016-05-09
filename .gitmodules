@@ -1,0 +1,3 @@
+[submodule "blog/@themes/white-card"]
+	path = blog/@themes/white-card
+	url = git@github.com:wu-xing/white-card.git

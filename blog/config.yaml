@@ -20,8 +20,8 @@ SERVE:
   HOST: '0.0.0.0'
   PORT: '8080'
 
-
 MAPPING:
   image: '/static/img/'
   root-assert: '/'
   demo: '/demo/'
+  
