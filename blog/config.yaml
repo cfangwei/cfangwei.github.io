@@ -10,6 +10,7 @@ BLOG:
   PORT: 8080
   HOST: '127.0.0.1'
   INDEX_ARTICLE_NUMBER: 7
+  CATEGORY_ARTICLE_NUMBER: 20
   SORT_ARTICLE_BY: 'create'
   ARTICLE_SUMMARY_CHAR_NUMBER: 300
 
@@ -25,4 +26,5 @@ MAPPING:
   image: '/static/img/'
   root-assert: '/'
   demo: '/demo/'
-  
+
+LANG: 'zh-CN'
