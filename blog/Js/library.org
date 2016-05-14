@@ -26,3 +26,6 @@ A finite state machine javascript micro framework http://codeincomplete.com/post
 https://github.com/jtobey/javascript-bignum   
 Scheme arithmetic library for JavaScript
 
+** dropzone
+https://github.com/enyo/dropzone   
+Dropzone is an easy to use drag'n'drop library. It supports image previews and shows nice progress bars. http://www.dropzonejs.com

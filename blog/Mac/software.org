@@ -31,3 +31,5 @@ json 可视化
 Rss 阅读器
 ** Artpaper
 谷歌艺术计划壁纸
+** keycastr
+https://github.com/keycastr/keycastr

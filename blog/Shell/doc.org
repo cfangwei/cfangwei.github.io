@@ -2,3 +2,7 @@
 #+AUTHOR: 陳放為
 * bash-handbook
 https://github.com/denysdovhan/bash-handbook
+
+* how-to-write-makefile
+https://github.com/seisman/how-to-write-makefile
+跟我一起写Makefile重制版
