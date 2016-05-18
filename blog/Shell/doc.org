@@ -1,8 +1,11 @@
-#+TITLE: SHELL 文档整理
+#+TITLE: Shell 文档整理
 #+AUTHOR: 陳放為
 * bash-handbook
 https://github.com/denysdovhan/bash-handbook
 
 * how-to-write-makefile
-https://github.com/seisman/how-to-write-makefile
+  https://github.com/seisman/how-to-write-makefile
 跟我一起写Makefile重制版
+* desk
+  A lightweight workspace manager for the shell
+  https://github.com/jamesob/desk
