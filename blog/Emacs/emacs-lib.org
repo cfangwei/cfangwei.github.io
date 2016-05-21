@@ -1,8 +1,8 @@
 #+TITLE: Emacs 资源备忘
 #+AUTHOR: 陳放為
 ** TL_EmacsRocks
-https://github.com/li-xinyang/TL_EmacsRocks
-TL_EmacsRocks
+   https://github.com/li-xinyang/TL_EmacsRocks 
+   TL_EmacsRocks
 
 ** origami.el
 https://github.com/gregsexton/origami.el   

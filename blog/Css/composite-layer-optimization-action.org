@@ -5,7 +5,7 @@
 
 在做自己的博客的主题，我准备是将卡片这样排列，如果点击了卡片之后，卡片插到最前面来，然后后面的的卡片全部 blur 掉
 
-[[./composite-layer-optimization-action/1.png]]
+[[./composite-layer-optimization-action/1.jpeg]]
 
 看，现在的 fps 是好的， 大约 60
 
@@ -15,14 +15,14 @@
 
 当我触发了动作之后:
 
-[[./composite-layer-optimization-action/2.png]]
+[[./composite-layer-optimization-action/2.jpeg]]
 
 fps 狂降到 30 多了，中间的 canvas 动画卡成狗
 
 
 要是 retina 屏幕的更夸张，变成 14 多，canvas 简直不能动了：
 
-[[./composite-layer-optimization-action/3.png]]
+[[./composite-layer-optimization-action/3.jpeg]]
 
 从此立马可以反应出，是 GPU 的问题！
 
@@ -36,7 +36,7 @@ fps 狂降到 30 多了，中间的 canvas 动画卡成狗
 
 
 
-[[./composite-layer-optimization-action/4.png]]
+[[./composite-layer-optimization-action/4.jpeg]]
 
 
 乍一看，没问题啊，都是复合层，而且都是绝对定位，应该是 css3 加速，而且没有影响才对啊！
@@ -64,7 +64,7 @@ backface-visibility: hidden;
 
 ！我靠，突然想起来，复合层多了也不是好事，分分钟消耗很多资源，难道就是这个问题，把他去掉:
 
-[[./composite-layer-optimization-action/5.png]]
+[[./composite-layer-optimization-action/5.jpeg]]
 
 果然！又恢复成了流畅的 60 fps！
 
