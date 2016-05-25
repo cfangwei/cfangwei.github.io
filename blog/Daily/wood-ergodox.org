@@ -1,0 +1,6 @@
+#+TITLE: DIY 木头版 ergodox
+#+AUTHOR: 陳放為
+
+diy 木头版的 ergodox，哈哈
+
+[[ergodox.jpg]]
