@@ -1,0 +1,57 @@
+#+TITLE: font-face 闪烁优化实践
+#+AUTHOR: 陳放為
+
+以前大家都知道 /FOUC/ 无样式闪烁，但是 /FOUT/ 就没有 /FOUC/ 那么出名了。
+
+/FOUT/ 文本无样式闪烁, 一般会出现在 @face-font 上，这个貌似在国内比较少见，因为很少产品会使用中文的 @face-font，但是英文就不同了，英文的字体文件一般很少，很多产品就会用自定义的 face-font，在老版本的 firefox 和 opera 浏览器上，就会出现 FOUT ，就是浏览器先渲染默认的字体，然后等待字体加载完毕，闪烁一下，切换到新字体上。
+
+例如:
+
+[[./font-face-flash/ex2.gif]] 
+
+这个问题已经有很多种解决方案了,例如下面的这篇文章
+
+[[http://www.paulirish.com/2009/fighting-the-font-face-fout/]]
+
+不过新版本的主流浏览器基本上已经解决了这个问题了,所以效果一般为下面的图示:
+
+[[./font-face-flash/ex.gif]] 
+
+其实现在的效果就见仁见智了，如果全部都用自定义字体的话，例如我之前做的魅族官网，用的是思源黑体，那么等待字体加载完成再渲染是很好的选择，但是如上图那样，我只自定义了标题，那么页面刚加载的时候，下面的文字都出来了，上面的标题所以无样式状态，等待字体加载完成之后再渲染，感觉很怪，而且 reflow 又加深了，页面出现跳动，简直不能忍，所以我觉得，很有必要让字体分两次渲染，一开始加载默认的字体，等待字体加载完毕之后再渲染，这样虽然有闪烁的问题，但是鱼和熊掌不可兼得。
+
+思路明确了，接着就是实现了，我们可以选择比较成熟的库，来监听字体的加载。
+
+[[https://github.com/zachleat/fontfaceonload]]
+
+代码的实现如下:
+
+#+begin_src javascript
+'use strict';
+require('script!fontfaceonload/dist/fontfaceonload.js');
+
+FontFaceOnload("YueSong", {
+    success: function() {
+        setTimeout(function(){
+            
+            window.document.body.className += 'yue-song-font';
+        });
+    }
+});
+#+end_src
+
+#+begin_src scss
+.yue-song-font .article .title {
+    font: {
+        family: $font-title;
+    }
+}
+#+end_src
+
+需要注意的是，js 代码加了 setTimeout，这是因为字体加载完了，但是解析还是需要时间，如果不加 idle，字体切换时候的空白时间就会变长。
+
+
+* 参考资料
+[[https://www.zachleat.com/web/foft/]]
+[[https://css-tricks.com/fout-foit-foft/]]
+[[http://www.paulirish.com/2009/fighting-the-font-face-fout/]]
+[[https://dev.opera.com/articles/better-font-face/]]
