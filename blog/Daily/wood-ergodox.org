@@ -3,4 +3,4 @@
 
 diy 木头版的 ergodox，哈哈
 
-[[ergodox.jpg]]
+[[./wood-ergodox/ergodox.jpg]]

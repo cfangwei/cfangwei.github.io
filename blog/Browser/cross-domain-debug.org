@@ -5,13 +5,13 @@
 
 有两种方法：
 
-*** 第一种
+* 第一种
 下载浏览器插件，下面就是一款 chrome 跨域插件，十分好用：
 
 [[./cross-domain-debug/20160424-163233.png]]
 https://chrome.google.com/webstore/detail/cors-toggle/omcncfnpmcabckcddookmnajignpffnh
 
-*** 第二种
+* 第二种
 禁掉浏览器的同源策略，使用这种方法虽然有安全风险，但是只要你不去上那种乱七八糟的网站的话就没有问题：
 
 

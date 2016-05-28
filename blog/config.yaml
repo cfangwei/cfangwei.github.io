@@ -5,6 +5,7 @@ AUTHOR:
 
 BLOG:
   NAME: '陈放为的博客'
+  DESC: 'And the Chamber of Secrets'
   TMPDIR: '/tmp'
   TMPNAME: 'WIngTmp'
   PORT: 8080
