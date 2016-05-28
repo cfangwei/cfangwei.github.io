@@ -49,7 +49,7 @@ module.exports = {
             var listen = function(event){
                 if ($window.scrollTop() > offsetTop - conHeight / 4) {
                     if( !drawing ){
-                        self.addTree(conWidth, conHeight);
+                        self.addTree();
                         self.draw();
                         drawing = true;
                     }
