@@ -13,7 +13,9 @@ ul {
   .main .links li {
     margin-bottom: 5px; }
   .main .links a {
-    color: #ddd; }
+      color: #ddd; }
+
+  
 
 .flex {
   width: 100%;

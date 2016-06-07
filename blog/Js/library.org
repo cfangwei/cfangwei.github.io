@@ -29,3 +29,8 @@ Scheme arithmetic library for JavaScript
 ** dropzone
 https://github.com/enyo/dropzone   
 Dropzone is an easy to use drag'n'drop library. It supports image previews and shows nice progress bars. http://www.dropzonejs.com
+** html2canvas
+https://github.com/niklasvh/html2canvas   
+
+Screenshots with JavaScript http://html2canvas.hertzen.com/
+
