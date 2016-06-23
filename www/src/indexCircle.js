@@ -1,2 +1,59 @@
 'use strict';
 
+let $ = require('jquery');
+
+let centerX, centerY, minToEdge;
+
+let sin = Math.sin,
+    cos = Math.cos;
+
+const shadowunit = 5,
+      shadowarea = 30;
+
+let bindWindowResize = () => {
+  let resizewbind = () => {
+    centerX = $(window).width() / 2;
+    centerY = $(window).height() / 2;
+    minToEdge = Math.min(centerX, centerY);
+  };
+  
+  $('window').resize(resizewbind);
+  resizewbind();
+};
+
+
+let startCircleShadow = () => {
+  let $circle = $('#circle'),
+      $circleOutside = $circle.find('.circle--outside'),
+      $circleInner = $circle.find('.circle--inner');
+  
+  $('body').on('mousemove', (event) => {
+    let x = event.offsetX,
+        y = event.offsetY;
+    
+    let dx = x - centerX,
+        dy = y - centerY;
+
+    let dis = Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
+
+    let dd = (minToEdge - dis) / minToEdge * shadowunit;
+
+    let angle = Math.atan2(dy, dx);
+
+    let unit = shadowunit + dd;
+    
+    let tx = unit * cos(angle),
+        ty = unit * sin(angle);
+    
+    $circleInner.css('box-shadow', `${ty}px ${tx}px ${shadowarea}px #999 inset`);
+    $circleOutside.css('box-shadow', `${tx}px ${ty}px ${shadowarea}px #999`);
+  });
+};
+
+let init = () => {
+
+  startCircleShadow();
+  bindWindowResize();
+};
+
+init();

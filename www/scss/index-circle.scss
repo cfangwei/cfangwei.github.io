@@ -5,4 +5,48 @@
 @import "./common.scss";
 @import "./type.scss";
 
+body, html {
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
 
+.circle {
+    height: 400px;
+    width: 400px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    
+    &--outside {
+        height: 100%;
+        width: 100%;
+        box-shadow: 0px 0px 25px #999;
+        top: 0;
+        left: 0;
+    }
+
+    &--inner {
+        height: 70%;
+        width: 70%;
+        top: 15%;
+        left: 15%;
+        box-shadow: 0px 0px 25px #999 inset;
+    }
+
+    &--outside, &--inner {
+        position: absolute;
+        border-radius: 50%;
+
+    }
+}
+
+
+.right-side-nav {
+    position: absolute;
+    top: 50%;
+    right: 50px;
+    transform: translate(0, -50%);
+}
