@@ -1,19 +1,25 @@
 @import "./mixin/layout.scss";
 @import "./mixin/shadow.scss";
 @import "./mixin/shape.scss";
+@import "./mixin/clear.scss";
 @import "./mixin/position.scss";
 @import "./common.scss";
 @import "./type.scss";
 
-body, html {
+@import "./index-circle/nav.scss";
+
+
+$circle-size: 600px;
+
+body, html{
     height: 100%;
     width: 100%;
     position: relative;
 }
 
 .circle {
-    height: 400px;
-    width: 400px;
+    height: $circle-size;
+    width: $circle-size;
     position: absolute;
     left: 50%;
     top: 50%;
@@ -44,9 +50,3 @@ body, html {
 }
 
 
-.right-side-nav {
-    position: absolute;
-    top: 50%;
-    right: 50px;
-    transform: translate(0, -50%);
-}

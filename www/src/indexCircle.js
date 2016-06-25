@@ -17,8 +17,10 @@ let bindWindowResize = () => {
     minToEdge = Math.min(centerX, centerY);
   };
   
+  
   $('window').resize(resizewbind);
   resizewbind();
+  
 };
 
 
@@ -28,9 +30,9 @@ let startCircleShadow = () => {
       $circleInner = $circle.find('.circle--inner');
   
   $('body').on('mousemove', (event) => {
-    let x = event.offsetX,
-        y = event.offsetY;
-    
+    let x = event.pageX,
+        y = event.pageY;
+
     let dx = x - centerX,
         dy = y - centerY;
 
@@ -45,15 +47,23 @@ let startCircleShadow = () => {
     let tx = unit * cos(angle),
         ty = unit * sin(angle);
     
-    $circleInner.css('box-shadow', `${ty}px ${tx}px ${shadowarea}px #999 inset`);
+    $circleInner.css('box-shadow', `${tx}px ${ty}px ${shadowarea}px #999 inset`);
     $circleOutside.css('box-shadow', `${tx}px ${ty}px ${shadowarea}px #999`);
   });
 };
 
-let init = () => {
+let startRightNavCtrl = () => {
 
-  startCircleShadow();
+  $('.right-side-nav').on('click', function(){
+    
+  });
+  
+};
+
+let init = () => {
   bindWindowResize();
+  startCircleShadow();
+  startRightNavCtrl();
 };
 
 init();

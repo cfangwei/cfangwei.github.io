@@ -1,0 +1,70 @@
+@import "../mixin/clear.scss";
+
+@keyframes blink {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+.right-side-nav {
+    position: absolute;
+    top: 50%;
+    right: 50px;
+    transform: translate(0, -50%);
+    cursor: pointer;
+    
+    &:hover {
+        .right-side-nav--toggle-text {
+            opacity: 1;
+        }
+    }
+
+    &--toggle-text {
+        opacity: 0;
+        background-color: white;
+        position: relative;
+        z-index: 1;
+        transition: opacity 500ms ease-in-out;
+    }
+
+    &--menu {
+        float: left;
+        top: 0;
+        right: 10px;
+        overflow: hidden;
+        width: 10px;
+    } 
+
+    &--arrow {
+        position: absolute;
+        left: 0;
+        top: 0;
+        margin-right: 12px;
+        
+        &.blink {
+            animation: blink 300ms linear 0s infinite alternate;
+        }
+    }
+
+    ul {
+        @include clearfix;
+        display: inline-block;
+        position: relative;
+        left: 10px;
+        top: 0;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        width: 300px;
+        right: 50px;
+        
+        li {
+            float: left;
+            display: inline-block;
+            margin-right: 10px;
+        }
+    }
+}
