@@ -12,9 +12,33 @@
 .right-side-nav {
     position: absolute;
     top: 50%;
-    right: 50px;
+    right: 20px;
     transform: translate(0, -50%);
     cursor: pointer;
+    transition: transform 300ms 500ms ease-in-out;
+
+    &.active {
+        transform: translate(25px, -50%);
+
+        &:hover {
+            .right-side-nav--toggle-text {
+                opacity: 0;
+            }
+        }
+
+        .right-side-nav--toggle-text {
+            opacity: 0;
+        }
+        
+        .right-side-nav--menu {
+            max-width: 1000px;
+        }
+
+        .right-side-nav--arrow {
+            transform: translate(300px, 0) rotate(180deg);
+            text-shadow: -6px 0px black, -12px 0px black;
+        }
+    }
     
     &:hover {
         .right-side-nav--toggle-text {
@@ -35,7 +59,8 @@
         top: 0;
         right: 10px;
         overflow: hidden;
-        width: 10px;
+        max-width: 10px;
+        transition: max-width 500ms ease-in-out;
     } 
 
     &--arrow {
@@ -43,6 +68,8 @@
         left: 0;
         top: 0;
         margin-right: 12px;
+        transition: transform 0ms ease-in-out;
+        z-index: 2;
         
         &.blink {
             animation: blink 300ms linear 0s infinite alternate;

@@ -30,7 +30,7 @@ let startCircleShadow = () => {
       $circleInner = $circle.find('.circle--inner');
   
   $('body').on('mousemove', (event) => {
-    let x = event.pageX,
+    let x = event.pageX, 
         y = event.pageY;
 
     let dx = x - centerX,
@@ -53,9 +53,17 @@ let startCircleShadow = () => {
 };
 
 let startRightNavCtrl = () => {
-
-  $('.right-side-nav').on('click', function(){
-    
+  let hasClick = false,
+      $nav = $('.right-side-nav');
+  
+  $('.right-side-nav--arrow, .right-side-nav--toggle-text').on('click', function(){
+    if( !hasClick ){
+      hasClick = true;
+      $nav.addClass('active');
+    } else {
+      hasClick = false;
+      $nav.removeClass('active');
+    }
   });
   
 };

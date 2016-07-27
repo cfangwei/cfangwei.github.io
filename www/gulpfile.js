@@ -10,7 +10,7 @@ var runSequence = require('run-sequence');
 
 livereload({
     start: true,
-    port: 35725
+    port: 35729
 });
 
 /**

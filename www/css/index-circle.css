@@ -37,10 +37,27 @@ html, body {
 .right-side-nav {
   position: absolute;
   top: 50%;
-  right: 50px;
+  right: 20px;
   -webkit-transform: translate(0, -50%);
           transform: translate(0, -50%);
-  cursor: pointer; }
+  cursor: pointer;
+  -webkit-transition: -webkit-transform 300ms 500ms ease-in-out;
+  transition: -webkit-transform 300ms 500ms ease-in-out;
+  transition: transform 300ms 500ms ease-in-out;
+  transition: transform 300ms 500ms ease-in-out, -webkit-transform 300ms 500ms ease-in-out; }
+  .right-side-nav.active {
+    -webkit-transform: translate(25px, -50%);
+            transform: translate(25px, -50%); }
+    .right-side-nav.active:hover .right-side-nav--toggle-text {
+      opacity: 0; }
+    .right-side-nav.active .right-side-nav--toggle-text {
+      opacity: 0; }
+    .right-side-nav.active .right-side-nav--menu {
+      max-width: 1000px; }
+    .right-side-nav.active .right-side-nav--arrow {
+      -webkit-transform: translate(300px, 0) rotate(180deg);
+              transform: translate(300px, 0) rotate(180deg);
+      text-shadow: -6px 0px black, -12px 0px black; }
   .right-side-nav:hover .right-side-nav--toggle-text {
     opacity: 1; }
   .right-side-nav--toggle-text {
@@ -55,12 +72,19 @@ html, body {
     top: 0;
     right: 10px;
     overflow: hidden;
-    width: 10px; }
+    max-width: 10px;
+    -webkit-transition: max-width 500ms ease-in-out;
+    transition: max-width 500ms ease-in-out; }
   .right-side-nav--arrow {
     position: absolute;
     left: 0;
     top: 0;
-    margin-right: 12px; }
+    margin-right: 12px;
+    -webkit-transition: -webkit-transform 0ms ease-in-out;
+    transition: -webkit-transform 0ms ease-in-out;
+    transition: transform 0ms ease-in-out;
+    transition: transform 0ms ease-in-out, -webkit-transform 0ms ease-in-out;
+    z-index: 2; }
     .right-side-nav--arrow.blink {
       -webkit-animation: blink 300ms linear 0s infinite alternate;
               animation: blink 300ms linear 0s infinite alternate; }
@@ -87,7 +111,8 @@ html, body {
 body, html {
   height: 100%;
   width: 100%;
-  position: relative; }
+  position: relative;
+  overflow: hidden; }
 
 .circle {
   height: 600px;
