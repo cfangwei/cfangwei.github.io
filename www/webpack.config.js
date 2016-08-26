@@ -30,7 +30,10 @@ var config = {
     egg3d:  './works/egg3d/src/index.js',
     flybird:  './works/flybird/src/index.js',
     txtShakeDemo: './src/misc/txtSnakeDemo.js',
-    sort: './works/sort/src/index.js'
+    sort: './works/sort/src/index.js',
+
+    //GAME
+    gomoku: './game/gomoku/main.js'
   },
   output: {
     path: __dirname + '/build/build',
