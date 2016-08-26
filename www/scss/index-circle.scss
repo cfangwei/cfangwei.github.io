@@ -1,12 +1,13 @@
-@import "./mixin/layout.scss";
-@import "./mixin/shadow.scss";
-@import "./mixin/shape.scss";
-@import "./mixin/clear.scss";
-@import "./mixin/position.scss";
-@import "./common.scss";
-@import "./type.scss";
+@import "./mixin/layout";
+@import "./mixin/shadow";
+@import "./mixin/shape";
+@import "./mixin/clear";
+@import "./mixin/position";
+@import "./common";
+@import "./type";
 
-@import "./index-circle/nav.scss";
+@import "./index-circle/nav";
+@import "./index-circle/canvas";
 
 
 $circle-size: 600px;

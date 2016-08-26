@@ -1,0 +1,22 @@
+
+#canvas-stage {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  border-radius: 50%;
+}
+
+
+#canvas-stage--material {
+  height: 100%;
+  width: 100%;
+  
+  img {
+    display: block;
+    height: 100%;
+    width: 100%;
+  }
+}
+
+

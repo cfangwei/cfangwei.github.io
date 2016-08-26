@@ -54,9 +54,9 @@ module.exports = {
     methods: {
         start: function(){
             let img = this.$el.querySelector('img'),
-            imgHeight = img.height,
+                imgHeight = img.height,
                 imgWidth = img.width;
-            console.log("imgWidth = ", imgWidth);
+
 
             let  pixelsPerLine = imgWidth * 4;
             
@@ -143,13 +143,11 @@ module.exports = {
 
                 requestAnimationFrame(update);
             }
-
             
             let drawing = false;
 
             var offsetTop = $(this.$el).offset().top;
 
-            
             var listen = function(event){
                 if ($window.scrollTop() > offsetTop - screen.height / 4) {
                     if( !drawing ){

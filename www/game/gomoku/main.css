@@ -1,4 +1,3 @@
-
 html, body {
   height: 100%;
   width: 100%;
@@ -75,4 +74,9 @@ html, body {
 
 .piece.black {
   background-color: black;
+}
+
+.piece.white {
+  background-color: white;
+  border: 1px solid black;
 }
