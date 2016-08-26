@@ -1,56 +1,15 @@
-'use strict';
-
-let $ = require('jquery');
+const $ = require('jquery');
 
 let centerX, centerY, minToEdge;
 
-let sin = Math.sin,
-    cos = Math.cos;
+const sin = Math.sin,
+      cos = Math.cos;
 
 const shadowunit = 5,
       shadowarea = 30;
 
-let bindWindowResize = () => {
-  let resizewbind = () => {
-    centerX = $(window).width() / 2;
-    centerY = $(window).height() / 2;
-    minToEdge = Math.min(centerX, centerY);
-  };
-  
-  
-  $('window').resize(resizewbind);
-  resizewbind();
-  
-};
+import {startCircleShadow} from './index/shadow';
 
-
-let startCircleShadow = () => {
-  let $circle = $('#circle'),
-      $circleOutside = $circle.find('.circle--outside'),
-      $circleInner = $circle.find('.circle--inner');
-  
-  $('body').on('mousemove', (event) => {
-    let x = event.pageX, 
-        y = event.pageY;
-
-    let dx = x - centerX,
-        dy = y - centerY;
-
-    let dis = Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
-
-    let dd = (minToEdge - dis) / minToEdge * shadowunit;
-
-    let angle = Math.atan2(dy, dx);
-
-    let unit = shadowunit + dd;
-    
-    let tx = unit * cos(angle),
-        ty = unit * sin(angle);
-    
-    $circleInner.css('box-shadow', `${tx}px ${ty}px ${shadowarea}px #999 inset`);
-    $circleOutside.css('box-shadow', `${tx}px ${ty}px ${shadowarea}px #999`);
-  });
-};
 
 let startRightNavCtrl = () => {
   let hasClick = false,
@@ -64,14 +23,26 @@ let startRightNavCtrl = () => {
       hasClick = false;
       $nav.removeClass('active');
     }
-  });
-  
+  });  
 };
 
+function canvasStage() {
+  const canvas = document.getElementById('canvas-stage');
+  const avatorImg = document.getElementById('canvas-stage--meterial-avator');
+
+  canvas.height = canvas.offsetHeight;
+  canvas.width = canvas.offsetWidth;
+
+  var ctx = canvas.getContext('2d');
+  
+  ctx.drawImage(avatorImg, 0, 0, canvas.width, canvas.height);
+}
+
 let init = () => {
-  bindWindowResize();
   startCircleShadow();
   startRightNavCtrl();
+
+  canvasStage();
 };
 
 init();
