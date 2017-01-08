@@ -1,0 +1,155 @@
+html, body, div, p {
+  padding: 0;
+  margin: 0; }
+
+html, body {
+  height: 100%;
+  width: 100%;
+  border: 0; }
+
+.hidden {
+  display: none; }
+
+.vertical-text {
+  -webkit-transform: rotate(270deg) translate(-400px, 10px);
+          transform: rotate(270deg) translate(-400px, 10px);
+  -webkit-transform-origin: left top 0;
+          transform-origin: left top 0; }
+
+.black-text {
+  color: black; }
+
+.red-text {
+  color: red; }
+
+@-webkit-keyframes blink {
+  from {
+    opacity: 1; }
+  to {
+    opacity: 0; } }
+
+@keyframes blink {
+  from {
+    opacity: 1; }
+  to {
+    opacity: 0; } }
+
+.right-side-nav {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+  cursor: pointer;
+  -webkit-transition: -webkit-transform 300ms 500ms ease-in-out;
+  transition: -webkit-transform 300ms 500ms ease-in-out;
+  transition: transform 300ms 500ms ease-in-out;
+  transition: transform 300ms 500ms ease-in-out, -webkit-transform 300ms 500ms ease-in-out; }
+  .right-side-nav.active {
+    -webkit-transform: translate(25px, -50%);
+            transform: translate(25px, -50%); }
+    .right-side-nav.active:hover .right-side-nav--toggle-text {
+      opacity: 0; }
+    .right-side-nav.active .right-side-nav--toggle-text {
+      opacity: 0; }
+    .right-side-nav.active .right-side-nav--menu {
+      max-width: 1000px; }
+    .right-side-nav.active .right-side-nav--arrow {
+      -webkit-transform: translate(300px, 0) rotate(180deg);
+              transform: translate(300px, 0) rotate(180deg);
+      text-shadow: -6px 0px black, -12px 0px black; }
+  .right-side-nav:hover .right-side-nav--toggle-text {
+    opacity: 1; }
+  .right-side-nav--toggle-text {
+    opacity: 0;
+    background-color: white;
+    position: relative;
+    z-index: 1;
+    -webkit-transition: opacity 500ms ease-in-out;
+    transition: opacity 500ms ease-in-out; }
+  .right-side-nav--menu {
+    float: left;
+    top: 0;
+    right: 10px;
+    overflow: hidden;
+    max-width: 10px;
+    -webkit-transition: max-width 500ms ease-in-out;
+    transition: max-width 500ms ease-in-out; }
+  .right-side-nav--arrow {
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin-right: 12px;
+    -webkit-transition: -webkit-transform 0ms ease-in-out;
+    transition: -webkit-transform 0ms ease-in-out;
+    transition: transform 0ms ease-in-out;
+    transition: transform 0ms ease-in-out, -webkit-transform 0ms ease-in-out;
+    z-index: 2; }
+    .right-side-nav--arrow.blink {
+      -webkit-animation: blink 300ms linear 0s infinite alternate;
+              animation: blink 300ms linear 0s infinite alternate; }
+  .right-side-nav ul {
+    display: inline-block;
+    position: relative;
+    left: 10px;
+    top: 0;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 300px;
+    right: 50px; }
+    .right-side-nav ul:before, .right-side-nav ul:after {
+      content: " ";
+      display: table; }
+    .right-side-nav ul:after {
+      clear: both; }
+    .right-side-nav ul li {
+      float: left;
+      display: inline-block;
+      margin-right: 10px; }
+
+#canvas-stage {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  border-radius: 50%; }
+
+#canvas-stage--material {
+  height: 100%;
+  width: 100%; }
+  #canvas-stage--material img {
+    display: block;
+    height: 100%;
+    width: 100%; }
+
+body, html {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  overflow: hidden; }
+
+.circle {
+  height: 600px;
+  width: 600px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  border-radius: 50%; }
+  .circle--outside {
+    height: 100%;
+    width: 100%;
+    box-shadow: 0px 0px 25px #999;
+    top: 0;
+    left: 0; }
+  .circle--inner {
+    height: 70%;
+    width: 70%;
+    top: 15%;
+    left: 15%;
+    box-shadow: 0px 0px 25px #999 inset; }
+  .circle--outside, .circle--inner {
+    position: absolute;
+    border-radius: 50%; }

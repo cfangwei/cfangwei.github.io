@@ -8,12 +8,10 @@ var ghPages = require('gulp-gh-pages');
 var autoprefixer = require('gulp-autoprefixer');
 var runSequence = require('run-sequence');
 
-
-
-// livereload({
-//     start: true,
-//     port: 35727
-// });
+livereload({
+    start: true,
+    port: 35729
+});
 
 /**
  *   
@@ -26,10 +24,9 @@ gulp.task('sass', function () {
         .pipe(autoprefixer({
 	    browsers: ['>1%']
 	}))
-        .pipe(gulp.dest('./css'));
-        // .pipe(livereload({
-        //     port: 35727
-        // }));
+    .pipe(livereload())
+    .pipe(gulp.dest('./css'));
+    
 });
 
 
@@ -39,9 +36,6 @@ gulp.task('sass', function () {
  * 
  */
 gulp.task('watch:sass', function () {
-    // livereload.listen({
-    //     port: 35727
-    // });
     gulp.run('sass');
     gulp.watch('./scss/**/*.scss', ['sass']);
 });

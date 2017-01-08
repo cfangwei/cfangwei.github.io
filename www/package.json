@@ -5,7 +5,7 @@
   "main": "webpack.config.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack-dev-server --progress --colors"
+    "start": "webpack-dev-server --progress --colors --port 9090"
   },
   "author": "",
   "license": "ISC",
@@ -17,6 +17,8 @@
     "es5-shim": "^4.1.15",
     "gulp": "^3.9.0",
     "gulp-gh-pages": "^0.5.4",
+    "gulp-inject-reload": "0.0.2",
+    "gulp-livereload": "^3.8.1",
     "gulp-watch": "^4.3.5",
     "highcharts": "^4.2.4",
     "html-loader": "^0.3.0",

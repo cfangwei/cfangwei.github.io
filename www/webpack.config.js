@@ -67,6 +67,10 @@ var config = {
     plugins: [
         new LiveReloadPlugin()
     ]
+  },
+  plugins: [
+    new LiveReloadPlugin()
+  ]
 };
 
 module.exports = config;
