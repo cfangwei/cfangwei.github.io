@@ -1,0 +1,23 @@
+
+
+launch-grid {
+  position: absolute;
+  z-index: -1;
+
+  .grid-area {
+    width: 50%;
+    height: 50%;
+    float: left;
+    display: inline-block;
+  }
+
+  .grid-unit {
+     width: 20%;
+     height: 20%;
+     margin: 2.5%;
+     display: inline-block;
+     float: left;
+     border-radius: 50%;
+     background-color: #999;
+  }
+}
