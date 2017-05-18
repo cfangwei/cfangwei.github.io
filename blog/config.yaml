@@ -27,7 +27,7 @@ SERVE:
 
 MAPPING:
   '@image': '/static/img/'
-  '@root-assert': '/'
+  '@root-asset': '/'
   '@demo': '/demo/'
 
 LANG: 'zh-CN'
