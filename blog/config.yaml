@@ -1,4 +1,4 @@
- 
+
 AUTHOR:
   NAME: '陳放為'
   GITHUB: 'AbyChan'
@@ -19,7 +19,7 @@ BLOG:
 
 STYLE:
   THEMEDIR: '@themes'
-  THEME: 'white-card'
+  THEME: 'hg'
 
 SERVE:
   HOST: '0.0.0.0'
