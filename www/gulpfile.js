@@ -14,9 +14,9 @@ livereload({
 });
 
 /**
- *   
+ *
  * Sass
- * 
+ *
  */
 gulp.task('sass', function () {
     gulp.src('./scss/**/**/*.scss')
@@ -26,14 +26,13 @@ gulp.task('sass', function () {
 	}))
     .pipe(livereload())
     .pipe(gulp.dest('./css'));
-    
 });
 
 
 /**
- *   
+ *
  * Watch
- * 
+ *
  */
 gulp.task('watch:sass', function () {
     gulp.run('sass');
@@ -41,7 +40,7 @@ gulp.task('watch:sass', function () {
 });
 
 /**
- *   
+ *
  * Webpack
  *
  */
@@ -53,9 +52,9 @@ gulp.task('webpack', function(){
 
 
 /**
- *   
+ *
  * Copy
- * 
+ *
  */
 gulp.task('copy', [
     'copy:img',
@@ -112,9 +111,9 @@ gulp.task('copy:resume', function(){
 
 
 /**
- *   
- * Build 
- * 
+ *
+ * Build
+ *
  */
 gulp.task('build', function(done){
     return runSequence(
@@ -125,9 +124,9 @@ gulp.task('build', function(done){
 
 
 /**
- *   
+ *
  * Deploy
- * 
+ *
  */
 gulp.task('deploy', function() {
     return gulp.src('./build/**/*')
